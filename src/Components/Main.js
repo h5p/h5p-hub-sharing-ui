@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from './Generic/Button/Button';
 import Stepper from './Generic/Stepper/Stepper';
 import Step from './Generic/Stepper/Step';
 import Mandatory from './Steps/Mandatory';
 import Optional from './Steps/Optional';
 import Review from './Steps/Review';
+import TranslationContext from '../context/Translation';
 
 import 'normalize.css';
 import './Main.scss';
@@ -29,9 +30,8 @@ const steps = [
 
 function Main() {
   const [activeStep, setActiveStep] = React.useState(0);
-  
+  const l10n = useContext(TranslationContext);
   const step = steps[activeStep];
-
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -47,7 +47,7 @@ function Main() {
       <div className="header">
         <div className="title">Sharing <strong>Norwegian Language Course</strong></div>
         <Button variant="outlined" color="primary">
-          Cancel
+          {l10n.cancel}
         </Button> 
       </div>
 

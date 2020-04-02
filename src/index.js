@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './Components/Main';
+import Main from './Components/Main';
 import * as serviceWorker from './serviceWorker';
+import TranslationContext from './context/Translation';
+import l10n from './test/en.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TranslationContext.Provider
+      value={l10n}
+    >
+      <Main />
+    </TranslationContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
