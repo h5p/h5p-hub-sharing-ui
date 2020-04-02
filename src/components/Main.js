@@ -6,6 +6,7 @@ import Mandatory from './steps/Mandatory';
 import Optional from './steps/Optional';
 import Review from './steps/Review';
 import TranslationContext from '../context/Translation';
+import MetadataContext from '../context/Metadata';
 
 import 'normalize.css';
 import './Main.scss';
@@ -31,7 +32,10 @@ const steps = [
 function Main() {
   const [activeStep, setActiveStep] = React.useState(0);
   const l10n = useContext(TranslationContext);
+  const metadata = useContext(MetadataContext);
   const step = steps[activeStep];
+
+  console.log(metadata);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);

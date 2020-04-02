@@ -1,0 +1,33 @@
+export default [
+  {
+    "id": 5,
+    "name": "Attribution-NonCommercial-NoDerivs",
+    "versions": []
+  },
+  {
+    "id": 6,
+    "name": "Attribution",
+    "versions": [
+      {
+        "id": 1,
+        "name": "4.0 International",
+      },
+      {
+        "id": 2,
+        "name": "3.0 Unported",
+      },
+      {
+        "id": 3,
+        "name": "2.5 Generic",
+      },
+      {
+        "id": 4,
+        "name": "2.0 Generic",
+      },
+      {
+        "id": 5,
+        "name": "1.0 Generic",
+      }
+    ]
+  }
+];
