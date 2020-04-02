@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import Button from './Generic/Button/Button';
-import Stepper from './Generic/Stepper/Stepper';
-import Step from './Generic/Stepper/Step';
-import Mandatory from './Steps/Mandatory';
-import Optional from './Steps/Optional';
-import Review from './Steps/Review';
+import Button from './generic/button/Button';
+import Stepper from './generic/stepper/Stepper';
+import Step from './generic/stepper/Step';
+import Mandatory from './steps/Mandatory';
+import Optional from './steps/Optional';
+import Review from './steps/Review';
 import TranslationContext from '../context/Translation';
 
 import 'normalize.css';

@@ -1,5 +1,5 @@
 import React from 'react';
-import FormElement from '../Generic/Form/Element';
+import FormElement from '../generic/form/Element';
 
 const Mandatory = () => {
   return (

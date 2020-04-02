@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Main from './Components/Main';
+import Main from './components/Main';
 import * as serviceWorker from './serviceWorker';
 import TranslationContext from './context/Translation';
 import l10n from './test/en.js';
