@@ -2,8 +2,10 @@
   .stepper {
     display: flex;
     width: 100%;
+    max-width: 40em;
     align-items: center;
     flex-direction: row;
+    margin: 0 auto;
   }
 
   .step-connector {

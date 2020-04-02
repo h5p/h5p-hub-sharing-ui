@@ -2,11 +2,12 @@ import React from 'react';
 import Button from './Generic/Button/Button';
 import Stepper from './Generic/Stepper/Stepper';
 import Step from './Generic/Stepper/Step';
-
-import './Main.scss';
 import Mandatory from './Steps/Mandatory';
 import Optional from './Steps/Optional';
 import Review from './Steps/Review';
+
+import 'normalize.css';
+import './Main.scss';
 
 const steps = [
   {
