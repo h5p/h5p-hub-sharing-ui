@@ -1,0 +1,37 @@
+.h5p-hub-publish {
+  max-width: 900px;
+  border: 1px solid green;
+  box-sizing: border-box;
+
+
+  .header {
+    padding: 1em;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid green;
+
+    .title {
+      flex-grow: 1;
+    }
+  }
+
+  .step-content {
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid #ccc;
+  }
+
+  .footer {
+    padding: 1em;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .sharing-note {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+}

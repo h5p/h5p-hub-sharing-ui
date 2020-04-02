@@ -1,0 +1,19 @@
+.h5p-hub-publish {
+  .stepper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .step-connector {
+    flex: 1 1 auto;
+  }
+
+  .step-connector-line {
+    display: block;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-color: #bdbdbd;
+  }
+}
