@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Stepper.scss';
 
@@ -10,19 +11,13 @@ const StepConnector = () => {
   );
 }
 
-const Stepper = ({activeStep, children}) => {
-
+const Stepper = ({activeStep, children, completed}) => {
   const childrenArray = React.Children.toArray(children);
   const steps = childrenArray.map((step, index) => {
-    const controlProps = {
-      last: index + 1 === childrenArray.length
-    };
-
     const state = {
       index,
       active: false,
-      completed: false,
-      disabled: false,
+      completed: completed || false
     };
 
     if (activeStep === index) {
@@ -31,22 +26,24 @@ const Stepper = ({activeStep, children}) => {
     else if (activeStep > index) {
       state.completed = true;
     }
-    else if (activeStep < index) {
-      state.disabled = true;
-    }
 
     return [
-      index > 0 ? <StepConnector /> : null,
-      React.cloneElement(step, { ...controlProps, ...state, ...step.props })
+      index > 0 ? <StepConnector key={`connector-${index}`}/> : null,
+      React.cloneElement(step, { key: `step-${index}`, ...state,  ...step.props})
     ];
   });
 
-
   return (
-    <div className="stepper">
+    <div className="stepper" aria-hidden={true}>
       {steps}
     </div>
   );
+};
+
+Stepper.propTypes = {
+  activeStep: PropTypes.number.isRequired,
+  children: PropTypes.array.isRequired,
+  completed: PropTypes.bool
 };
 
 export default Stepper;

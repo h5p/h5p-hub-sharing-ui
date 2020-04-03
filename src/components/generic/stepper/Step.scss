@@ -1,7 +1,41 @@
-.h5p-hub-publish {
-  .step {
-    &.active {
-      font-weight: bold;
+.h5p-hub-publish .step {
+  
+  text-align: center;
+  font-size: 0.75em;
+  font-weight: bold;
+
+  .step-icon {
+    color: #303030;
+    border-radius: 50%;
+    border: 0.462em solid #e1e1e1;
+    width: 3.2em;
+    height: 3.2em;
+    line-height: 2.276;
+    display: inline-block;
+    z-index: 1;
+    position: relative;
+    background: #fff;
+    box-sizing: border-box;
+  }
+
+  .step-label {
+    color: #757575;
+    margin-top: 0.5em;
+  }
+
+  &.active {
+    color: #20d2b2;
+    .step-icon {
+      border-color: #20d2b2;
+      color: #0ea385;
+    }
+  }
+
+  &.completed {
+    .step-icon {
+      background: #0ea385;
+      border-color: #20d2b2;
+      color: #fff;
     }
   }
 }
