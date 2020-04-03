@@ -1,5 +1,13 @@
 .h5p-hub-publish .form-element {
+  font-family: 'Open Sans', sans-serif;
   label {
     display: block;
+    font-size: 1.5em;
+    color: #363636;
+  }
+  .description{
+    font-size: 1.25em;
+    color: #707475;
+    margin: 0.4em 0;
   }
 }

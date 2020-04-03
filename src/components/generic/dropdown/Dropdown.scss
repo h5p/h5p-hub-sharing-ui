@@ -1,0 +1,40 @@
+@import "../../../styles/variables";
+
+.h5p-hub-publish {
+  select {
+    font-size: 1.25em;
+    border-radius: 5px;
+    padding: 0.5em;
+    color: #313131;
+    font-family: "Open Sans", sans-serif;
+    border: 1px solid #bebdcd;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:disabled {
+      background-color: #ededed;
+      &::before {
+        content: "-";
+      }
+    }
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+
+  .icon-dropdown {
+    position: relative;
+    &:before {
+      content: "\e900";
+      position: absolute;
+      right: 1em;
+      top: 1em;
+
+      @media (max-width: $screen-small) {
+        content: "";
+      }
+    }
+  }
+}

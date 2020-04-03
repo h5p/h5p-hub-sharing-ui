@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+.h5p-hub-publish {
+  .license-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .license {
+      width: 25em;
+      margin-right: 2em;
+      margin-top: 2em;
+    }
+    .license-version {
+      width: 25em;
+      margin-top: 2em;
+    }
+    @media (max-width: $screen-small) {
+      .license {
+        margin-right: 0;
+      }
+    }
+  }
+}

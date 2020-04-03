@@ -11,30 +11,35 @@ import MetadataContext from '../context/Metadata';
 import 'normalize.css';
 import './Main.scss';
 
-const steps = [
-  {
-    title: 'Required Info',
-    content: <Mandatory />,
-    nextButton: 'Next'
-  },
-  {
-    title: 'Optional Info',
-    content: <Optional />,
-    nextButton: 'Review Info'
-  },
-  {
-    title: 'Review & Share',
-    content: <Review />,
-    nextButton: 'Share'
-  },
-];
+
 
 function Main() {
   const [activeStep, setActiveStep] = React.useState(0);
   const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
-  const step = steps[activeStep];
 
+  const mandatoryDefaultValues = { license: metadata.licenses[0].id };
+  const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
+
+  const steps = [
+    {
+      title: 'Required Info',
+      content: <Mandatory setMandatoryInfo={setMandatoryInfo} mandatoryInfo={mandatoryInfo} />,
+      nextButton: 'Next',
+    },
+    {
+      title: 'Optional Info',
+      content: <Optional />,
+      nextButton: 'Review Info'
+    },
+    {
+      title: 'Review & Share',
+      content: <Review />,
+      nextButton: 'Share'
+    },
+  ];
+
+  const step = steps[activeStep];
   console.log(metadata);
 
   const handleNext = () => {
@@ -52,16 +57,16 @@ function Main() {
         <div className="title">Sharing <strong>Norwegian Language Course</strong></div>
         <Button variant="outlined" color="primary">
           {l10n.cancel}
-        </Button> 
+        </Button>
       </div>
 
       <div className="content">
         <Stepper activeStep={activeStep}>
-        {steps.map((step, index) => {
-          return (
-            <Step key={index} label={step.title}/>
-          );
-        })}
+          {steps.map((step, index) => {
+            return (
+              <Step key={index} label={step.title} />
+            );
+          })}
         </Stepper>
 
         <div className="step-content">
