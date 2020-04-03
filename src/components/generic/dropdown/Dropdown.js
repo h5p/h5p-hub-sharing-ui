@@ -1,5 +1,6 @@
 import React from 'react';
 import './Dropdown.scss';
+import PropTypes from 'prop-types';
 
 const Dropdown = ({ selected, options, onChange }) => (
   <>
@@ -15,5 +16,10 @@ const Dropdown = ({ selected, options, onChange }) => (
   </>
 );
 
+Dropdown.prototypes = {
+  selected: PropTypes.string,
+  options: PropTypes.array,
+  onchange: PropTypes.func.isRequired
+}
 
 export default Dropdown;

@@ -4,6 +4,7 @@ import Dropdown from '../generic/dropdown/Dropdown';
 import TranslationContext from '../../context/Translation';
 import MetadataContext from '../../context/Metadata';
 import './Mandatory.scss';
+import PropTypes from 'prop-types';
 
 const Mandatory = ({ mandatoryInfo, setMandatoryInfo }) => {
 
@@ -70,5 +71,10 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo }) => {
     </>
   );
 };
+
+Mandatory.protoTypes = {
+  mandatoryInfo: PropTypes.object.isRequired,
+  setMandatoryInfo: PropTypes.func.isRequired
+}
 
 export default Mandatory;
