@@ -13,39 +13,109 @@
 }
 
 .h5p-hub-publish {
-  max-width: 900px;
-  border: 1px solid green;
+  margin: 2em auto;
+  font-family: 'Open Sans', sans-serif;
+  max-width: 1024px;
+  border: 1px solid #2c9586;
+  border-radius: 0.167em;
   box-sizing: border-box;
   font-size: 16px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
 
   .header {
-    padding: 1em;
+    padding: 1.5em;
     display: flex;
+    align-items: center;
     width: 100%;
     box-sizing: border-box;
-    border-bottom: 1px solid green;
+    border-bottom: 1px solid #d5d5d7;
 
     .title {
+      font-size: 1.458em;
       flex-grow: 1;
     }
   }
 
+  .step-panel {
+    margin: 2em;
+    border-radius: 0.208em;
+    border: 1px solid #d5d5d7;
+  }
+
+  .step-title {
+    color: #1a1a1a;
+    font-size: 1.250em;
+    border-bottom: 1px solid #ccc;
+    padding: 1.2em 1.8em;
+  }
+
   .step-content {
-    margin: 1em;
-    padding: 1em;
-    border: 1px solid #ccc;
+    padding: 2.25em;
   }
 
   .footer {
-    padding: 1em;
-    display: flex;
+    padding: 0 2em 2em;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+
+    .navigation {
+      display: flex;
+      
+      button:before {
+        font-family: 'h5p-hub-publish';
+        font-size: 0.75em;
+        content: "\e902";
+        display: inline-block;
+        margin-right: 1em;
+        line-height: 1;
+        position: relative;
+        top: -0.1em;
+      }
+
+      .back:before {
+        transform: rotate(180deg);
+      }
+
+      .next {
+        margin-left: auto;
+      }
+    }
   }
 
   .sharing-note {
-    flex-grow: 1;
     text-align: center;
+    color: #707475;
+    font-size: 0.833em;
+    width: calc(100% - 4.9em);
+    position: absolute;
+    z-index: -1;
+    top: 0.65em;
+    box-sizing: border-box;
+    padding: 0 8em;
+
+    .icon-info:before {
+      font-size: 0.5em;
+      display: inline-block;
+      margin-right: 1em;
+      background: #d1d7e3;
+      padding: 0.4em;
+      border-radius: 50%;
+      position: relative;
+      top: -0.25em;
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   [class^="icon-"], [class*=" icon-"] {

@@ -10,6 +10,10 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo }) => {
   const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
 
+  /**
+   * Set license when changed
+   * @param  {Event} event
+   */
   const setLicense = (event) => {
     event.persist()
     setMandatoryInfo(() => ({
@@ -18,6 +22,10 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo }) => {
     }));
   }
 
+  /**
+   * Set license version when changed
+   * @param  {Event} event
+   */
   const setLicenseVersion = (event) => {
     event.persist()
     setMandatoryInfo(() => ({
@@ -26,13 +34,17 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo }) => {
     }));
   }
 
+  /**
+   * Get all licenses versions from a given license id
+   * @param  {string} id
+   */
   const getLicenseVersions = (id) => {
     for (let i = 0; i < metadata.licenses.length; i++) {
       if (metadata.licenses[i].id == id) {
         return metadata.licenses[i].versions;
       }
     }
-    return []
+    return [];
   }
 
   return (
