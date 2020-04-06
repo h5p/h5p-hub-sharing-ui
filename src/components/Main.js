@@ -14,7 +14,7 @@ import './Main.scss';
 
 
 
-const getSteps = (shared) => {
+const getSteps = (shared, optionalInfo, setOptionalInfo) => {
   let steps = [
     {
       title: 'requiredInfo',
@@ -27,7 +27,7 @@ const getSteps = (shared) => {
     },
     {
       title: 'optionalInfo',
-      content: <Optional />,
+      content: <Optional optionalInfo ={optionalInfo} setOptionalInfo={setOptionalInfo}/>,
       nextButton: {
         label: 'reviewInfo',
         variant: 'outlined'
@@ -56,8 +56,10 @@ const getSteps = (shared) => {
 function Main() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
+  const defaultOptional = {keywords: []}
+  const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
-  const steps = getSteps(isShared);
+  const steps = getSteps(isShared,optionalInfo, setOptionalInfo);
   const step = steps[activeStep];
 
   /**

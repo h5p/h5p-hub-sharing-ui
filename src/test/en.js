@@ -17,7 +17,11 @@ const trans = {
 
   currentStep: 'Step :step of :total',
 
-  sharingNote: 'All content details can be edited after sharing'
+  sharingNote: 'All content details can be edited after sharing',
+
+  removeChip: 'Remove :chip from the list',
+  keywordsPlaceholder: 'Add keywords',
+  keywords: 'Keywords'
 };
 
 export default trans;
