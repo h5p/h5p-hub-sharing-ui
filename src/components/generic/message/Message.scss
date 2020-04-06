@@ -1,0 +1,10 @@
+.h5p-hub-publish .message {
+  font-size: 0.833em;
+  border-left: 0.3em solid;
+  padding: 1em;
+
+  &.warning {
+    border-color: #FDCC31;
+    background: #FFF8E0;
+  }
+}
