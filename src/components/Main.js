@@ -22,7 +22,8 @@ const getSteps = (shared, mandatoryInfo, setMandatoryInfo) => {
         label: 'next',
         variant: 'outlined'
       },
-      backButton: false
+      backButton: false,
+      id: 'mandatory'
     },
     {
       title: 'optionalInfo',
@@ -31,22 +32,34 @@ const getSteps = (shared, mandatoryInfo, setMandatoryInfo) => {
         label: 'reviewInfo',
         variant: 'outlined'
       },
-      backButton: true
+      backButton: true,
+      id: 'optional'
     }
   ]
 
   steps.push(!shared ? {
     title: 'reviewAndShare',
-    content: <Review />,
+    content: <Review 
+      title='Test title'
+      license='license'
+      disciplines={['One descipline', 'Another discipline']}
+      keywords={['keywordA', 'Another keyword']}
+      shortDescription='A short description'
+      longDescription='A long description'
+      icon={{}}
+      screenshots={[{},{},{},{},{}]}
+    />,
     nextButton: {
       label: 'share',
       variant: 'contained'
     },
-    backButton: true
+    backButton: true,
+    id: 'review',
   } : {
     // Special case - last step done
     title: 'shared',
-    content: <Success />
+    content: <Success />,
+    id: 'success'
   });
 
   return steps;
@@ -119,7 +132,7 @@ function Main() {
               {l10n[step.title]}
             </div>
           }
-          <div className="step-content">
+          <div className={`step-content ${step.id}`}>
             {step.content}
           </div>
         </div>

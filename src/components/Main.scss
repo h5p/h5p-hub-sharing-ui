@@ -133,6 +133,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .icon-dropdown:before {	
+    content: "\e900";	
+  }
+
   .icon-info:before {
     content: "\e901";
   }

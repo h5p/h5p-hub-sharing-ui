@@ -2,9 +2,9 @@
 
 .h5p-hub-publish {
   select {
-    font-size: 1.25em;
-    border-radius: 5px;
-    padding: 0.5em;
+    font-size: 0.917em;
+    border-radius: 0.208em;
+    padding: 0.833em;
     color: #313131;
     font-family: "Open Sans", sans-serif;
     border: 1px solid #bebdcd;
@@ -24,10 +24,10 @@
     }
   }
 
-  .icon-dropdown {
+  .icon-arrow-down {
     position: relative;
     &:before {
-      content: "\e900";
+      content: "\e900";	
       position: absolute;
       right: 1em;
       top: 1em;

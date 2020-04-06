@@ -16,7 +16,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo }) => {
    * @param  {Event} event
    */
   const setLicense = (event) => {
-    event.persist()
+    event.persist();
     setMandatoryInfo(() => ({
       ...mandatoryInfo,
       license: event.target.value
@@ -28,7 +28,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo }) => {
    * @param  {Event} event
    */
   const setLicenseVersion = (event) => {
-    event.persist()
+    event.persist();
     setMandatoryInfo(() => ({
       ...mandatoryInfo,
       licenseVersion: event.target.value

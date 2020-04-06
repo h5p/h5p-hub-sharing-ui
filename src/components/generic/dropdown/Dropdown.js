@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Dropdown = ({ selected, options, onChange }) => (
   <>
-    <div className="icon-dropdown"></div>
+    <div className="icon-arrow-down"></div>
     <select value={selected} onChange={onChange} disabled={options.length < 1}>>
         {options.length > 0 ?
         options.map(option => {

@@ -20,10 +20,21 @@ const trans = {
   sharingNote: 'All content details can be edited after sharing',
   
   // License dropdown
-  license: 'License',
   licenseDescription: 'Select a license for your content',
   licenseVersion: 'License Version',
   licenseVersionDescription: 'Select a license version',
+
+  // Review
+  reviewMessage: 'Please review the info below before you share',
+  subContentWarning: 'Sub-content (images, questions etc.) will be shared under Attribtion 4.0 unless otherwise specified in the authoring tool',
+  title: 'Title',
+  license: 'License',
+  disciplines: 'Disciplines',
+  keywords: 'Keywords',
+  shortDescription: 'Short description',
+  longDescription: 'Long description',
+  icon: 'Icon',
+  screenshots: 'Screenshots',
 };
 
 export default trans;
