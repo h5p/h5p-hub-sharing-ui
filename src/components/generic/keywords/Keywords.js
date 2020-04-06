@@ -27,7 +27,11 @@ const Keywords = ({ chips, setChips }) => {
   return (
     <>
       <Chips chips={chips} setChips={setChips}></Chips>
-      <input className='input-field' placeholder={l10n.keywordsPlaceholder} onKeyDown={event => handleKeyDown(event)} ref={inputField} />
+      <input
+        className='input-field'
+        placeholder={l10n.keywordsPlaceholder}
+        onKeyDown={event => handleKeyDown(event)}
+        ref={inputField} />
     </>
   )
 };
