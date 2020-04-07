@@ -72,7 +72,7 @@ const getSteps = (shared, optionalInfo, setOptionalInfo) => {
 function Main() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
-  const defaultOptional = {keywords: []}
+  const defaultOptional = {keywords: [], language: 'en',icon: {}, screenshots:[{},{},{},{},{}]};
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
   const steps = getSteps(isShared, optionalInfo, setOptionalInfo);
