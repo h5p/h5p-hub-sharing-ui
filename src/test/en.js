@@ -30,7 +30,6 @@ const trans = {
   title: 'Title',
   license: 'License',
   disciplines: 'Disciplines',
-  keywords: 'Keywords',
   shortDescription: 'Short description',
   longDescription: 'Long description',
   icon: 'Icon',

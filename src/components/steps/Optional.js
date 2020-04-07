@@ -4,12 +4,14 @@ import Keywords from '../generic/keywords/Keywords';
 import FormElement from '../generic/form/Element';
 import TranslationContext from '../../context/Translation';
 
-import './Optional.scss';
-
 const Optional = ({ optionalInfo, setOptionalInfo }) => {
 
   const l10n = React.useContext(TranslationContext);
 
+  /**
+   * Updates chips in optionalInfo
+   * @param  {string[]} chips
+   */
   const setChips = (chips) => {
     setOptionalInfo(() => ({
       ...optionalInfo,

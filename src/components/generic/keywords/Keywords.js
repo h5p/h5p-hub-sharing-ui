@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Chips from '../chips/Chips';
 import TranslationContext from '../../../context/Translation';
 
-import './Keywords.scss';
-
 const Keywords = ({ chips, setChips }) => {
 
   const inputField = React.useRef(null);
@@ -15,7 +13,7 @@ const Keywords = ({ chips, setChips }) => {
    * @param  {Event} event
    */
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === 'Backspace' || event.key === 'Delete') {
       event.preventDefault();
       if (chips.indexOf(event.target.value) === -1 && event.target.value !== '') {
         setChips([...chips, event.target.value]);
@@ -24,9 +22,16 @@ const Keywords = ({ chips, setChips }) => {
     }
   }
 
+  /**
+   * Set focus to input field when last chip is deleted
+   */
+  const handleDeleteLastChip = () =>{
+    inputField.current.focus();
+  }
+
   return (
     <>
-      <Chips chips={chips} setChips={setChips}></Chips>
+      <Chips chips={chips} setChips={setChips} deleteLastChip={handleDeleteLastChip}></Chips>
       <input
         className='input-field'
         placeholder={l10n.keywordsPlaceholder}

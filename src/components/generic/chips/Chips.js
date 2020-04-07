@@ -5,7 +5,7 @@ import TranslationContext from '../../../context/Translation';
 import { replace } from '../../../utils/helpers';
 
 
-const Chips = ({ chips, setChips }) => {
+const Chips = ({ chips, setChips, deleteLastChip }) => {
 
   const l10n = React.useContext(TranslationContext);
   const chipsRef = React.useRef([]);
@@ -18,6 +18,16 @@ const Chips = ({ chips, setChips }) => {
   }, [chips]);
 
   /**
+   * Delete chip if enter, backspace or delete is pressed
+   * @param  {Event} event
+   */
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === 'Backspace' || event.key === 'Delete') {
+      removeChip(event.target.id);
+    }
+  }
+
+  /**
    * Remove a chip when clicked on
    * @param  {string} chip
    */
@@ -26,6 +36,9 @@ const Chips = ({ chips, setChips }) => {
     const index = chips.indexOf(chip);
     if (chips.length > 1) {
       chipsRef.current[index !== 0 ? index - 1 : 1].focus();
+    }
+    else if(chips.length === 1 && deleteLastChip){
+      deleteLastChip();
     }
     setChips(chips.filter(element => element !== chip));
   };
@@ -39,7 +52,9 @@ const Chips = ({ chips, setChips }) => {
             <button
               ref={el => chipsRef.current[i] = el}
               aria-label={replace(l10n.removeChip, { ':chip': chip })}
-              onClick={() => removeChip(chip)}>
+              onClick={() => removeChip(chip)}
+              onKeyDown={event => handleKeyDown(event)}
+              id={chip}>
               {chip}
               <div className='icon-close'></div>
             </button>
@@ -51,7 +66,8 @@ const Chips = ({ chips, setChips }) => {
 
 Chips.propTypes = {
   chips: PropTypes.array.isRequired,
-  setChips: PropTypes.func.isRequired
+  setChips: PropTypes.func.isRequired,
+  deleteLastChip: PropTypes.func
 };
 
 export default Chips;
