@@ -1,5 +1,4 @@
 const trans = {
-  cancel: 'Cancel',
   mainTitle: 'Sharing <strong>:title</strong>',
 
   // Buttons:

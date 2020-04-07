@@ -6,6 +6,7 @@
     border-radius: 0.208em;
     padding: 0.833em;
     color: #313131;
+    background-color: #ffffff;
     font-family: "Open Sans", sans-serif;
     border: 1px solid #bebdcd;
     width: 100%;
@@ -30,11 +31,8 @@
       content: "\e900";	
       position: absolute;
       right: 1em;
-      top: 1em;
-
-      @media (max-width: $screen-small) {
-        content: "";
-      }
+      top: 1.8em;
+      font-size: 0.6em;
     }
   }
 }

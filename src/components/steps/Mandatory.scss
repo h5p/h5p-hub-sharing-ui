@@ -5,19 +5,20 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-right: -1em;
     .license {
-      width: 25em;
-      margin-right: 2em;
+      flex-grow: 1;
+      min-width: 17em;
       margin-top: 2em;
+      //Make space between dropdowns that isn't showed when wrapped
+      border-right: 1em solid #ffffff;
     }
     .license-version {
-      width: 25em;
+      flex-grow: 1;
+      min-width: 17em;
       margin-top: 2em;
-    }
-    @media (max-width: $screen-small) {
-      .license {
-        margin-right: 0;
-      }
+      //Make space between dropdowns that isn't showed when wrapped
+      border-right: 1em solid #ffffff;
     }
   }
 }
