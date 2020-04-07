@@ -41,7 +41,7 @@ const getSteps = (shared, mandatory, optional) => {
       backButton: true,
       id: 'optional'
     }
-  ]
+  ];
 
   steps.push(!shared ? {
     title: 'reviewAndShare',
