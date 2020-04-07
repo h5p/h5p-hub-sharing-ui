@@ -1,0 +1,38 @@
+@import "../../../styles/variables";
+
+.h5p-hub-publish {
+  select {
+    font-size: 0.917em;
+    border-radius: 0.208em;
+    padding: 0.833em;
+    color: #313131;
+    background-color: #ffffff;
+    font-family: "Open Sans", sans-serif;
+    border: 1px solid #bebdcd;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:disabled {
+      background-color: #ededed;
+      &::before {
+        content: "-";
+      }
+    }
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+
+  .icon-arrow-down {
+    position: relative;
+    &:before {
+      content: "\e900";	
+      position: absolute;
+      right: 1em;
+      top: 1.8em;
+      font-size: 0.6em;
+    }
+  }
+}

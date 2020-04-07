@@ -1,5 +1,4 @@
 const trans = {
-
   mainTitle: 'Sharing <strong>:title</strong>',
 
   // Buttons:
@@ -18,6 +17,11 @@ const trans = {
   currentStep: 'Step :step of :total',
 
   sharingNote: 'All content details can be edited after sharing',
+  
+  // License dropdown
+  licenseDescription: 'Select a license for your content',
+  licenseVersion: 'License Version',
+  licenseVersionDescription: 'Select a license version',
 
   //Optional
   removeChip: 'Remove :chip from the list',

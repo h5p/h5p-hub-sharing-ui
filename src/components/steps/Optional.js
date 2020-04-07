@@ -5,24 +5,13 @@ import FormElement from '../generic/form/Element';
 import TranslationContext from '../../context/Translation';
 import MetadataContext from '../../context/Metadata';
 import ImagePreview from '../generic/form/ImagePreview';
+import Dropdown from '../generic/dropdown/Dropdown';
 
 import './Optional.scss';
 
 const Optional = ({ optionalInfo, setOptionalInfo }) => {
 
   const l10n = React.useContext(TranslationContext);
-
-  /**
-   * Updates chips in optionalInfo
-   * @param  {string[]} chips
-   */
-  const setChips = (chips) => {
-    setOptionalInfo(() => ({
-      ...optionalInfo,
-      keywords: chips
-    }));
-  }
-
   const metadata = React.useContext(MetadataContext);
 
   /**
@@ -40,18 +29,32 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
 
 
   return (
-    <>
+    <div className='optional-page'>
       <div className='keywords'>
         <FormElement label={l10n.keywords}>
-          <Keywords chips={optionalInfo.keywords} setChips={setChips}></Keywords>
+          <Keywords chips={optionalInfo.keywords} setChips={(chips) => setInfo(chips, 'keywords')}></Keywords>
         </FormElement>
       </div>
-      {/*  <FormElement label={l10n.language}>
-        <Dropdown options={metadata.languages} onChange={(data) => setInfo(data,'language')}></Dropdown>
-      </FormElement> 
-      <FormElement label={l10n.lavel}>
-        <Dropdown options={metadata.levels} onChange={(data) => setInfo(data,'level')}></Dropdown> 
-      </FormElement>  */}
+      <div className='dropdowns'>
+        <div className='language'>
+          <FormElement label={l10n.language}>
+            <Dropdown
+              options={metadata.languages}
+              onChange={(e) => setInfo(e.target.value, 'language')}
+              selected={optionalInfo.language}>
+            </Dropdown>
+          </FormElement>
+        </div>
+        <div className='level'>
+          <FormElement label={l10n.level}>
+            <Dropdown
+            options={metadata.levels}
+            onChange={(e) => setInfo(e.target.value, 'level')}
+            selected={optionalInfo.level}>
+            </Dropdown>
+          </FormElement>
+        </div>
+      </div>
       <div className='optional-second-part'>
         <div className='descriptions'>
           <FormElement label={l10n.shortDescription}>
@@ -76,8 +79,8 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
         <div className='optional-images'>
           <div className='optional-upload-icon'>
             <FormElement label={l10n.icon} description={l10n.iconDescription}>
-            <ImagePreview></ImagePreview>
-          </FormElement>
+              <ImagePreview/>
+            </FormElement>
           </div>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
             <div id='screenshots'>
@@ -88,7 +91,7 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
           </FormElement>
         </div>
       </div>
-    </>
+    </div >
   );
 };
 

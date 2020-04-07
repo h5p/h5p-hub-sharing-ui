@@ -8,6 +8,7 @@ import Review from './steps/Review';
 import Success from './steps/Success';
 import TranslationContext from '../context/Translation';
 import { replace } from '../utils/helpers';
+import MetadataContext from '../context/Metadata';
 
 import 'normalize.css';
 import './Main.scss';
@@ -17,11 +18,12 @@ import './Main.scss';
  * 
  * @param {bool} shared Is this shared yet?
  */
-const getSteps = (shared, optionalInfo, setOptionalInfo) => {
+
+const getSteps = (shared, mandatory, optional) => {
   let steps = [
     {
       title: 'requiredInfo',
-      content: <Mandatory />,
+      content: <Mandatory mandatoryInfo={mandatory.info} setMandatoryInfo={mandatory.setter}/>,
       nextButton: {
         label: 'next',
         variant: 'outlined'
@@ -31,7 +33,7 @@ const getSteps = (shared, optionalInfo, setOptionalInfo) => {
     },
     {
       title: 'optionalInfo',
-      content: <Optional optionalInfo={optionalInfo} setOptionalInfo={setOptionalInfo}/>,
+      content: <Optional optionalInfo={optional.info} setOptionalInfo={optional.setter}/>,
       nextButton: {
         label: 'reviewInfo',
         variant: 'outlined'
@@ -39,7 +41,7 @@ const getSteps = (shared, optionalInfo, setOptionalInfo) => {
       backButton: true,
       id: 'optional'
     }
-  ]
+  ];
 
   steps.push(!shared ? {
     title: 'reviewAndShare',
@@ -75,7 +77,17 @@ function Main() {
   const defaultOptional = {keywords: [], language: 'en',icon: {}, screenshots:[{},{},{},{},{}]};
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
-  const steps = getSteps(isShared, optionalInfo, setOptionalInfo);
+  const metadata = useContext(MetadataContext);
+  const mandatoryDefaultValues = { license: metadata.licenses[0].id };
+  const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
+
+  const steps = getSteps(isShared, {
+    info: mandatoryInfo,
+    setter: setMandatoryInfo
+  }, {
+    info: optionalInfo,
+    setter: setOptionalInfo
+  });
   const step = steps[activeStep];
 
   /**
@@ -117,7 +129,7 @@ function Main() {
           dangerouslySetInnerHTML={{__html: mainTitle}} />
         <Button variant="outlined" color="primary" onClick={handleCancel}>
           {l10n.cancel}
-        </Button> 
+        </Button>
       </div>
 
       <div className="content">
