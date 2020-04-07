@@ -12,8 +12,11 @@ import { replace } from '../utils/helpers';
 import 'normalize.css';
 import './Main.scss';
 
-
-
+/**
+ * Creates the defintion of the steps in the wizard
+ * 
+ * @param {bool} shared Is this shared yet?
+ */
 const getSteps = (shared) => {
   let steps = [
     {
@@ -92,8 +95,12 @@ function Main() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  /**
+   * Handle cancel button is clicked
+   */
   const handleCancel = () => {
-    console.log('Cancel');
+    // TODO - Implementation needs to be figured out when
+    // integrated into plugins
   };
 
   const mainTitle = replace(l10n.mainTitle, {':title': 'Norwegian Language Course'});
