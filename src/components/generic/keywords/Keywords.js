@@ -13,10 +13,11 @@ const Keywords = ({ chips, setChips }) => {
    * @param  {Event} event
    */
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter' || event.key === 'Backspace' || event.key === 'Delete') {
+    if (event.key === 'Enter') {
       event.preventDefault();
-      if (chips.indexOf(event.target.value) === -1 && event.target.value !== '') {
-        setChips([...chips, event.target.value]);
+      const value = event.target.value.trim();
+      if (chips.indexOf(value) === -1 && value !== '') {
+        setChips([...chips, value]);
       }
       inputField.current.value = '';
     }
