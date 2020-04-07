@@ -28,7 +28,7 @@ const Chips = ({ chips, setChips }) => {
       chipsRef.current[index !== 0 ? index - 1 : 1].focus();
     }
     setChips(chips.filter(element => element !== chip));
-  }
+  };
 
   return (
     chips.length > 0 ?
@@ -46,7 +46,7 @@ const Chips = ({ chips, setChips }) => {
           </li>)}
       </ul>
       : null
-  )
+  );
 };
 
 Chips.propTypes = {

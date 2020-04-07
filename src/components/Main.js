@@ -28,7 +28,7 @@ const getSteps = (shared, optionalInfo, setOptionalInfo) => {
     },
     {
       title: 'optionalInfo',
-      content: <Optional optionalInfo ={optionalInfo} setOptionalInfo={setOptionalInfo}/>,
+      content: <Optional optionalInfo={optionalInfo} setOptionalInfo={setOptionalInfo}/>,
       nextButton: {
         label: 'reviewInfo',
         variant: 'outlined'
@@ -72,7 +72,7 @@ function Main() {
   const defaultOptional = {keywords: []}
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
-  const steps = getSteps(isShared,optionalInfo, setOptionalInfo);
+  const steps = getSteps(isShared, optionalInfo, setOptionalInfo);
   const step = steps[activeStep];
 
   /**
