@@ -5,7 +5,7 @@ import './Element.scss';
 
 const FormElement = ({label, description, mandatory, children}) => {
   return (
-    <div className="form-element">
+    <div className={`form-element ${mandatory ? 'mandatory' : ''}`}>
       <label htmlFor={children.props.id}>{label}</label>
       {
         description &&

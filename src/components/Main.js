@@ -19,11 +19,11 @@ import './Main.scss';
  * @param {bool} shared Is this shared yet?
  */
 
-const getSteps = (shared, mandatory, optional) => {
+const getSteps = (shared, mandatory, optional, isValid) => {
   let steps = [
     {
       title: 'requiredInfo',
-      content: <Mandatory mandatoryInfo={mandatory.info} setMandatoryInfo={mandatory.setter}/>,
+      content: <Mandatory mandatoryInfo={mandatory.info} setMandatoryInfo={mandatory.setter} setIsValid={isValid}/>,
       nextButton: {
         label: 'next',
         variant: 'outlined'
@@ -46,14 +46,8 @@ const getSteps = (shared, mandatory, optional) => {
   steps.push(!shared ? {
     title: 'reviewAndShare',
     content: <Review 
-      title='Test title'
-      license='license'
-      disciplines={['One descipline', 'Another discipline']}
-      keywords={['keywordA', 'Another keyword']}
-      shortDescription='A short description'
-      longDescription='A long description'
-      icon={{}}
-      screenshots={[{},{},{},{},{}]}
+      mandatoryInfo={mandatory.info}
+      optionalInfo={optional.info}
     />,
     nextButton: {
       label: 'share',
@@ -74,20 +68,22 @@ const getSteps = (shared, mandatory, optional) => {
 function Main() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
-  const defaultOptional = {keywords: [], language: 'en',icon: {}, screenshots:[{},{},{},{},{}]};
+  const [isValid, setIsValid] = React.useState(false);
+  const defaultOptional = {keywords: [], language: 'en', icon: {}, screenshots:[{},{},{},{},{}]};
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
-  const mandatoryDefaultValues = { license: metadata.licenses[0].id };
+  const mandatoryDefaultValues = { license: metadata.licenses[0].id, licenseVersion: '', title: '', disciplines: []};
   const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
-
+  
   const steps = getSteps(isShared, {
     info: mandatoryInfo,
     setter: setMandatoryInfo
   }, {
     info: optionalInfo,
     setter: setOptionalInfo
-  });
+  }, setIsValid);
+
   const step = steps[activeStep];
 
   /**
@@ -166,7 +162,7 @@ function Main() {
               }
               {
                 step.nextButton &&
-                <Button name="next" variant={step.nextButton.variant} color="green" onClick={handleNext}>
+                <Button name="next" variant={step.nextButton.variant} color="green" onClick={handleNext} enabled={isValid}>
                   {l10n[step.nextButton.label]}
                 </Button>
               }

@@ -21,7 +21,6 @@ const metadata = {
   levels: levels
 };
 
-
 ReactDOM.render(
   <React.StrictMode>
     <TranslationContext.Provider value={l10n}>

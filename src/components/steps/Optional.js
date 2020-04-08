@@ -6,6 +6,7 @@ import TranslationContext from '../../context/Translation';
 import MetadataContext from '../../context/Metadata';
 import ImagePreview from '../generic/form/ImagePreview';
 import Dropdown from '../generic/dropdown/Dropdown';
+import {optionalDefinition} from '../../utils/helpers';
 
 import './Optional.scss';
 
@@ -94,7 +95,7 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
 };
 
 Optional.propTypes = {
-  optionalInfo: PropTypes.object.isRequired,
+  optionalInfo: optionalDefinition,
   setOptionalInfo: PropTypes.func.isRequired
 }
 

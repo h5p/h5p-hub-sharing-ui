@@ -15,15 +15,16 @@ const trans = {
   shared: 'Shared',
 
   currentStep: 'Step :step of :total',
-
   sharingNote: 'All content details can be edited after sharing',
   
-  // License dropdown
+  // Mandatory page
   licenseDescription: 'Select a license for your content',
   licenseVersion: 'License Version',
   licenseVersionDescription: 'Select a license version',
+  disciplineLabel: 'Disciplines',
+  disciplineDescription: 'You can select multiple disciplines',
 
-  //Optional
+  // Optional page
   removeChip: 'Remove :chip from the list',
   keywordsPlaceholder: 'Add keywords',
   keywords: 'Keywords',
