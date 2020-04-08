@@ -1,9 +1,26 @@
 .h5p-hub-publish .form-element {
   font-family: 'Open Sans', sans-serif;
+  margin: 2em 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   label {
     display: block;
     color: #363636;
-    margin-bottom: 1em;
+    margin-bottom: 0.4em;
+    font-weight: bold;
+  }
+  &.mandatory label:after {
+    content: '*';
+    color: #d11e15;    
+    position: relative;
+    top: -0.2em;
   }
   input{
     font-size: 0.833em;
@@ -21,6 +38,6 @@
   .description{
     font-size: 0.833em;
     color: #707475;
-    margin: 0.4em 0;
+    margin: 0.5em 0;
   }
 }

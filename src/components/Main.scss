@@ -45,6 +45,7 @@
   .step-title {
     color: #1a1a1a;
     font-size: 1.250em;
+    font-weight: bold;
     border-bottom: 1px solid #ccc;
     padding: 1.2em 1.8em;
   }
@@ -136,7 +137,6 @@
   .icon-dropdown:before {	
     content: "\e900";	
   }
-
   .icon-info:before {
     content: "\e901";
   }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Button.scss';
 
-const Button = ({children, name, onClick, variant, color}) => {
+const Button = ({children, name, onClick, variant, color, enabled}) => {
 
   let classes = [];
 
@@ -18,7 +18,7 @@ const Button = ({children, name, onClick, variant, color}) => {
   }
 
   return (
-    <button type="button" className={classes.join(' ')} onClick={onClick}>
+    <button type="button" className={classes.join(' ')} onClick={onClick} disabled={enabled === false}>
       {children}
     </button>
   );
@@ -29,7 +29,8 @@ Button.propTypes = {
   name: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   variant: PropTypes.string,
-  color: PropTypes.string
+  color: PropTypes.string,
+  enabled: PropTypes.bool,
 };
 
 export default Button;

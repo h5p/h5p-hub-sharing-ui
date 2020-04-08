@@ -19,11 +19,11 @@ import './Main.scss';
  * @param {bool} shared Is this shared yet?
  */
 
-const getSteps = (shared, mandatory, optional) => {
+const getSteps = (shared, mandatory, optional, isValid) => {
   let steps = [
     {
       title: 'requiredInfo',
-      content: <Mandatory mandatoryInfo={mandatory.info} setMandatoryInfo={mandatory.setter}/>,
+      content: <Mandatory mandatoryInfo={mandatory.info} setMandatoryInfo={mandatory.setter} setIsValid={isValid}/>,
       nextButton: {
         label: 'next',
         variant: 'outlined'
@@ -74,6 +74,7 @@ const getSteps = (shared, mandatory, optional) => {
 function Main() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
+  const [isValid, setIsValid] = React.useState(false);
   const defaultOptional = {keywords: []}
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
@@ -81,13 +82,15 @@ function Main() {
   const mandatoryDefaultValues = { license: metadata.licenses[0].id };
   const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
 
+  
   const steps = getSteps(isShared, {
     info: mandatoryInfo,
     setter: setMandatoryInfo
   }, {
     info: optionalInfo,
     setter: setOptionalInfo
-  });
+  }, setIsValid);
+
   const step = steps[activeStep];
 
   /**
@@ -166,7 +169,7 @@ function Main() {
               }
               {
                 step.nextButton &&
-                <Button name="next" variant={step.nextButton.variant} color="green" onClick={handleNext}>
+                <Button name="next" variant={step.nextButton.variant} color="green" onClick={handleNext} enabled={isValid}>
                   {l10n[step.nextButton.label]}
                 </Button>
               }
