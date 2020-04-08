@@ -30,25 +30,14 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
   /**
    * Update a field
    * 
-   * @param {SyntheticEvent} event 
+   * @param {string} value
    * @param {string} name 
    */
-  const updateField = (event, name) => {
-    event.persist();
-    
-    setMandatoryInfo(() => {
-      const value = event.target.value;
-      
-      const obj = {...mandatoryInfo};
-      obj[name] = value;
-
-      if (name === 'license') {
-        const versions = getLicenseVersions(metadata.licenses, value);
-        obj['licenseVersion'] = versions.length !== 0 ? versions[0].id : '';
-      }
-
-      return obj;
-    });
+  const setInfo = (value, name) => {
+    setMandatoryInfo(() => ({
+      ...mandatoryInfo,
+      [name]: value
+    }));
   };
 
 
@@ -63,7 +52,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
       }
   
       // Check that license version is set for those licenses having a version
-      if (licenseVersions.length !== 0 && !mandatoryInfo.licenseVersion) {
+      if (licenseVersions.length !== 0 && mandatoryInfo.licenseVersion.length === 0) {
         return false;
       }
   
@@ -73,11 +62,10 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
   return (
     <>
-      {mandatoryInfo.license}
       <FormElement label={l10n.title} mandatory={true}>
         <input 
           id="title"
-          onChange={e => updateField(e, 'title')}
+          onChange={e => setInfo(e.target.value, 'title')}
           value={mandatoryInfo.title}/>
       </FormElement>
       <div className='form-element license-row'>
@@ -90,7 +78,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             <Dropdown 
               options={metadata.licenses}
               selected={mandatoryInfo.license}
-              onChange={e => updateField(e, 'license')}>
+              allowNone={true}
+              onChange={e => setInfo(e.target.value, 'license')}>
             </Dropdown>
           </FormElement>
         </div>
@@ -103,7 +92,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             <Dropdown 
               options={licenseVersions}
               selected={mandatoryInfo.licenseVersion}
-              onChange={e => updateField(e, 'licenseVersion')}>
+              allowNone={true}
+              onChange={e => setInfo(e.target.value, 'licenseVersion')}>
             </Dropdown>
           </FormElement>
         </div>

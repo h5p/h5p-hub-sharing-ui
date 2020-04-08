@@ -72,8 +72,7 @@ function Main() {
   const defaultOptional = {keywords: [], language: 'en', icon: {}, screenshots:[{},{},{},{},{}]};
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
-  const metadata = useContext(MetadataContext);
-  const mandatoryDefaultValues = { license: metadata.licenses[0].id, licenseVersion: '', title: '', disciplines: []};
+  const mandatoryDefaultValues = { license: '', licenseVersion: '', title: '', disciplines: []};
   const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
   
   const steps = getSteps(isShared, {
@@ -117,7 +116,6 @@ function Main() {
 
   return (
     <div className="h5p-hub-publish">
-
       <div className="header">
         <div
           role="heading"
