@@ -1,31 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import FormElement from '../generic/form/Element';
 import Dropdown from '../generic/dropdown/Dropdown';
 import TranslationContext from '../../context/Translation';
 import MetadataContext from '../../context/Metadata';
 import PropTypes from 'prop-types';
-import {mandatoryDefinition} from '../../utils/helpers';
+import {replace, mandatoryDefinition} from '../../utils/helpers';
 
 import './Mandatory.scss';
-
-/**
- * Get all licenses versions from a given license id
- * @param  {string} id
- */
-const getLicenseVersions = (licenses, id) => {
-  for (let i = 0; i < licenses.length; i++) {
-    if (licenses[i].id == id) {
-      return licenses[i].versions;
-    }
-  }
-  return [];
-}
+import Message from '../generic/message/Message';
 
 const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
-
+  const [showLicenseWarning, setShowLicenseWarning] = useState(false);
   const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
-  const licenseVersions = getLicenseVersions(metadata.licenses, mandatoryInfo.license);
+  const license = metadata.getLicense(mandatoryInfo.license);
+  const licenseVersions = license ? license.versions : [];
 
   /**
    * Update a field
@@ -40,24 +29,24 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
     }));
   };
 
-
   React.useEffect(() => {
+
+    const licenseOk = mandatoryInfo.license && 
+      (licenseVersions.length === 0 || mandatoryInfo.licenseVersion.length !== 0);
+
     setIsValid(() => {
       if (mandatoryInfo.title === undefined || mandatoryInfo.title.trim().length === 0) {
         return false;
       }
   
-      if (!mandatoryInfo.license) {
-        return false;
-      }
-  
-      // Check that license version is set for those licenses having a version
-      if (licenseVersions.length !== 0 && mandatoryInfo.licenseVersion.length === 0) {
+      if (!licenseOk) {
         return false;
       }
   
       return true;
     });
+
+    setShowLicenseWarning(() => licenseOk);
   }, [mandatoryInfo, setIsValid, licenseVersions]);
 
   return (
@@ -68,6 +57,14 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           onChange={e => setInfo(e.target.value, 'title')}
           value={mandatoryInfo.title}/>
       </FormElement>
+      {
+        showLicenseWarning &&
+        <Message severity="warning">
+          {replace(l10n.subContentWarning, {
+            ':license': metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion)
+          })}
+        </Message>
+      }
       <div className='form-element license-row'>
         <div className="license">
           <FormElement 

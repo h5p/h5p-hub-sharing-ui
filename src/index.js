@@ -13,13 +13,14 @@ import licenses from './test/licenses.js';
 import disciplines from './test/disciplines.js';
 import languages from './test/languages.js';
 import levels from './test/levels.js';
+import Metadata from './utils/metadata';
 
-const metadata = {
+const metadata = new Metadata({
   licenses: licenses,
   disciplines: disciplines,
   languages: languages,
   levels: levels
-};
+});
 
 ReactDOM.render(
   <React.StrictMode>

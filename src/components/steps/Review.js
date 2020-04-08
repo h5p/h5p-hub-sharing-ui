@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
 import TranslationContext from '../../context/Translation';
 import ImagePreview from '../generic/form/ImagePreview';
-import {mandatoryDefinition, optionalDefinition} from '../../utils/helpers';
+import {replace, mandatoryDefinition, optionalDefinition} from '../../utils/helpers';
+import Message from '../generic/message/Message';
+import MetadataContext from '../../context/Metadata';
 
 import './Review.scss';
-import Message from '../generic/message/Message';
 
 const Definition = ({name, children}) => {
   return (
@@ -20,13 +21,17 @@ const Review = ({
   optionalInfo
 }) => {
   const l10n = useContext(TranslationContext);
+  const metadata = useContext(MetadataContext);
 
   return (
     <>
       <div className="review-header">{l10n.reviewMessage}</div>
 
       <Message severity="warning">
-        {l10n.subContentWarning}
+        {replace(l10n.subContentWarning, {
+          ':license': metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion)
+        })}
+        
       </Message>
 
       <dl>

@@ -31,7 +31,7 @@ const trans = {
   
   // Review
   reviewMessage: 'Please review the info below before you share',
-  subContentWarning: 'Sub-content (images, questions etc.) will be shared under Attribtion 4.0 unless otherwise specified in the authoring tool',
+  subContentWarning: 'Sub-content (images, questions etc.) will be shared under :license unless otherwise specified in the authoring tool',
   title: 'Title',
   license: 'License',
   disciplines: 'Disciplines',

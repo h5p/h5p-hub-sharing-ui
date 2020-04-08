@@ -8,7 +8,6 @@ import Review from './steps/Review';
 import Success from './steps/Success';
 import TranslationContext from '../context/Translation';
 import { replace } from '../utils/helpers';
-import MetadataContext from '../context/Metadata';
 
 import 'normalize.css';
 import './Main.scss';
