@@ -79,7 +79,7 @@ function Main() {
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
-  const mandatoryDefaultValues = { license: metadata.licenses[0].id };
+  const mandatoryDefaultValues = { license: metadata.licenses[0].id, licenseVersion: '', title: ''};
   const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
 
   

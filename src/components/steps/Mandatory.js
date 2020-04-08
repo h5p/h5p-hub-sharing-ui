@@ -7,33 +7,24 @@ import PropTypes from 'prop-types';
 
 import './Mandatory.scss';
 
+/**
+ * Get all licenses versions from a given license id
+ * @param  {string} id
+ */
+const getLicenseVersions = (licenses, id) => {
+  for (let i = 0; i < licenses.length; i++) {
+    if (licenses[i].id == id) {
+      return licenses[i].versions;
+    }
+  }
+  return [];
+}
+
 const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
   const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
-
-  /**
-   * Is all mandatory fields filled?
-   * 
-   * @returns {bool}
-   */
-  const isValid = () => {
-    if (mandatoryInfo.title === undefined || mandatoryInfo.title.trim().length === 0) {
-      return false;
-    }
-
-    if (!mandatoryInfo.license) {
-      return false;
-    }
-
-    // Check that license version is set for those licenses having a version
-    const versions = getLicenseVersions(mandatoryInfo.license);
-    if (versions.length !== 0 && !mandatoryInfo.licenseVersion) {
-      return false;
-    }
-
-    return true;
-  };
+  const licenseVersions = getLicenseVersions(metadata.licenses, mandatoryInfo.license);
 
   /**
    * Update a field
@@ -45,30 +36,48 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
     event.persist();
     
     setMandatoryInfo(() => {
-      mandatoryInfo[name] = event.target.value.trim();
-      return mandatoryInfo;
-    });
+      const value = event.target.value;
+      
+      const obj = {...mandatoryInfo};
+      obj[name] = value;
 
-    setIsValid(() => isValid());
+      if (name === 'license') {
+        const versions = getLicenseVersions(metadata.licenses, value);
+        obj['licenseVersion'] = versions.length !== 0 ? versions[0].id : '';
+      }
+
+      return obj;
+    });
   };
 
-  /**
-   * Get all licenses versions from a given license id
-   * @param  {string} id
-   */
-  const getLicenseVersions = (id) => {
-    for (let i = 0; i < metadata.licenses.length; i++) {
-      if (metadata.licenses[i].id == id) {
-        return metadata.licenses[i].versions;
+
+  React.useEffect(() => {
+    setIsValid(() => {
+      if (mandatoryInfo.title === undefined || mandatoryInfo.title.trim().length === 0) {
+        return false;
       }
-    }
-    return [];
-  }
+  
+      if (!mandatoryInfo.license) {
+        return false;
+      }
+  
+      // Check that license version is set for those licenses having a version
+      if (licenseVersions.length !== 0 && !mandatoryInfo.licenseVersion) {
+        return false;
+      }
+  
+      return true;
+    });
+  }, [mandatoryInfo, setIsValid, licenseVersions]);
 
   return (
     <>
+      {mandatoryInfo.license}
       <FormElement label={l10n.title} mandatory={true}>
-        <input id="title" onChange={e => updateField(e, 'title')}></input>
+        <input 
+          id="title"
+          onChange={e => updateField(e, 'title')}
+          value={mandatoryInfo.title}/>
       </FormElement>
       <div className='form-element license-row'>
         <div className="license">
@@ -77,7 +86,11 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             description={l10n.licenseDescription}
             mandatory={true}
           >
-            <Dropdown options={metadata.licenses} onChange={e => updateField(e, 'license')}></Dropdown>
+            <Dropdown 
+              options={metadata.licenses}
+              selected={mandatoryInfo.license}
+              onChange={e => updateField(e, 'license')}>
+            </Dropdown>
           </FormElement>
         </div>
         <div className='license-version'>
@@ -86,7 +99,11 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             description={l10n.licenseVersionDescription}
             mandatory={true}
           >
-            <Dropdown options={getLicenseVersions(mandatoryInfo.license)} onChange={e => updateField(e, 'licenseVersion')}></Dropdown>
+            <Dropdown 
+              options={licenseVersions}
+              selected={mandatoryInfo.licenseVersion}
+              onChange={e => updateField(e, 'licenseVersion')}>
+            </Dropdown>
           </FormElement>
         </div>
       </div>
