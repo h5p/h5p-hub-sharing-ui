@@ -19,7 +19,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo }) => {
     event.persist();
     setMandatoryInfo(() => ({
       ...mandatoryInfo,
-      license: event.target.value
+      license: event.target.value,
+      licenseVersion: getLicenseVersions(event.target.value).length > 0 ? getLicenseVersions(event.target.value)[0].id : ''
     }));
   }
 
@@ -56,18 +57,22 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo }) => {
       <div className='license-row'>
         <div className="license">
           <FormElement label={l10n.license} description={l10n.licenseDescription}>
-            <Dropdown options={metadata.licenses} onChange={setLicense}></Dropdown>
+            <Dropdown
+              options={metadata.licenses}
+              selected={mandatoryInfo.license}
+              onChange={setLicense}>
+            </Dropdown>
           </FormElement>
         </div>
         <div className='license-version'>
           <FormElement label={l10n.licenseVersion} description={l10n.licenseVersionDescription}>
-            <Dropdown options={getLicenseVersions(mandatoryInfo.license)} onChange={setLicenseVersion}></Dropdown>
+            <Dropdown
+              options={getLicenseVersions(mandatoryInfo.license)}
+              selected={mandatoryInfo.licenseVersion}
+              onChange={setLicenseVersion}></Dropdown>
           </FormElement>
         </div>
-
       </div>
-
-
     </>
   );
 };
