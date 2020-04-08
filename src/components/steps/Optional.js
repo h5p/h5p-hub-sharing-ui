@@ -15,8 +15,9 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
   const metadata = React.useContext(MetadataContext);
 
   /**
-   * Set data
+   * Set data in optionalInfo
    * @param {string} data
+   * @param {string} type
    */
   const setInfo = (data, type) => {
     setOptionalInfo(() => ({
@@ -24,9 +25,6 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
       [type]: data
     }));
   }
-
-  console.log(optionalInfo);
-
 
   return (
     <div className='optional-page'>
