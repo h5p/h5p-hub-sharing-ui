@@ -83,7 +83,7 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
             <div id='screenshots'>
               {optionalInfo.screenshots.map((element, i) =>
-                <ImagePreview id={i}></ImagePreview>
+                <ImagePreview key={i}></ImagePreview>
               )}
             </div>
           </FormElement>
