@@ -55,11 +55,11 @@ const getSteps = (shared, mandatory, optional, isValid) => {
     backButton: true,
     id: 'review',
   } : {
-    // Special case - last step done
-    title: 'shared',
-    content: <Success />,
-    id: 'success'
-  });
+      // Special case - last step done
+      title: 'reviewAndShare',
+      content: <Success title={mandatory.info.title} contentType='Interactive video'/>, //TODO add real content type
+      id: 'success'
+    });
 
   return steps;
 };
@@ -68,7 +68,7 @@ function Main() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [isValid, setIsValid] = React.useState(false);
-  const defaultOptional = {keywords: [], icon: {}, screenshots:[{},{},{},{},{}]};
+  const defaultOptional = { keywords: [], icon: {}, screenshots: [{}, {}, {}, {}, {}] };
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
   const mandatoryDefaultValues = {
@@ -77,9 +77,10 @@ function Main() {
     level: '',
     licenseVersion: '',
     title: '',
-    disciplines: []};
+    disciplines: []
+  };
   const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
-  
+
   const steps = getSteps(isShared, {
     info: mandatoryInfo,
     setter: setMandatoryInfo
@@ -132,22 +133,21 @@ function Main() {
       </div>
 
       <div className="content">
-        <Stepper activeStep={activeStep} completed={isShared}>
-        {steps.map((step, index) => {
-          return (
-            <Step key={index} index={index} label={l10n[step.title]} />
-          );
-        })}
-        </Stepper>
+        {!isShared &&
+          <Stepper activeStep={activeStep} completed={isShared} showSteps={!isShared}>
+            {steps.map((step, index) => {
+              return (
+                <Step key={index} index={index} label={l10n[step.title]} />
+              );
+            })}
+          </Stepper>
+        }
 
         <div className="step-panel">
-          {
-            !isShared &&
-            <div className="step-title" role="heading">
-              <span className="sr-only">{replace(l10n.currentStep, {':step': activeStep+1, ':total': 3})}</span>
-              {l10n[step.title]}
-            </div>
-          }
+          <div className="step-title" role="heading">
+            <span className="sr-only">{replace(l10n.currentStep, { ':step': activeStep + 1, ':total': 3 })}</span>
+            {l10n[step.title]}
+          </div>
           <div className={`step-content ${step.id}`}>
             {step.content}
           </div>

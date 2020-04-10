@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import Keywords from '../generic/keywords/Keywords';
 import FormElement from '../generic/form/Element';
 import TranslationContext from '../../context/Translation';
-import MetadataContext from '../../context/Metadata';
 import ImagePreview from '../generic/form/ImagePreview';
-import Dropdown from '../generic/dropdown/Dropdown';
 import {optionalDefinition} from '../../utils/helpers';
 
 import './Optional.scss';
@@ -13,7 +11,6 @@ import './Optional.scss';
 const Optional = ({ optionalInfo, setOptionalInfo }) => {
 
   const l10n = React.useContext(TranslationContext);
-  const metadata = React.useContext(MetadataContext);
 
   /**
    * Set data in optionalInfo
