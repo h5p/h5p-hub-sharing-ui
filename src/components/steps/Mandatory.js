@@ -41,6 +41,10 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
       if (!licenseOk) {
         return false;
       }
+
+      if(mandatoryInfo.level.length === 0){
+        return false;
+      }
   
       return true;
     });
