@@ -6,7 +6,6 @@ import MetadataContext from '../../context/Metadata';
 import PropTypes from 'prop-types';
 import {replace, mandatoryDefinition} from '../../utils/helpers';
 
-import './Mandatory.scss';
 import Message from '../generic/message/Message';
 
 const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
@@ -65,8 +64,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           })}
         </Message>
       }
-      <div className='form-element license-row'>
-        <div className="license">
+      <div className='form-element row dropdowns'>
+        <div className="dropdown-element-wrapper">
           <FormElement 
             label={l10n.license}
             description={l10n.licenseDescription}
@@ -80,7 +79,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             </Dropdown>
           </FormElement>
         </div>
-        <div className='license-version'>
+        <div className='dropdown-element-wrapper'>
           <FormElement
             label={l10n.licenseVersion}
             description={l10n.licenseVersionDescription}

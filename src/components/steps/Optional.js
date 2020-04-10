@@ -34,8 +34,8 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
           <Keywords chips={optionalInfo.keywords} setChips={(chips) => setInfo(chips, 'keywords')}></Keywords>
         </FormElement>
       </div>
-      <div className='dropdowns'>
-        <div className='language'>
+      <div className='form-element row dropdowns'>
+        <div className='dropdown-element-wrapper'>
           <FormElement label={l10n.language}>
             <Dropdown
               options={metadata.languages}
@@ -44,7 +44,7 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
             </Dropdown>
           </FormElement>
         </div>
-        <div className='level'>
+        <div className='dropdown-element-wrapper'>
           <FormElement label={l10n.level}>
             <Dropdown
             options={metadata.levels}
@@ -54,8 +54,8 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
           </FormElement>
         </div>
       </div>
-      <div className='optional-second-part'>
-        <div className='descriptions'>
+      <div className='form-element columns'>
+        <div className='column'>
           <FormElement label={l10n.shortDescription}>
             <textarea
               value={optionalInfo.shortDescription ? optionalInfo.shortDescription : ''}
@@ -70,17 +70,14 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
               value={optionalInfo.longDescription ? optionalInfo.longDescription : ''}
               id="long-description"
               placeholder={l10n.longDescriptionPlaceholder}
-              onChange={(event) => setInfo(event.target.value, 'longDescription')}
-              className='long-description'>
+              onChange={(event) => setInfo(event.target.value, 'longDescription')}>
             </textarea>
           </FormElement>
         </div>
-        <div className='optional-images'>
-          <div className='optional-upload-icon'>
+        <div className='column'>
             <FormElement label={l10n.icon} description={l10n.iconDescription}>
               <ImagePreview/>
             </FormElement>
-          </div>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
             <div id='screenshots'>
               {optionalInfo.screenshots.map((element, i) =>
