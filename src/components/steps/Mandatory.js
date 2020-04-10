@@ -45,6 +45,10 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
       if(mandatoryInfo.level.length === 0){
         return false;
       }
+
+      if(mandatoryInfo.language.length === 0){
+        return false;
+      }
   
       return true;
     });
