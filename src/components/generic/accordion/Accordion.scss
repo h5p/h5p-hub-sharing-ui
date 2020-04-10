@@ -8,10 +8,8 @@
       color: #616161;
       display: inline-block;
       left: 0;
-
       display: flex;
       padding: 0.2em 0.2em;
-
       &.open{
         transform: rotate(-90deg);
       }
