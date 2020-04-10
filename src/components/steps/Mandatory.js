@@ -57,7 +57,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           value={mandatoryInfo.title}/>
       </FormElement>
       {
-        showLicenseWarning &&
+        showLicenseWarning && mandatoryInfo.license &&
         <Message severity="warning">
           {replace(l10n.subContentWarning, {
             ':license': metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion)
