@@ -4,10 +4,12 @@ import Dropdown from '../generic/dropdown/Dropdown';
 import TranslationContext from '../../context/Translation';
 import MetadataContext from '../../context/Metadata';
 import PropTypes from 'prop-types';
-import {replace, mandatoryDefinition} from '../../utils/helpers';
+import { replace, mandatoryDefinition } from '../../utils/helpers';
+import Modal from '../generic/modal/Modal';
 
 import './Mandatory.scss';
 import Message from '../generic/message/Message';
+import ModalContent from './ModalContent';
 
 const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
   const [showLicenseWarning, setShowLicenseWarning] = useState(false);
@@ -15,6 +17,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
   const metadata = useContext(MetadataContext);
   const license = metadata.getLicense(mandatoryInfo.license);
   const licenseVersions = license ? license.versions : [];
+  const [modalOpen, setModalOpen] = React.useState(false);
 
   /**
    * Update a field
@@ -31,31 +34,39 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
   React.useEffect(() => {
 
-    const licenseOk = mandatoryInfo.license && 
+    const licenseOk = mandatoryInfo.license &&
       (licenseVersions.length === 0 || mandatoryInfo.licenseVersion.length !== 0);
 
     setIsValid(() => {
       if (mandatoryInfo.title === undefined || mandatoryInfo.title.trim().length === 0) {
         return false;
       }
-  
+
       if (!licenseOk) {
         return false;
       }
-  
+
       return true;
     });
 
     setShowLicenseWarning(() => licenseOk);
   }, [mandatoryInfo, setIsValid, licenseVersions]);
 
+  const toggleLicense = (open) => {
+    setModalOpen(open)
+  }
+
   return (
     <>
+      <Modal isOpen={modalOpen} closeModal={() => toggleLicense(false)} parent='.h5p-hub-publish'>
+        <ModalContent closeModal={() => toggleLicense(false)}/>
+      </Modal>
+
       <FormElement label={l10n.title} mandatory={true}>
-        <input 
+        <input
           id="title"
           onChange={e => setInfo(e.target.value, 'title')}
-          value={mandatoryInfo.title}/>
+          value={mandatoryInfo.title} />
       </FormElement>
       {
         showLicenseWarning &&
@@ -67,17 +78,23 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
       }
       <div className='form-element license-row'>
         <div className="license">
-          <FormElement 
+          <FormElement
             label={l10n.license}
             description={l10n.licenseDescription}
             mandatory={true}
+            link={{
+              linkText: l10n.helpChoosingLicense,
+              onClick: () => toggleLicense(true)
+            }}
           >
-            <Dropdown 
+            <div>
+            <Dropdown
               options={metadata.licenses}
               selected={mandatoryInfo.license}
               allowNone={true}
               onChange={e => setInfo(e.target.value, 'license')}>
             </Dropdown>
+              </div>
           </FormElement>
         </div>
         <div className='license-version'>
@@ -86,7 +103,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             description={l10n.licenseVersionDescription}
             mandatory={true}
           >
-            <Dropdown 
+            <Dropdown
               options={licenseVersions}
               selected={mandatoryInfo.licenseVersion}
               allowNone={true}

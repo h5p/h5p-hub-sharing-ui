@@ -7,6 +7,7 @@ const trans = {
   next: 'Next',
   reviewInfo: 'Review info',
   share: 'Share',
+  close: 'Close',
 
   // Steps
   requiredInfo: 'Required Info',
@@ -39,6 +40,7 @@ const trans = {
   longDescription: 'Long description',
   icon: 'Icon',
   screenshots: 'Screenshots',
+  helpChoosingLicense: 'Get help choosing the right license',
 
   // Optional
   language: 'Language',
@@ -48,6 +50,10 @@ const trans = {
   description: 'Description',
   iconDescription: '640x480px. If not selected content will use category icon',
   screenshotsDescription: 'Add up to five screenshots of your content',
+
+  //Dialog
+  contentLicenseTitle: 'Content License Info',
+  licenseDialogDescription: 'Click on a specific license to get info about proper usage',
 };
 
 export default trans;

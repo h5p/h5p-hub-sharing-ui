@@ -38,4 +38,17 @@
     color: #707475;
     margin: 0.5em 0;
   }
+  .link-button{
+    border: none;
+    color: #2c67b0;
+    text-decoration: underline;
+    font-weight: 500;
+    padding: 0;
+  }
+  .details-row{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
