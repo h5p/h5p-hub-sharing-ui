@@ -40,8 +40,7 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
             <Dropdown
               options={metadata.languages}
               onChange={(e) => setInfo(e.target.value, 'language')}
-              selected={optionalInfo.language}>
-            </Dropdown>
+              selected={optionalInfo.language}/>
           </FormElement>
         </div>
         <div className='dropdown-element-wrapper'>
@@ -49,8 +48,7 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
             <Dropdown
             options={metadata.levels}
             onChange={(e) => setInfo(e.target.value, 'level')}
-            selected={optionalInfo.level}>
-            </Dropdown>
+            selected={optionalInfo.level}/>
           </FormElement>
         </div>
       </div>
@@ -62,16 +60,14 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
               id="short-description"
               placeholder={l10n.shortDescriptionPlaceholder}
               onChange={(event) => setInfo(event.target.value, 'shortDescription')}
-              className='short-description'>
-            </textarea>
+              className='short-description'/>
           </FormElement>
           <FormElement label={l10n.description}>
             <textarea
               value={optionalInfo.longDescription ? optionalInfo.longDescription : ''}
               id="long-description"
               placeholder={l10n.longDescriptionPlaceholder}
-              onChange={(event) => setInfo(event.target.value, 'longDescription')}>
-            </textarea>
+              onChange={(event) => setInfo(event.target.value, 'longDescription')}/>
           </FormElement>
         </div>
         <div className='column'>
@@ -81,7 +77,7 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
             <div id='screenshots'>
               {optionalInfo.screenshots.map((element, i) =>
-                <ImagePreview key={i}></ImagePreview>
+                <ImagePreview key={i}/>
               )}
             </div>
           </FormElement>
