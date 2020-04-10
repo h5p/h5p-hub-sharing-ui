@@ -86,7 +86,8 @@
   }
 
   .dropdown-element-wrapper {
-    flex-grow: 1;
+    flex-basis: 100%;
+    flex: 1;
     min-width: 17em;
     //Make space between dropdowns that isn't showed when wrapped
     border-right: 1em solid #ffffff;
@@ -95,10 +96,7 @@
   .form-element {
     &.row {
       display: flex;
-      display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
-
       &.dropdowns {
         margin-right: -1em;
       }

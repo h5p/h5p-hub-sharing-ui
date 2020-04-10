@@ -68,10 +68,16 @@ function Main() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [isValid, setIsValid] = React.useState(false);
-  const defaultOptional = {keywords: [], language: 'en', icon: {}, screenshots:[{},{},{},{},{}]};
+  const defaultOptional = {keywords: [], icon: {}, screenshots:[{},{},{},{},{}]};
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
-  const mandatoryDefaultValues = { license: '', licenseVersion: '', title: '', disciplines: []};
+  const mandatoryDefaultValues = {
+    license: '',
+    language: 'en',
+    level: '',
+    licenseVersion: '',
+    title: '',
+    disciplines: []};
   const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
   
   const steps = getSteps(isShared, {

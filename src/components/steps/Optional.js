@@ -34,24 +34,6 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
           <Keywords chips={optionalInfo.keywords} setChips={(chips) => setInfo(chips, 'keywords')}></Keywords>
         </FormElement>
       </div>
-      <div className='form-element row dropdowns'>
-        <div className='dropdown-element-wrapper'>
-          <FormElement label={l10n.language}>
-            <Dropdown
-              options={metadata.languages}
-              onChange={(e) => setInfo(e.target.value, 'language')}
-              selected={optionalInfo.language}/>
-          </FormElement>
-        </div>
-        <div className='dropdown-element-wrapper'>
-          <FormElement label={l10n.level}>
-            <Dropdown
-            options={metadata.levels}
-            onChange={(e) => setInfo(e.target.value, 'level')}
-            selected={optionalInfo.level}/>
-          </FormElement>
-        </div>
-      </div>
       <div className='form-element columns'>
         <div className='column'>
           <FormElement label={l10n.shortDescription}>
