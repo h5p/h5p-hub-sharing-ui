@@ -43,56 +43,31 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
           <Keywords chips={optionalInfo.keywords} setChips={(chips) => setInfo(chips, 'keywords')}></Keywords>
         </FormElement>
       </div>
-      <div className='dropdowns'>
-        <div className='language'>
-          <FormElement label={l10n.language}>
-            <Dropdown
-              options={metadata.languages}
-              onChange={(e) => setInfo(e.target.value, 'language')}
-              selected={optionalInfo.language}>
-            </Dropdown>
-          </FormElement>
-        </div>
-        <div className='level'>
-          <FormElement label={l10n.level}>
-            <Dropdown
-            options={metadata.levels}
-            onChange={(e) => setInfo(e.target.value, 'level')}
-            selected={optionalInfo.level}>
-            </Dropdown>
-          </FormElement>
-        </div>
-      </div>
-      <div className='optional-second-part'>
-        <div className='descriptions'>
+      <div className='form-element columns'>
+        <div className='column'>
           <FormElement label={l10n.shortDescription}>
             <textarea
               value={optionalInfo.shortDescription ? optionalInfo.shortDescription : ''}
               id="short-description"
               placeholder={l10n.shortDescriptionPlaceholder}
               onChange={(event) => setInfo(event.target.value, 'shortDescription')}
-              className='short-description'>
-            </textarea>
+              className='short-description'/>
           </FormElement>
           <FormElement label={l10n.description}>
             <textarea
               value={optionalInfo.longDescription ? optionalInfo.longDescription : ''}
               id="long-description"
               placeholder={l10n.longDescriptionPlaceholder}
-              onChange={(event) => setInfo(event.target.value, 'longDescription')}
-              className='long-description'>
-            </textarea>
+              onChange={(event) => setInfo(event.target.value, 'longDescription')}/>
           </FormElement>
         </div>
-        <div className='optional-images'>
-          <div className='optional-upload-icon'>
+        <div className='column'>
             <FormElement label={l10n.icon} description={l10n.iconDescription}>
               <ImageUpload
                 img={optionalInfo.icon} 
                 onFile={img => setInfo(img, 'icon')}
                 ariaLabel={l10n.icon}/>
             </FormElement>
-          </div>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
             <div id='screenshots'>
               {optionalInfo.screenshots.map((img, i) =>

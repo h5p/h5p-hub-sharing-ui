@@ -72,10 +72,16 @@ function Main({publishURL}) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [isValid, setIsValid] = React.useState(false);
-  const defaultOptional = {keywords: [], language: 'en', icon: defaultImage, screenshots:[defaultImage,defaultImage,defaultImage,defaultImage,defaultImage]};
+  const defaultOptional = {keywords: [], icon: defaultImage, screenshots:[defaultImage,defaultImage,defaultImage,defaultImage,defaultImage]};
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
-  const mandatoryDefaultValues = { license: '', licenseVersion: '', title: '', disciplines: []};
+  const mandatoryDefaultValues = {
+    license: '',
+    language: 'en',
+    level: '',
+    licenseVersion: '',
+    title: '',
+    disciplines: []};
   const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
   
   const steps = getSteps(isShared, {

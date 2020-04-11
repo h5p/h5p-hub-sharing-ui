@@ -6,7 +6,6 @@ import MetadataContext from '../../context/Metadata';
 import PropTypes from 'prop-types';
 import {replace, mandatoryDefinition} from '../../utils/helpers';
 
-import './Mandatory.scss';
 import Message from '../generic/message/Message';
 
 const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
@@ -42,6 +41,14 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
       if (!licenseOk) {
         return false;
       }
+
+      if(mandatoryInfo.level.length === 0){
+        return false;
+      }
+
+      if(mandatoryInfo.language.length === 0){
+        return false;
+      }
   
       return true;
     });
@@ -58,15 +65,15 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           value={mandatoryInfo.title}/>
       </FormElement>
       {
-        showLicenseWarning &&
+        showLicenseWarning && mandatoryInfo.license &&
         <Message severity="warning">
           {replace(l10n.subContentWarning, {
             ':license': metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion)
           })}
         </Message>
       }
-      <div className='form-element license-row'>
-        <div className="license">
+      <div className='form-element row dropdowns'>
+        <div className="dropdown-element-wrapper">
           <FormElement 
             label={l10n.license}
             description={l10n.licenseDescription}
@@ -76,22 +83,39 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
               options={metadata.licenses}
               selected={mandatoryInfo.license}
               allowNone={true}
-              onChange={e => setInfo(e.target.value, 'license')}>
-            </Dropdown>
+              onChange={e => setInfo(e.target.value, 'license')}/>
           </FormElement>
         </div>
-        <div className='license-version'>
+        <div className='dropdown-element-wrapper'>
           <FormElement
             label={l10n.licenseVersion}
             description={l10n.licenseVersionDescription}
             mandatory={true}
           >
-            <Dropdown 
+            <Dropdown
               options={licenseVersions}
               selected={mandatoryInfo.licenseVersion}
               allowNone={true}
-              onChange={e => setInfo(e.target.value, 'licenseVersion')}>
-            </Dropdown>
+              onChange={e => setInfo(e.target.value, 'licenseVersion')} />
+          </FormElement>
+        </div>
+      </div>
+      <div className='form-element row dropdowns'>
+        <div className='dropdown-element-wrapper'>
+          <FormElement label={l10n.language} mandatory={true}>
+            <Dropdown
+              options={metadata.languages}
+              onChange={(e) => setInfo(e.target.value, 'language')}
+              selected={mandatoryInfo.language} />
+          </FormElement>
+        </div>
+        <div className='dropdown-element-wrapper'>
+          <FormElement label={l10n.level} mandatory={true}>
+            <Dropdown
+              options={metadata.levels}
+              onChange={(e) => setInfo(e.target.value, 'level')}
+              selected={mandatoryInfo.level}
+              allowNone={true}/>
           </FormElement>
         </div>
       </div>
