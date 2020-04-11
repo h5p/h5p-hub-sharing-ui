@@ -2,16 +2,18 @@
   .dialog-header {
     padding: 1.708em 2.292em;
     border-bottom: 1px solid #d5d5d7;
+    
     .dialog-description {
       font-size: 0.833em;
       color: #707475;
     }
   }
-  .dialog-content{
+
+  .dialog-content {
     padding: 1.708em 2.292em;
   }
 
-  .dialog-title{
+  .dialog-title {
     display: flex;
     justify-content: space-between;
 
@@ -20,7 +22,7 @@
       color: #1a1a1a;
       margin-bottom: 0.2em;
     }
-    button{
+    button {
       max-height: 2.77em;
     }
   }
