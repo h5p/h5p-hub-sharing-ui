@@ -47,7 +47,7 @@ const trans = {
   longDescriptionPlaceholder: 'Long description of your content',
   description: 'Description',
   iconDescription: '640x480px. If not selected content will use category icon',
-  screenshotsDescription: 'Add up to five screenshots of your content',
+  screenshotsDescription: 'Add up to five screenshots of your content',  
 };
 
 export default trans;

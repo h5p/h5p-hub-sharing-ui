@@ -10,6 +10,13 @@
         margin-bottom: 0.708em;
       }
     }
+    #screenshots {
+      display: flex;
+      flex-wrap: wrap;
+      .image-upload-container {
+        margin-bottom: 1em;
+      }
+    }
     .optional-second-part {
       display: flex;
       @media (max-width: $screen-small) {

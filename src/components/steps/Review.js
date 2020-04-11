@@ -42,12 +42,12 @@ const Review = ({
         <Definition name={l10n.shortDescription}>{optionalInfo.shortDescription}</Definition>
         <Definition name={l10n.longDescription}>{optionalInfo.longDescription}</Definition>
         <Definition name={l10n.icon}>
-          <ImagePreview src={optionalInfo.icon}></ImagePreview>
+          <ImagePreview src={optionalInfo.icon.src}></ImagePreview>
         </Definition>
         <Definition name={l10n.screenshots}>
           {
-            optionalInfo.screenshots.map((value, idx) => 
-              <ImagePreview key={idx} src={value}></ImagePreview>
+            optionalInfo.screenshots.map((img, idx) => 
+              img.file && <ImagePreview key={idx} src={img.src}/>
             )
           }
         </Definition>
