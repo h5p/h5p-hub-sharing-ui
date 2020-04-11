@@ -22,6 +22,7 @@ const Review = ({
 }) => {
   const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
+  const license = metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion);
 
   return (
     <>
@@ -29,14 +30,14 @@ const Review = ({
 
       <Message severity="warning">
         {replace(l10n.subContentWarning, {
-          ':license': metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion)
+          ':license': license
         })}
         
       </Message>
 
       <dl>
         <Definition name={l10n.title}>{mandatoryInfo.title}</Definition>
-        <Definition name={l10n.license}>{mandatoryInfo.license}</Definition>
+        <Definition name={l10n.license}>{license}</Definition>
         <Definition name={l10n.disciplines}>{mandatoryInfo.disciplines.join(', ')}</Definition>
         <Definition name={l10n.keywords}>{optionalInfo.keywords.join(', ')}</Definition>
         <Definition name={l10n.shortDescription}>{optionalInfo.shortDescription}</Definition>
