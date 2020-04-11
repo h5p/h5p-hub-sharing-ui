@@ -125,7 +125,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
 Mandatory.propTypes = {
   mandatoryInfo: mandatoryDefinition,
-  setMandatoryInfo: PropTypes.func.isRequired
+  setMandatoryInfo: PropTypes.func.isRequired,
+  setIsValid: PropTypes.func.isRequired
 }
 
 export default Mandatory;
