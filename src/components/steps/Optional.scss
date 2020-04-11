@@ -1,34 +1,30 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/mixins";
 
-.h5p-hub-publish {
-  .optional-page {
-    .keywords {
-      margin-bottom: 1.292em;
-
-      .form-element label {
-        margin-bottom: 0.708em;
-      }
+.h5p-hub-publish .optional {
+  .keywords {
+    .form-element label {
+      margin-bottom: 0.708em;
     }
-    #screenshots {
-      display: flex;
+  }
+  #screenshots {
+    display: flex;
+    flex-wrap: wrap;
+    .image-upload-container {
+      margin-bottom: 1em;
+    }
+  }
+  .optional-second-part {
+    display: flex;
+    @media (max-width: $screen-small) {
       flex-wrap: wrap;
-      .image-upload-container {
-        margin-bottom: 1em;
-      }
     }
-    .optional-second-part {
-      display: flex;
-      @media (max-width: $screen-small) {
-        flex-wrap: wrap;
-      }
-    }
-    
-    #long-description {
-      height: 10.458em;
-    }
-    #short-description {
-      height: 6.333em;
-    }
+  }
+  
+  #long-description {
+    height: 10.458em;
+  }
+  #short-description {
+    height: 6.333em;
   }
 }

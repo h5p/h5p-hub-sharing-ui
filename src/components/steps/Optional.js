@@ -33,13 +33,11 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
   };
 
   return (
-    <div className='optional-page'>
-      <div className='keywords'>
-        <FormElement label={l10n.keywords}>
-          <Keywords chips={optionalInfo.keywords} setChips={(chips) => setInfo(chips, 'keywords')}></Keywords>
-        </FormElement>
-      </div>
-      <div className='form-element columns'>
+    <>
+      <FormElement label={l10n.keywords}>
+        <Keywords chips={optionalInfo.keywords} setChips={(chips) => setInfo(chips, 'keywords')}/>
+      </FormElement>
+      <div className='columns'>
         <div className='column'>
           <FormElement label={l10n.shortDescription}>
             <textarea
@@ -58,12 +56,12 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
           </FormElement>
         </div>
         <div className='column'>
-            <FormElement label={l10n.icon} description={l10n.iconDescription}>
-              <ImageUpload
-                img={optionalInfo.icon} 
-                onFile={img => setInfo(img, 'icon')}
-                ariaLabel={l10n.icon}/>
-            </FormElement>
+          <FormElement label={l10n.icon} description={l10n.iconDescription}>
+            <ImageUpload
+              img={optionalInfo.icon} 
+              onFile={img => setInfo(img, 'icon')}
+              ariaLabel={l10n.icon}/>
+          </FormElement>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
             <div id='screenshots'>
               {optionalInfo.screenshots.map((img, i) =>
@@ -77,7 +75,7 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
           </FormElement>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

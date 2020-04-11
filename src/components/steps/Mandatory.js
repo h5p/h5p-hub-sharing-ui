@@ -72,52 +72,45 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           })}
         </Message>
       }
-      <div className='form-element row dropdowns'>
-        <div className="dropdown-element-wrapper">
-          <FormElement 
-            label={l10n.license}
-            description={l10n.licenseDescription}
-            mandatory={true}
-          >
-            <Dropdown 
-              options={metadata.licenses}
-              selected={mandatoryInfo.license}
-              allowNone={true}
-              onChange={e => setInfo(e.target.value, 'license')}/>
-          </FormElement>
-        </div>
-        <div className='dropdown-element-wrapper'>
-          <FormElement
-            label={l10n.licenseVersion}
-            description={l10n.licenseVersionDescription}
-            mandatory={true}
-          >
-            <Dropdown
-              options={licenseVersions}
-              selected={mandatoryInfo.licenseVersion}
-              allowNone={true}
-              onChange={e => setInfo(e.target.value, 'licenseVersion')} />
-          </FormElement>
-        </div>
+      <div className='row dropdowns'>
+        <FormElement 
+          label={l10n.license}
+          description={l10n.licenseDescription}
+          mandatory={true}
+        >
+          <Dropdown 
+            options={metadata.licenses}
+            selected={mandatoryInfo.license}
+            allowNone={true}
+            onChange={e => setInfo(e.target.value, 'license')}/>
+        </FormElement>
+        <FormElement
+          label={l10n.licenseVersion}
+          description={l10n.licenseVersionDescription}
+          mandatory={true}
+        >
+          <Dropdown
+            options={licenseVersions}
+            selected={mandatoryInfo.licenseVersion}
+            allowNone={true}
+            onChange={e => setInfo(e.target.value, 'licenseVersion')} />
+        </FormElement>
       </div>
-      <div className='form-element row dropdowns'>
-        <div className='dropdown-element-wrapper'>
-          <FormElement label={l10n.language} mandatory={true}>
-            <Dropdown
-              options={metadata.languages}
-              onChange={(e) => setInfo(e.target.value, 'language')}
-              selected={mandatoryInfo.language} />
-          </FormElement>
-        </div>
-        <div className='dropdown-element-wrapper'>
-          <FormElement label={l10n.level} mandatory={true}>
-            <Dropdown
-              options={metadata.levels}
-              onChange={(e) => setInfo(e.target.value, 'level')}
-              selected={mandatoryInfo.level}
-              allowNone={true}/>
-          </FormElement>
-        </div>
+      <div className='row dropdowns'>
+        <FormElement label={l10n.language} mandatory={true}>
+          <Dropdown
+            options={metadata.languages}
+            onChange={(e) => setInfo(e.target.value, 'language')}
+            selected={mandatoryInfo.language} />
+        </FormElement>
+      
+        <FormElement label={l10n.level} mandatory={true}>
+          <Dropdown
+            options={metadata.levels}
+            onChange={(e) => setInfo(e.target.value, 'level')}
+            selected={mandatoryInfo.level}
+            allowNone={true}/>
+        </FormElement>
       </div>
       <FormElement
         label={l10n.disciplineLabel}
