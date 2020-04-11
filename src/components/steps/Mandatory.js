@@ -4,9 +4,11 @@ import Dropdown from '../generic/dropdown/Dropdown';
 import TranslationContext from '../../context/Translation';
 import MetadataContext from '../../context/Metadata';
 import PropTypes from 'prop-types';
-import {replace, mandatoryDefinition} from '../../utils/helpers';
+import { replace, mandatoryDefinition } from '../../utils/helpers';
+import Modal from '../generic/modal/Modal';
 
 import Message from '../generic/message/Message';
+import ModalContent from './ModalContent';
 
 const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
   const [showLicenseWarning, setShowLicenseWarning] = useState(false);
@@ -14,6 +16,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
   const metadata = useContext(MetadataContext);
   const license = metadata.getLicense(mandatoryInfo.license);
   const licenseVersions = license ? license.versions : [];
+  const [modalOpen, setModalOpen] = React.useState(false);
 
   /**
    * Update a field
@@ -30,14 +33,14 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
   React.useEffect(() => {
 
-    const licenseOk = mandatoryInfo.license && 
+    const licenseOk = mandatoryInfo.license &&
       (licenseVersions.length === 0 || mandatoryInfo.licenseVersion.length !== 0);
 
     setIsValid(() => {
       if (mandatoryInfo.title === undefined || mandatoryInfo.title.trim().length === 0) {
         return false;
       }
-  
+
       if (!licenseOk) {
         return false;
       }
@@ -56,13 +59,21 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
     setShowLicenseWarning(() => licenseOk);
   }, [mandatoryInfo, setIsValid, licenseVersions]);
 
+  const toggleLicense = (open) => {
+    setModalOpen(open)
+  }
+
   return (
     <>
+      <Modal isOpen={modalOpen} closeModal={() => toggleLicense(false)} parent='.h5p-hub-publish'>
+        <ModalContent closeModal={() => toggleLicense(false)}/>
+      </Modal>
+
       <FormElement label={l10n.title} mandatory={true}>
-        <input 
+        <input
           id="title"
           onChange={e => setInfo(e.target.value, 'title')}
-          value={mandatoryInfo.title}/>
+          value={mandatoryInfo.title} />
       </FormElement>
       {
         showLicenseWarning && mandatoryInfo.license &&
@@ -72,52 +83,49 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           })}
         </Message>
       }
-      <div className='form-element row dropdowns'>
-        <div className="dropdown-element-wrapper">
-          <FormElement 
-            label={l10n.license}
-            description={l10n.licenseDescription}
-            mandatory={true}
-          >
-            <Dropdown 
-              options={metadata.licenses}
-              selected={mandatoryInfo.license}
-              allowNone={true}
-              onChange={e => setInfo(e.target.value, 'license')}/>
-          </FormElement>
-        </div>
-        <div className='dropdown-element-wrapper'>
-          <FormElement
-            label={l10n.licenseVersion}
-            description={l10n.licenseVersionDescription}
-            mandatory={true}
-          >
-            <Dropdown
-              options={licenseVersions}
-              selected={mandatoryInfo.licenseVersion}
-              allowNone={true}
-              onChange={e => setInfo(e.target.value, 'licenseVersion')} />
-          </FormElement>
-        </div>
+      <div className='row dropdowns'>
+        <FormElement 
+          label={l10n.license}
+          description={l10n.licenseDescription}
+          mandatory={true}
+          link={{
+            linkText: l10n.helpChoosingLicense,
+            onClick: () => toggleLicense(true)
+          }}
+        >
+          <Dropdown 
+            options={metadata.licenses}
+            selected={mandatoryInfo.license}
+            allowNone={true}
+            onChange={e => setInfo(e.target.value, 'license')}/>
+        </FormElement>
+        <FormElement
+          label={l10n.licenseVersion}
+          description={l10n.licenseVersionDescription}
+          mandatory={true}
+        >
+          <Dropdown
+            options={licenseVersions}
+            selected={mandatoryInfo.licenseVersion}
+            allowNone={true}
+            onChange={e => setInfo(e.target.value, 'licenseVersion')} />
+        </FormElement>
       </div>
-      <div className='form-element row dropdowns'>
-        <div className='dropdown-element-wrapper'>
-          <FormElement label={l10n.language} mandatory={true}>
-            <Dropdown
-              options={metadata.languages}
-              onChange={(e) => setInfo(e.target.value, 'language')}
-              selected={mandatoryInfo.language} />
-          </FormElement>
-        </div>
-        <div className='dropdown-element-wrapper'>
-          <FormElement label={l10n.level} mandatory={true}>
-            <Dropdown
-              options={metadata.levels}
-              onChange={(e) => setInfo(e.target.value, 'level')}
-              selected={mandatoryInfo.level}
-              allowNone={true}/>
-          </FormElement>
-        </div>
+      <div className='row dropdowns'>
+        <FormElement label={l10n.language} mandatory={true}>
+          <Dropdown
+            options={metadata.languages}
+            onChange={(e) => setInfo(e.target.value, 'language')}
+            selected={mandatoryInfo.language} />
+        </FormElement>
+      
+        <FormElement label={l10n.level} mandatory={true}>
+          <Dropdown
+            options={metadata.levels}
+            onChange={(e) => setInfo(e.target.value, 'level')}
+            selected={mandatoryInfo.level}
+            allowNone={true}/>
+        </FormElement>
       </div>
       <FormElement
         label={l10n.disciplineLabel}
@@ -132,7 +140,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
 Mandatory.propTypes = {
   mandatoryInfo: mandatoryDefinition,
-  setMandatoryInfo: PropTypes.func.isRequired
+  setMandatoryInfo: PropTypes.func.isRequired,
+  setIsValid: PropTypes.func.isRequired
 }
 
 export default Mandatory;

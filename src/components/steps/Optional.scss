@@ -1,17 +1,30 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/mixins";
 
-.h5p-hub-publish {
-  .optional-page {
-    .keywords .form-element label {
+.h5p-hub-publish .optional {
+  .keywords {
+    .form-element label {
       margin-bottom: 0.708em;
     }
-    
-    #long-description {
-      height: 10.458em;
+  }
+  #screenshots {
+    display: flex;
+    flex-wrap: wrap;
+    .image-upload-container {
+      margin-bottom: 1em;
     }
-    #short-description {
-      height: 6.333em;
+  }
+  .optional-second-part {
+    display: flex;
+    @media (max-width: $screen-small) {
+      flex-wrap: wrap;
     }
+  }
+  
+  #long-description {
+    height: 10.458em;
+  }
+  #short-description {
+    height: 6.333em;
   }
 }

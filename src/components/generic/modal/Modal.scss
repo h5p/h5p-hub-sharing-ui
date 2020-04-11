@@ -1,0 +1,19 @@
+.h5p-hub-publish {
+  .modal-content {
+    z-index: 2;
+    background-color: #ffffff;
+    opacity: 1;
+    position: relative;
+    margin: 2em 3em;
+    border-radius: 0.167em;
+  }
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.70);
+    z-index: 2;
+  }
+}

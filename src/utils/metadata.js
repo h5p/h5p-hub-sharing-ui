@@ -38,6 +38,26 @@ export default class Metadata {
   }
 
   /**
+   * Get level object by its ID
+   *
+   * @param {string} id
+   * @returns {object}
+   */
+  getLevel(id) {
+    return this.getById('levels', id);
+  }
+
+  /**
+   * Get language object by its ID
+   *
+   * @param {string} id
+   * @returns {object}
+   */
+  getLanguage(id) {
+    return this.getById('languages', id);
+  }
+
+  /**
    * Get license version by its ID
    * 
    * @param {object} license 

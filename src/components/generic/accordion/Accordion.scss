@@ -1,0 +1,38 @@
+.h5p-hub-publish {
+  .h5p-hub-accordion-heading {
+    display: flex;
+    align-items: center;
+  
+    .icon-dropdown {
+      font-size: 0.4em;
+      color: #616161;
+      display: inline-block;
+      left: 0;
+      display: flex;
+      padding: 0.2em 0.2em;
+      &.open {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  .accordion-button {
+    border: none;
+    position: relative;
+    padding: 0.2em 0.2em;
+    width: 100%;
+    justify-self: start;
+    display: flex;
+    
+    .accordion-header {
+      border: none;
+      text-align: left;
+      color: #616161;
+    }
+  }
+  .panel-body {
+    font-size: 0.833em;
+    margin-left: 0.7em;
+    color: #707475;
+  }
+}

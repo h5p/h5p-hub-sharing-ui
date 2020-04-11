@@ -14,6 +14,7 @@
 }
 
 .h5p-hub-publish {
+  position: relative;
   margin: 2em auto;
   font-family: 'Open Sans', sans-serif;
   max-width: 1024px;
@@ -85,35 +86,38 @@
     }
   }
 
-  .dropdown-element-wrapper {
-    flex-basis: 100%;
-    flex: 1;
-    min-width: 17em;
-    //Make space between dropdowns that isn't showed when wrapped
-    border-right: 1em solid #ffffff;
-  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
 
-  .form-element {
-    &.row {
-      display: flex;
-      flex-wrap: wrap;
-      &.dropdowns {
-        margin-right: -1em;
+    &.dropdowns {
+      margin-right: -1em;
+    }
+
+    .form-element {
+      flex-basis: 100%;
+      flex: 1;
+      min-width: 17em;
+      //Make space between dropdowns that isn't showed when wrapped
+      border-right: 1em solid #ffffff;
+
+      @media (max-width: $screen-small) {
+        min-width: calc(100% - 1em);
       }
     }
-    &.columns {
-      display: flex;
+  }
+  .columns {
+    display: flex;
+    @media (max-width: $screen-small) {
+      flex-wrap: wrap;
+    }
+    margin-right: -1em;
+    .column {
+      width: 50%;
+      border-right: 1em solid #ffffff;
       @media (max-width: $screen-small) {
-        flex-wrap: wrap;
-      }
-      margin-right: -1em;
-      .column {
-        width: 50%;
-        border-right: 1em solid #ffffff;
-        @media (max-width: $screen-small) {
-          width: 100%;
-          margin-right: 0;
-        }
+        width: 100%;
+        margin-right: 0;
       }
     }
   }

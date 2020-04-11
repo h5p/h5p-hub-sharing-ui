@@ -7,6 +7,7 @@ const trans = {
   next: 'Next',
   reviewInfo: 'Review info',
   share: 'Share',
+  close: 'Close',
 
   // Steps
   requiredInfo: 'Required Info',
@@ -39,6 +40,7 @@ const trans = {
   longDescription: 'Long description',
   icon: 'Icon',
   screenshots: 'Screenshots',
+  helpChoosingLicense: 'Get help choosing the right license',
 
   // Optional
   language: 'Language',
@@ -49,10 +51,14 @@ const trans = {
   iconDescription: '640x480px. If not selected content will use category icon',
   screenshotsDescription: 'Add up to five screenshots of your content',
 
-  // Sucess,
+  // Sucess
   submitted: 'Submitted!',
   isNowSubmitted: 'Is now submitted to H5P Hub',
   contentAvailable: 'Your content will soon be available for download',
+  
+  // Dialog
+  contentLicenseTitle: 'Content License Info',
+  licenseDialogDescription: 'Click on a specific license to get info about proper usage',
 };
 
 export default trans;

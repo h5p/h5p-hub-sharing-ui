@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 /**
  * Replaces strings in a text. Usefull for handling translation texts
@@ -40,3 +41,42 @@ export const optionalDefinition = PropTypes.shape({
   icon: PropTypes.object,
   screenshots: PropTypes.array
 });
+
+/**
+ * Publish to the HUB
+ *
+ * @param {string} url
+ * @param {object} values
+ * @param {Function} done
+ */
+export const publishToHub = (url, values, done) => {
+  const fields = new FormData();
+
+  fields.append('title', values.title);
+  fields.append('license', values.license);
+  fields.append('licenseVersion', values.licenseVersion);
+  fields.append('language', values.language);
+  fields.append('level', values.level);
+  values.disciplines.forEach(discipline => {
+    fields.append('disciplines[]', discipline);
+  });
+  values.keywords.forEach(keyword => {
+    fields.append('keywords[]', keyword);
+  });
+
+  fields.append('shortDescription', values.shortDescription);
+  fields.append('icon', values.icon.file);
+
+  values.screenshots.forEach(element => {
+    if (element.file) {
+      fields.append("screenshots[]", element.file);
+    }
+  });
+
+  axios.post(url, fields, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  }).then(done)
+    .catch(done); // TODO - what if it fails?
+}

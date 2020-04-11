@@ -22,6 +22,7 @@ const Review = ({
 }) => {
   const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
+  const license = metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion);
 
   return (
     <>
@@ -29,25 +30,26 @@ const Review = ({
 
       <Message severity="warning">
         {replace(l10n.subContentWarning, {
-          ':license': metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion)
+          ':license': license
         })}
-        
       </Message>
 
       <dl>
         <Definition name={l10n.title}>{mandatoryInfo.title}</Definition>
-        <Definition name={l10n.license}>{mandatoryInfo.license}</Definition>
+        <Definition name={l10n.license}>{license}</Definition>
+        <Definition name={l10n.language}>{metadata.getLanguage(mandatoryInfo.language).name}</Definition>
+        <Definition name={l10n.level}>{metadata.getLevel(mandatoryInfo.level).name}</Definition>
         <Definition name={l10n.disciplines}>{mandatoryInfo.disciplines.join(', ')}</Definition>
         <Definition name={l10n.keywords}>{optionalInfo.keywords.join(', ')}</Definition>
         <Definition name={l10n.shortDescription}>{optionalInfo.shortDescription}</Definition>
         <Definition name={l10n.longDescription}>{optionalInfo.longDescription}</Definition>
         <Definition name={l10n.icon}>
-          <ImagePreview src={optionalInfo.icon}></ImagePreview>
+          <ImagePreview src={optionalInfo.icon.src}></ImagePreview>
         </Definition>
         <Definition name={l10n.screenshots}>
           {
-            optionalInfo.screenshots.map((value, idx) => 
-              <ImagePreview key={idx} src={value}></ImagePreview>
+            optionalInfo.screenshots.map((img, idx) => 
+              img.file && <ImagePreview key={idx} src={img.src}/>
             )
           }
         </Definition>
