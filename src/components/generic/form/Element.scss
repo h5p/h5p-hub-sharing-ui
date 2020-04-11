@@ -1,54 +1,73 @@
-.h5p-hub-publish .form-element {
-  font-family: 'Open Sans', sans-serif;
-  margin: 2em 0;
+@import '../../../styles/mixins';
 
-  &:first-child {
-    margin-top: 0;
+.h5p-hub-publish {
+  .form-element {
+    font-family: 'Open Sans', sans-serif;
+    padding: 1em 0;
+
+    label {
+      display: block;
+      color: #363636;
+      margin-bottom: 0.4em;
+      font-weight: bold;
+    }
+    &.mandatory label:after {
+      content: '*';
+      color: #d11e15;    
+      position: relative;
+      top: -0.2em;
+    }
+    input{
+      font-size: 0.833em;
+      padding: 0.625em 0.833em ;
+      font-style: italic;
+      border: 1px solid #bebdcd;
+      border-radius: 0.208em;
+      width: 100%;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    .description {
+      font-size: 0.833em;
+      color: #707475;
+      margin: 0.5em 0;
+    }
+    textarea {
+      resize: none;
+      font-size: 0.833em;
+      width: 100%;
+      border-radius: 0.208em;
+      padding: 0.833em 0.833em;
+      box-sizing: border-box;
+      @include scrollbar;
+      &::placeholder {
+        font-style: italic;
+      }
+    }
+    .link-button{
+      border: none;
+      color: #2c67b0;
+      text-decoration: underline;
+      font-weight: 500;
+      padding: 0;
+    }
+    .details-row{
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+  // Hit only form-elements on the first level
+  .step-content > .form-element {
+    &:first-child {
+      padding-top: 0;
+    }
 
-  label {
-    display: block;
-    color: #363636;
-    margin-bottom: 0.4em;
-    font-weight: bold;
-  }
-  &.mandatory label:after {
-    content: '*';
-    color: #d11e15;    
-    position: relative;
-    top: -0.2em;
-  }
-  input{
-    font-size: 0.833em;
-    padding: 0.625em 0.833em ;
-    font-style: italic;
-    border: 1px solid #bebdcd;
-    border-radius: 0.208em;
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  .description{
-    font-size: 0.833em;
-    color: #707475;
-    margin: 0.5em 0;
-  }
-  .link-button{
-    border: none;
-    color: #2c67b0;
-    text-decoration: underline;
-    font-weight: 500;
-    padding: 0;
-  }
-  .details-row{
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: space-between;
+    &:last-child {
+      padding-bottom: 0;
+    }
   }
 }

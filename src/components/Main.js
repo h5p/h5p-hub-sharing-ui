@@ -7,7 +7,7 @@ import Optional from './steps/Optional';
 import Review from './steps/Review';
 import Success from './steps/Success';
 import TranslationContext from '../context/Translation';
-import { replace } from '../utils/helpers';
+import { replace, publishToHub } from '../utils/helpers';
 
 import 'normalize.css';
 import './Main.scss';
@@ -64,14 +64,24 @@ const getSteps = (shared, mandatory, optional, isValid) => {
   return steps;
 };
 
-function Main() {
+const defaultImage = {
+  src: ''
+};
+
+function Main({publishURL}) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [isValid, setIsValid] = React.useState(false);
-  const defaultOptional = {keywords: [], language: 'en', icon: {}, screenshots:[{},{},{},{},{}]};
+  const defaultOptional = {keywords: [], icon: defaultImage, screenshots:[defaultImage,defaultImage,defaultImage,defaultImage,defaultImage]};
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
-  const mandatoryDefaultValues = { license: '', licenseVersion: '', title: '', disciplines: []};
+  const mandatoryDefaultValues = {
+    license: '',
+    language: 'en',
+    level: '',
+    licenseVersion: '',
+    title: '',
+    disciplines: []};
   const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
   
   const steps = getSteps(isShared, {
@@ -89,7 +99,9 @@ function Main() {
    */
   const handleNext = () => {
     if (activeStep === 2) {
-      setShared(true);
+      publishToHub(publishURL, {...mandatoryInfo, ...optionalInfo}, () => {
+        setShared(true);
+      })
     }
     else {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);

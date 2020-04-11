@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import { replace, mandatoryDefinition } from '../../utils/helpers';
 import Modal from '../generic/modal/Modal';
 
-import './Mandatory.scss';
 import Message from '../generic/message/Message';
 import ModalContent from './ModalContent';
 
@@ -46,6 +45,14 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
         return false;
       }
 
+      if(mandatoryInfo.level.length === 0){
+        return false;
+      }
+
+      if(mandatoryInfo.language.length === 0){
+        return false;
+      }
+  
       return true;
     });
 
@@ -69,48 +76,56 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           value={mandatoryInfo.title} />
       </FormElement>
       {
-        showLicenseWarning &&
+        showLicenseWarning && mandatoryInfo.license &&
         <Message severity="warning">
           {replace(l10n.subContentWarning, {
             ':license': metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion)
           })}
         </Message>
       }
-      <div className='form-element license-row'>
-        <div className="license">
-          <FormElement
-            label={l10n.license}
-            description={l10n.licenseDescription}
-            mandatory={true}
-            link={{
-              linkText: l10n.helpChoosingLicense,
-              onClick: () => toggleLicense(true)
-            }}
-          >
-            <div>
-            <Dropdown
-              options={metadata.licenses}
-              selected={mandatoryInfo.license}
-              allowNone={true}
-              onChange={e => setInfo(e.target.value, 'license')}>
-            </Dropdown>
-              </div>
-          </FormElement>
-        </div>
-        <div className='license-version'>
-          <FormElement
-            label={l10n.licenseVersion}
-            description={l10n.licenseVersionDescription}
-            mandatory={true}
-          >
-            <Dropdown
-              options={licenseVersions}
-              selected={mandatoryInfo.licenseVersion}
-              allowNone={true}
-              onChange={e => setInfo(e.target.value, 'licenseVersion')}>
-            </Dropdown>
-          </FormElement>
-        </div>
+      <div className='row dropdowns'>
+        <FormElement 
+          label={l10n.license}
+          description={l10n.licenseDescription}
+          mandatory={true}
+          link={{
+            linkText: l10n.helpChoosingLicense,
+            onClick: () => toggleLicense(true)
+          }}
+        >
+          <Dropdown 
+            options={metadata.licenses}
+            selected={mandatoryInfo.license}
+            allowNone={true}
+            onChange={e => setInfo(e.target.value, 'license')}/>
+        </FormElement>
+        <FormElement
+          label={l10n.licenseVersion}
+          description={l10n.licenseVersionDescription}
+          mandatory={true}
+        >
+          <Dropdown
+            options={licenseVersions}
+            selected={mandatoryInfo.licenseVersion}
+            allowNone={true}
+            onChange={e => setInfo(e.target.value, 'licenseVersion')} />
+        </FormElement>
+      </div>
+      <div className='row dropdowns'>
+        <FormElement label={l10n.language} mandatory={true}>
+          <Dropdown
+            options={metadata.languages}
+            onChange={(e) => setInfo(e.target.value, 'language')}
+            selected={mandatoryInfo.language} />
+        </FormElement>
+      
+        <FormElement label={l10n.level} mandatory={true}>
+          <Dropdown
+            options={metadata.levels}
+            onChange={(e) => setInfo(e.target.value, 'level')}
+            selected={mandatoryInfo.level}
+            allowNone={true}/>
+        </FormElement>
       </div>
       <FormElement
         label={l10n.disciplineLabel}
@@ -125,7 +140,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
 Mandatory.propTypes = {
   mandatoryInfo: mandatoryDefinition,
-  setMandatoryInfo: PropTypes.func.isRequired
+  setMandatoryInfo: PropTypes.func.isRequired,
+  setIsValid: PropTypes.func.isRequired
 }
 
 export default Mandatory;

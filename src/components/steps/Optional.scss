@@ -1,100 +1,30 @@
 @import "../../styles/_variables.scss";
 @import "../../styles/mixins";
 
-.h5p-hub-publish {
-  .optional-page {
-    .keywords {
-      margin-bottom: 1.292em;
-
-      .form-element label {
-        margin-bottom: 0.708em;
-      }
+.h5p-hub-publish .optional {
+  .keywords {
+    .form-element label {
+      margin-bottom: 0.708em;
     }
-    .optional-second-part {
-      display: flex;
-      @media (max-width: $screen-small) {
-        flex-wrap: wrap;
-      }
+  }
+  #screenshots {
+    display: flex;
+    flex-wrap: wrap;
+    .image-upload-container {
+      margin-bottom: 1em;
     }
-
-    .dropdowns {
-      display: flex;
-      display: flex;
-      justify-content: space-between;
+  }
+  .optional-second-part {
+    display: flex;
+    @media (max-width: $screen-small) {
       flex-wrap: wrap;
-      margin-right: -1em;
-      .language {
-        flex-grow: 1;
-        min-width: 17em;
-        //Make space between dropdowns that isn't showed when wrapped
-        border-right: 1em solid #ffffff;
-        margin-bottom: 1.75em;
-      }
-      .level {
-        flex-grow: 1;
-        min-width: 17em;
-        //Make space between dropdowns that isn't showed when wrapped
-        border-right: 1em solid #ffffff;
-        margin-bottom: 1.75em;
-      }
     }
-
-    .optional-images {
-      width: 50%;
-
-      .optional-upload-icon {
-        margin-bottom: 1.458em;
-      }
-
-      .form-element {
-        label {
-          margin-bottom: 0.167em;
-        }
-        .description {
-          margin-bottom: 1.25em;
-        }
-      }
-      @media (max-width: $screen-small) {
-        width: 100%;
-      }
-    }
-
-    .descriptions {
-      margin-right: 1em;
-      width: 50%;
-      @media (max-width: $screen-small) {
-        width: 100%;
-      }
-
-      .short-description {
-        height: 6.333em;
-        resize: none;
-        font-size: 0.833em;
-        width: 100%;
-        margin-bottom: 1.417em;
-        border-radius: 0.208em;
-        padding: 0.833em 0.833em;
-        box-sizing: border-box;
-        @include scrollbar;
-        &::placeholder{
-          font-style: italic;
-        }
-      }
-
-      .long-description {
-        font-style: italic;
-        height: 10.458em;
-        resize: none;
-        font-size: 0.833em;
-        width: 100%;
-        border-radius: 0.208em;
-        padding: 0.833em 0.833em;
-        box-sizing: border-box;
-        @include scrollbar;
-        &::placeholder{
-          font-style: italic;
-        }
-      }
-    }
+  }
+  
+  #long-description {
+    height: 10.458em;
+  }
+  #short-description {
+    height: 6.333em;
   }
 }

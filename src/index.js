@@ -22,11 +22,13 @@ const metadata = new Metadata({
   levels: levels
 });
 
+const publishURL = 'http://localhost/d7/post.php';
+
 ReactDOM.render(
   <React.StrictMode>
     <TranslationContext.Provider value={l10n}>
       <MetadataContext.Provider value={metadata}>
-        <Main />
+        <Main publishURL={publishURL}/>
       </MetadataContext.Provider>
     </TranslationContext.Provider>
   </React.StrictMode>,
