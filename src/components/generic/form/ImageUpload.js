@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImagePreview from './ImagePreview';
-import TranslationContext from '../../../context/Translation';
 
 import './ImageUpload.scss';
 
 const ImageUpload = ({onFile, img, ariaLabel}) => {
   const input = React.createRef();
-  const l10n = React.useContext(TranslationContext);
 
   /**
    * Handle image is selected

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import axios, { post } from 'axios';
+import axios from 'axios';
 
 /**
  * Replaces strings in a text. Usefull for handling translation texts
