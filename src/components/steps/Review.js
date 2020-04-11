@@ -32,12 +32,13 @@ const Review = ({
         {replace(l10n.subContentWarning, {
           ':license': license
         })}
-        
       </Message>
 
       <dl>
         <Definition name={l10n.title}>{mandatoryInfo.title}</Definition>
         <Definition name={l10n.license}>{license}</Definition>
+        <Definition name={l10n.language}>{metadata.getLanguage(mandatoryInfo.language).name}</Definition>
+        <Definition name={l10n.level}>{metadata.getLevel(mandatoryInfo.level).name}</Definition>
         <Definition name={l10n.disciplines}>{mandatoryInfo.disciplines.join(', ')}</Definition>
         <Definition name={l10n.keywords}>{optionalInfo.keywords.join(', ')}</Definition>
         <Definition name={l10n.shortDescription}>{optionalInfo.shortDescription}</Definition>
