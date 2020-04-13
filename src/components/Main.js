@@ -8,6 +8,7 @@ import Review from './steps/Review';
 import Success from './steps/Success';
 import TranslationContext from '../context/Translation';
 import { replace, publishToHub } from '../utils/helpers';
+import PropTypes from 'prop-types';
 
 import 'normalize.css';
 import './Main.scss';
@@ -32,34 +33,27 @@ const getSteps = (shared, mandatory, optional, isValid) => {
     },
     {
       title: 'optionalInfo',
-      content: <Optional optionalInfo={optional.info} setOptionalInfo={optional.setter}/>,
+      content: <Optional optionalInfo={optional.info} setOptionalInfo={optional.setter} />,
       nextButton: {
         label: 'reviewInfo',
         variant: 'outlined'
       },
       backButton: true,
       id: 'optional'
-    }
-  ];
-
-  steps.push(!shared ? {
-    title: 'reviewAndShare',
-    content: <Review 
-      mandatoryInfo={mandatory.info}
-      optionalInfo={optional.info}
-    />,
-    nextButton: {
-      label: 'share',
-      variant: 'contained'
     },
-    backButton: true,
-    id: 'review',
-  } : {
-      // Special case - last step done
+    {
       title: 'reviewAndShare',
-      content: <Success title={mandatory.info.title} contentType='Interactive video'/>, //TODO add real content type
-      id: 'success'
-    });
+      content: <Review
+        mandatoryInfo={mandatory.info}
+        optionalInfo={optional.info}
+      />,
+      nextButton: {
+        label: 'share',
+        variant: 'contained'
+      },
+      backButton: true,
+      id: 'review',
+    }]
 
   return steps;
 };
@@ -132,58 +126,72 @@ function Main({publishURL}) {
         <div
           role="heading"
           className="title"
-          dangerouslySetInnerHTML={{__html: mainTitle}} />
+          dangerouslySetInnerHTML={{ __html: mainTitle }} />
         <Button variant="outlined" color="primary" onClick={handleCancel}>
           {l10n.cancel}
         </Button>
       </div>
 
       <div className="content">
-        {!isShared &&
-          <Stepper activeStep={activeStep} completed={isShared} showSteps={!isShared}>
-            {steps.map((step, index) => {
-              return (
-                <Step key={index} index={index} label={l10n[step.title]} />
-              );
-            })}
-          </Stepper>
-        }
+        {!isShared ?
+          <>
+            <Stepper activeStep={activeStep} completed={isShared} showSteps={!isShared}>
+              {steps.map((step, index) => {
+                return (
+                  <Step key={index} index={index} label={l10n[step.title]} />
+                );
+              })}
+            </Stepper>
 
-        <div className="step-panel">
-          <div className="step-title" role="heading">
-            <span className="sr-only">{replace(l10n.currentStep, { ':step': activeStep + 1, ':total': 3 })}</span>
-            {l10n[step.title]}
-          </div>
-          <div className={`step-content ${step.id}`}>
-            {step.content}
-          </div>
-        </div>
+            <div className="step-panel">
+              <div className="step-title" role="heading">
+                <span className="sr-only">{replace(l10n.currentStep, { ':step': activeStep + 1, ':total': 3 })}</span>
+                {l10n[step.title]}
+              </div>
+              <div className={`step-content ${step.id}`}>
+                {step.content}
+              </div>
+            </div>
 
-        { 
-          !isShared &&
-          <div className="footer">
-            <div className="navigation">
-              { 
-                step.backButton &&
-                <Button name="back" variant="outlined" color="green" onClick={handleBack}>
-                  {l10n.back}
-                </Button>
-              }
-              {
-                step.nextButton &&
-                <Button name="next" variant={step.nextButton.variant} color="green" onClick={handleNext} enabled={isValid}>
-                  {l10n[step.nextButton.label]}
-                </Button>
-              }
+            <div className="footer">
+              <div className="navigation">
+                {
+                  step.backButton &&
+                  <Button name="back" variant="outlined" color="green" onClick={handleBack}>
+                    {l10n.back}
+                  </Button>
+                }
+                {
+                  step.nextButton &&
+                  <Button name="next" variant={step.nextButton.variant} color="green" onClick={handleNext} enabled={isValid}>
+                    {l10n[step.nextButton.label]}
+                  </Button>
+                }
+              </div>
+              <div className="sharing-note">
+                <i className="icon-info" />{l10n.sharingNote}
+              </div>
             </div>
-            <div className="sharing-note">
-              <i className="icon-info"/>{l10n.sharingNote}
+          </>
+          :
+          //Sucess page
+          <>
+            <div className="step-title" role="heading">
+              {l10n.reviewAndShare}
             </div>
-          </div>
+            <div className={`step-content`}>
+              <Success title={mandatoryInfo.title} contentType={contentType} />
+            </div>
+          </>
         }
       </div>
     </div>
   );
+}
+
+Main.propTypes = {
+  publishURL: PropTypes.string.isRequired,
+  contentType: PropTypes.string.isRequired
 }
 
 export default Main;

@@ -1,8 +1,8 @@
 .h5p-hub-publish {
   .sucess-page {
     text-align: center;
-    font-size: 0.75em;
     .step-icon-sucess {
+      font-size: 0.75em;
       border-radius: 50%;
       border: 0.462em solid #e1e1e1;
       width: 3.2em;
@@ -13,10 +13,12 @@
       background: #0ea385;
       border-color: #20d2b2;
       color: #fff;
+      margin-bottom: 0.667em;
     }
     .submitted-text{
       color: #0ea385;
       margin-bottom: 2.167em;
+      font-size: 0.75em;
     }
     .content-type{
       letter-spacing: 0.146em;

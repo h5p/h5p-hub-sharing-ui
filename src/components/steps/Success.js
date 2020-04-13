@@ -1,5 +1,6 @@
 import React from 'react';
 import TranslationContext from '../../context/Translation';
+import PropTypes from 'prop-types';
 
 import './Sucess.scss';
 
@@ -32,5 +33,10 @@ const Success = ({ title, contentType }) => {
     </>
   );
 };
+
+Success.propTypes = {
+  title: PropTypes.string.isRequired,
+  contentType: PropTypes.string.isRequired
+}
 
 export default Success;
