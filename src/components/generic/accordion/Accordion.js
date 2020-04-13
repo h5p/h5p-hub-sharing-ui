@@ -37,7 +37,10 @@ const Accordion = ({ children }) => {
 }
 
 Accordion.prototypes = {
-  children: PropTypes.object
+  children: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    header: PropTypes.string.isRequired
+  })
 }
 
 export default Accordion;
