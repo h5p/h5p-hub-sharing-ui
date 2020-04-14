@@ -65,6 +65,7 @@ export const publishToHub = (url, values, done) => {
   });
 
   fields.append('shortDescription', values.shortDescription);
+  fields.append('longDescription', values.longDescription)
   fields.append('icon', values.icon.file);
 
   values.screenshots.forEach(element => {
