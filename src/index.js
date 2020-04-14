@@ -24,12 +24,13 @@ const metadata = new Metadata({
 
 const publishURL = 'http://localhost/d7/post.php';
 const contentType = 'Interactive video';
+const language = 'en';
 
 ReactDOM.render(
   <React.StrictMode>
     <TranslationContext.Provider value={l10n}>
       <MetadataContext.Provider value={metadata}>
-        <Main publishURL={publishURL} contentType={contentType}/>
+        <Main publishURL={publishURL} contentType={contentType} language={language}/>
       </MetadataContext.Provider>
     </TranslationContext.Provider>
   </React.StrictMode>,
