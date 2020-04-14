@@ -36,7 +36,7 @@ const Accordion = ({ children }) => {
   ));
 }
 
-Accordion.prototypes = {
+Accordion.propTypes = {
   children: PropTypes.shape({
     id: PropTypes.string.isRequired,
     header: PropTypes.string.isRequired
