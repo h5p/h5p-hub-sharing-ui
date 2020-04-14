@@ -62,16 +62,16 @@ const defaultImage = {
   src: ''
 };
 
-function Main({publishURL}) {
+function Main({ publishURL, contentType, language }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [isValid, setIsValid] = React.useState(false);
-  const defaultOptional = {keywords: [], icon: defaultImage, screenshots:[defaultImage,defaultImage,defaultImage,defaultImage,defaultImage]};
+  const defaultOptional = { keywords: [], icon: defaultImage, screenshots: [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage] };
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
   const mandatoryDefaultValues = {
     license: '',
-    language: 'en',
+    language: language,
     level: '',
     licenseVersion: '',
     title: '',
