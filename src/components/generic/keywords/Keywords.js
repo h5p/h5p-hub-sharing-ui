@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Chips from '../chips/Chips';
 import TranslationContext from '../../../context/Translation';
 
-const Keywords = ({ chips, setChips }) => {
+const Keywords = ({ chips, setKeywords }) => {
 
   const inputField = React.useRef(null);
   const l10n = React.useContext(TranslationContext);
@@ -17,22 +17,33 @@ const Keywords = ({ chips, setChips }) => {
       event.preventDefault();
       const value = event.target.value.trim();
       if (chips.indexOf(value) === -1 && value !== '') {
-        setChips([...chips, value]);
+        setKeywords([...chips, value]);
       }
       inputField.current.value = '';
     }
   }
 
   /**
-   * Set focus to input field when last chip is deleted
+   * Set chips and focus to input field when last chip is deleted
+   * @param  {string[]} chips - id of chips
    */
-  const handleDeleteLastChip = () =>{
-    inputField.current.focus();
+  const setChips = (chips) =>{
+    setKeywords(chips);
+    if(chips.length === 0){
+      inputField.current.focus();
+    }
+  }
+
+  /**
+   * Return chips with id and name
+   */
+  const getChips = () => {
+    return chips.map(chip => {return {id: chip, name: chip}});
   }
 
   return (
     <>
-      <Chips chips={chips} setChips={setChips} deleteLastChip={handleDeleteLastChip}></Chips>
+      <Chips chips={getChips()} setChips={setChips}></Chips>
       <input
         className='input-field'
         placeholder={l10n.keywordsPlaceholder}
@@ -44,7 +55,7 @@ const Keywords = ({ chips, setChips }) => {
 
 Keywords.propTypes = {
   chips: PropTypes.array.isRequired,
-  setChips: PropTypes.func.isRequired
+  setKeywords: PropTypes.func.isRequired
 };
 
 export default Keywords;

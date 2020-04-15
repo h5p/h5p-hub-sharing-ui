@@ -24,6 +24,11 @@ const trans = {
   licenseVersionDescription: 'Select a license version',
   disciplineLabel: 'Disciplines',
   disciplineDescription: 'You can select multiple disciplines',
+  discipline: {
+    searchPlaceholder: 'Select one or more disciplines',
+    in: 'in',
+    dropdownButton: 'Dropdown button',
+  },
 
   // Optional page
   removeChip: 'Remove :chip from the list',

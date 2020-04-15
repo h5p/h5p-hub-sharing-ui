@@ -2,11 +2,12 @@
  * Class wrapping in all metadata received from the backend
  */
 export default class Metadata {
-  constructor({licenses, disciplines, languages, levels}) {
+  constructor({ licenses, disciplines, languages, levels }) {
     this.licenses = licenses;
     this.disciplines = disciplines;
     this.languages = languages;
     this.levels = levels;
+    this.flatDisciplines = this.flatDisciplines();
   }
 
   /**
@@ -93,5 +94,32 @@ export default class Metadata {
     }
 
     return forHumans;
+  }
+
+  flatDisciplines() {
+    const list = [];
+    const stack = this.disciplines.slice();
+    while (stack.length > 0) {
+      const element = stack.pop();
+      if (element && element.children) {
+        list.concat(element.children);
+        element.children.forEach(
+          element => {
+            list.push(element);
+            stack.push(element);
+          }
+        );
+      }
+    }
+    return list;
+  }
+
+  getDiscipline = (id) => {
+    for (let i = 0; i < this.flatDisciplines.length; i++) {
+      // Note: intentionally not using trippel quotes. A mix of strings an ints
+      if (this.flatDisciplines[i].id == id) {
+        return this.flatDisciplines[i];
+      }
+    }
   }
 };

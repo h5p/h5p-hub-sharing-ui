@@ -6,6 +6,7 @@ import MetadataContext from '../../context/Metadata';
 import PropTypes from 'prop-types';
 import { replace, mandatoryDefinition } from '../../utils/helpers';
 import Modal from '../generic/modal/Modal';
+import DisciplineSelector from '../generic/discipline/DisciplineSelector';
 
 import Message from '../generic/message/Message';
 import ModalContent from './ModalContent';
@@ -50,6 +51,10 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
       }
 
       if(mandatoryInfo.language.length === 0){
+        return false;
+      }
+
+      if(mandatoryInfo.disciplines.length === 0){
         return false;
       }
   
@@ -132,7 +137,9 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
         description={l10n.disciplineDescription}
         mandatory={true}
       >
-        <div>Discipline selector is coming soon...</div>
+        <DisciplineSelector 
+        disciplines={mandatoryInfo.disciplines}
+        setDisciplines={(checked) => setInfo(checked, 'disciplines')}/>
       </FormElement>
     </>
   );

@@ -34,28 +34,25 @@ const Chips = ({ chips, setChips, deleteLastChip }) => {
   const removeChip = (chip) => {
     // Set focus to previous item
     const index = chips.indexOf(chip);
-    if (chips.length > 1) {
+    if (chips.length > 1 && chipsRef.current[index !== 0 ? index - 1 : 1]) {
       chipsRef.current[index !== 0 ? index - 1 : 1].focus();
     }
-    else if(chips.length === 1 && deleteLastChip){
-      deleteLastChip();
-    }
-    setChips(chips.filter(element => element !== chip));
+    setChips(chips.filter(element => element.id !== chip.id).map(element => element.id));
   };
 
   return (
     chips.length > 0 ?
       <ul className='chips-list'>
         {chips.map((chip, i) =>
-          <li key={chip}>
-            <span className='sr-only'>{chip}</span>
+          <li key={chip.id}>
+            <span className='sr-only'>{chip.name}</span>
             <button
               ref={el => chipsRef.current[i] = el}
-              aria-label={replace(l10n.removeChip, { ':chip': chip })}
+              aria-label={replace(l10n.removeChip, { ':chip': chip.name })}
               onClick={() => removeChip(chip)}
               onKeyDown={event => handleKeyDown(event)}
-              id={chip}>
-              {chip}
+              id={chip.id}>
+              {chip.name}
               <div className='icon-close'></div>
             </button>
           </li>)}
@@ -67,7 +64,6 @@ const Chips = ({ chips, setChips, deleteLastChip }) => {
 Chips.propTypes = {
   chips: PropTypes.array.isRequired,
   setChips: PropTypes.func.isRequired,
-  deleteLastChip: PropTypes.func
 };
 
 export default Chips;

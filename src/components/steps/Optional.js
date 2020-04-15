@@ -35,7 +35,7 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
   return (
     <>
       <FormElement label={l10n.keywords}>
-        <Keywords chips={optionalInfo.keywords} setChips={(chips) => setInfo(chips, 'keywords')}/>
+        <Keywords chips={optionalInfo.keywords} setKeywords={(chips) => setInfo(chips, 'keywords')}/>
       </FormElement>
       <div className='columns'>
         <div className='column'>
