@@ -9,7 +9,6 @@ class SearchFilter extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props.items)
     this.state = {
       checkboxElements: this.props.items.sort(this.compare),
       searchValue: '',

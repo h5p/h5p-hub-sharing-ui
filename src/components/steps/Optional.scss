@@ -10,8 +10,15 @@
   #screenshots {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     .image-upload-container {
-      margin-bottom: 1em;
+      margin-top: 0.4em;
+    }
+    .row{
+      margin-top: 0.5em;
+      .form-element{
+        padding: 0;
+      }
     }
   }
   .optional-second-part {

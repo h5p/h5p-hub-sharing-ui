@@ -19,11 +19,11 @@ import './Main.scss';
  * @param {bool} shared Is this shared yet?
  */
 
-const getSteps = (shared, mandatory, optional, isValid) => {
+const getSteps = (shared, mandatory, optional, setMandatoryIsValid, setOptionalIsValid) => {
   let steps = [
     {
       title: 'requiredInfo',
-      content: <Mandatory mandatoryInfo={mandatory.info} setMandatoryInfo={mandatory.setter} setIsValid={isValid}/>,
+      content: <Mandatory mandatoryInfo={mandatory.info} setMandatoryInfo={mandatory.setter} setIsValid={setMandatoryIsValid} />,
       nextButton: {
         label: 'next',
         variant: 'outlined'
@@ -33,7 +33,10 @@ const getSteps = (shared, mandatory, optional, isValid) => {
     },
     {
       title: 'optionalInfo',
-      content: <Optional optionalInfo={optional.info} setOptionalInfo={optional.setter} />,
+      content: <Optional
+        optionalInfo={optional.info}
+        setOptionalInfo={optional.setter}
+        setIsValid={setOptionalIsValid} />,
       nextButton: {
         label: 'reviewInfo',
         variant: 'outlined'
@@ -59,13 +62,15 @@ const getSteps = (shared, mandatory, optional, isValid) => {
 };
 
 const defaultImage = {
-  src: ''
+  src: '',
+  alt: ''
 };
 
 function Main({ publishURL, contentType, language }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
-  const [isValid, setIsValid] = React.useState(false);
+  const [mandatoryIsValid, setMandatoryIsValid] = React.useState(false);
+  const [optionalIsValid, setOptionalIsValid] = React.useState(false);
   const defaultOptional = { keywords: [], icon: defaultImage, screenshots: [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage] };
   const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
   const l10n = useContext(TranslationContext);
@@ -85,7 +90,7 @@ function Main({ publishURL, contentType, language }) {
   }, {
     info: optionalInfo,
     setter: setOptionalInfo
-  }, setIsValid);
+  }, setMandatoryIsValid, setOptionalIsValid);
 
   const step = steps[activeStep];
 
@@ -118,8 +123,9 @@ function Main({ publishURL, contentType, language }) {
     // integrated into plugins
   };
 
-  const mainTitle = replace(l10n.mainTitle, {':title': 'Norwegian Language Course'});
+  const mainTitle = replace(l10n.mainTitle, { ':title': 'Norwegian Language Course' });
 
+  const nextButtonEnabled = (activeStep === 0 && mandatoryIsValid) || (activeStep === 1 && optionalIsValid);
   return (
     <div className="h5p-hub-publish">
       <div className="header">
@@ -163,7 +169,7 @@ function Main({ publishURL, contentType, language }) {
                 }
                 {
                   step.nextButton &&
-                  <Button name="next" variant={step.nextButton.variant} color="green" onClick={handleNext} enabled={isValid}>
+                  <Button name="next" variant={step.nextButton.variant} color="green" onClick={handleNext} enabled={nextButtonEnabled}>
                     {l10n[step.nextButton.label]}
                   </Button>
                 }

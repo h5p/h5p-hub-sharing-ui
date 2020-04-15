@@ -49,7 +49,11 @@ const Review = ({
         <Definition name={l10n.screenshots}>
           {
             optionalInfo.screenshots.map((img, idx) => 
-              img.file && <ImagePreview key={idx} src={img.src}/>
+              img.file &&
+              <div key={idx} className='row screenshots'>
+              <ImagePreview key={idx} src={img.src}/>
+              <div className='img-alt'>{img.alt}</div>
+              </div>
             )
           }
         </Definition>

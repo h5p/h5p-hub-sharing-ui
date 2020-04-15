@@ -8,7 +8,7 @@ import {optionalDefinition} from '../../utils/helpers';
 import './Optional.scss';
 import ImageUpload from '../generic/form/ImageUpload';
 
-const Optional = ({ optionalInfo, setOptionalInfo }) => {
+const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
   const l10n = React.useContext(TranslationContext);
 
@@ -24,18 +24,46 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
     }));
   };
 
-  const setScreenshot = (src, index) => {
+  /**
+   * Set file and src to screenshot
+   * @param  {object} img {src, file}
+   * @param  {number} index
+   */
+  const setScreenshot = (img, index) => {
     setOptionalInfo(() => {
-      const tmpOptional = {...optionalInfo};
-      tmpOptional.screenshots[index] = src;
+      const tmpOptional = { ...optionalInfo };
+      tmpOptional.screenshots[index] = { ...tmpOptional.screenshots[index], src: img.src, file: img.file };
       return tmpOptional;
     });
   };
 
+  /**
+   * Set alt text to screenshot
+   * @param  {string} alt
+   * @param  {number} index
+   */
+  const setAltText = (alt, index) => {
+    setOptionalInfo(() => {
+      const tmpOptional = { ...optionalInfo };
+      tmpOptional.screenshots[index] = { ...tmpOptional.screenshots[index], alt: alt };
+      return tmpOptional;
+    })
+  }
+
+  /**
+   * Update IsValid when screenshots alt text change
+   */
+  React.useEffect(() => {
+    setIsValid(
+      optionalInfo.screenshots.filter(img => img.file && img.alt === '').length === 0)
+    }, [optionalInfo, setIsValid]);
+  
+  const screenshotsLength = optionalInfo.screenshots.filter(screenshot => screenshot.file).length;
+
   return (
     <>
       <FormElement label={l10n.keywords}>
-        <Keywords chips={optionalInfo.keywords} setKeywords={(chips) => setInfo(chips, 'keywords')}/>
+        <Keywords chips={optionalInfo.keywords} setKeywords={(chips) => setInfo(chips, 'keywords')} />
       </FormElement>
       <div className='columns'>
         <div className='column'>
@@ -45,32 +73,46 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
               id="short-description"
               placeholder={l10n.shortDescriptionPlaceholder}
               onChange={(event) => setInfo(event.target.value, 'shortDescription')}
-              className='short-description'/>
+              className='short-description' />
           </FormElement>
           <FormElement label={l10n.description}>
             <textarea
               value={optionalInfo.longDescription ? optionalInfo.longDescription : ''}
               id="long-description"
               placeholder={l10n.longDescriptionPlaceholder}
-              onChange={(event) => setInfo(event.target.value, 'longDescription')}/>
+              onChange={(event) => setInfo(event.target.value, 'longDescription')} />
           </FormElement>
         </div>
         <div className='column'>
           <FormElement label={l10n.icon} description={l10n.iconDescription}>
             <ImageUpload
-              img={optionalInfo.icon} 
+              img={optionalInfo.icon}
               onFile={img => setInfo(img, 'icon')}
-              ariaLabel={l10n.icon}/>
+              ariaLabel={l10n.icon} />
           </FormElement>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
             <div id='screenshots'>
               {optionalInfo.screenshots.map((img, i) =>
-                <ImageUpload 
-                  key={i}
-                  img={img}
-                  onFile={img => setScreenshot(img, i)}
-                  ariaLabel={l10n.screeenshots}/>
+                img.file &&
+                <div className='row' key={i}>
+                  <ImageUpload
+                    key={i}
+                    img={img}
+                    onFile={img => setScreenshot(img, i)}
+                    ariaLabel={l10n.screeenshots} />
+                  <FormElement label={l10n.altText} mandatory={true}>
+                    <input value={optionalInfo.screenshots[i].alt} onChange={(event) => setAltText(event.target.value, i)}></input>
+                  </FormElement>
+                </div>
               )}
+              {screenshotsLength < 5
+                &&
+                <ImageUpload
+                  key={screenshotsLength}
+                  img={optionalInfo.screenshots[screenshotsLength]}
+                  onFile={img => setScreenshot(img, screenshotsLength)}
+                  ariaLabel={l10n.screeenshots} />
+              }
             </div>
           </FormElement>
         </div>
@@ -81,7 +123,8 @@ const Optional = ({ optionalInfo, setOptionalInfo }) => {
 
 Optional.propTypes = {
   optionalInfo: optionalDefinition,
-  setOptionalInfo: PropTypes.func.isRequired
+  setOptionalInfo: PropTypes.func.isRequired,
+  setIsValid: PropTypes.func.isRequired
 };
 
 export default Optional;

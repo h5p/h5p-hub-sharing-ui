@@ -34,6 +34,7 @@ const trans = {
   removeChip: 'Remove :chip from the list',
   keywordsPlaceholder: 'Add keywords',
   keywords: 'Keywords',
+  altText: 'Alt text',
   
   // Review
   reviewMessage: 'Please review the info below before you share',
