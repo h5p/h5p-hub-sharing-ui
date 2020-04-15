@@ -125,7 +125,7 @@ function Main({ publishURL, contentType, language }) {
 
   const mainTitle = replace(l10n.mainTitle, { ':title': 'Norwegian Language Course' });
 
-  const nextButtonEnabled = (activeStep === 0 && mandatoryIsValid) || (activeStep === 1 && optionalIsValid);
+  const nextButtonEnabled = activeStep === 2 || (activeStep === 0 && mandatoryIsValid) || (activeStep === 1 && optionalIsValid);
   return (
     <div className="h5p-hub-publish">
       <div className="header">
