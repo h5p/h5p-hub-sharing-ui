@@ -71,7 +71,7 @@ export const publishToHub = (url, values, done) => {
   values.screenshots.forEach(element => {
     if (element.file) {
       fields.append("screenshots[]", element.file);
-      fields.append("screenshots[]", element.alt);
+      fields.append("screenshotAltTexts[]", element.alt);
     }
   });
 
