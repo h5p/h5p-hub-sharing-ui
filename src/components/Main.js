@@ -198,7 +198,7 @@ function Main({ publishURL, contentType, language }) {
 Main.propTypes = {
   publishURL: PropTypes.string.isRequired,
   contentType: PropTypes.string.isRequired,
-  language: PropTypes.string
+  language: PropTypes.string.isRequired
 }
 
 export default Main;

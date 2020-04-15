@@ -37,29 +37,14 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
     const licenseOk = mandatoryInfo.license &&
       (licenseVersions.length === 0 || mandatoryInfo.licenseVersion.length !== 0);
 
-    setIsValid(() => {
-      if (mandatoryInfo.title === undefined || mandatoryInfo.title.trim().length === 0) {
-        return false;
-      }
-
-      if (!licenseOk) {
-        return false;
-      }
-
-      if(mandatoryInfo.level.length === 0){
-        return false;
-      }
-
-      if(mandatoryInfo.language.length === 0){
-        return false;
-      }
-
-      if(mandatoryInfo.disciplines.length === 0){
-        return false;
-      }
-  
-      return true;
-    });
+    setIsValid(() => (
+      mandatoryInfo.title !== undefined &&
+      mandatoryInfo.title.trim().length !== 0 &&
+      licenseOk &&
+      mandatoryInfo.level.length !== 0 &&
+      mandatoryInfo.language.length !== 0 &&
+      mandatoryInfo.disciplines.length !== 0
+    ));
 
     setShowLicenseWarning(() => licenseOk);
   }, [mandatoryInfo, setIsValid, licenseVersions]);
