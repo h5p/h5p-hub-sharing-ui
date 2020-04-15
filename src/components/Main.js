@@ -180,7 +180,7 @@ function Main({ publishURL, contentType, language }) {
             </div>
           </>
           :
-          //Sucess page
+          // Success page
           <>
             <div className="step-title" role="heading">
               {l10n.reviewAndShare}

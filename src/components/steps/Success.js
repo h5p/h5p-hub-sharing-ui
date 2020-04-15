@@ -2,7 +2,7 @@ import React from 'react';
 import TranslationContext from '../../context/Translation';
 import PropTypes from 'prop-types';
 
-import './Sucess.scss';
+import './Success.scss';
 
 const Success = ({ title, contentType }) => {
 
@@ -10,8 +10,8 @@ const Success = ({ title, contentType }) => {
 
   return (
     <>
-      <div className='sucess-page'>
-        <div className='step-icon-sucess'>
+      <div className='success-page'>
+        <div className='step-icon-success'>
           <i className="icon-check" />
         </div>
         <div className='submitted-text'>

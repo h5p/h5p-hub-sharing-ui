@@ -57,7 +57,7 @@ const trans = {
   iconDescription: '640x480px. If not selected content will use category icon',
   screenshotsDescription: 'Add up to five screenshots of your content',
 
-  // Sucess
+  // Success
   submitted: 'Submitted!',
   isNowSubmitted: 'Is now submitted to H5P Hub',
   contentAvailable: 'Your content will soon be available for download',

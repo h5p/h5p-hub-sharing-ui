@@ -1,0 +1,43 @@
+.h5p-hub-publish {
+  .success-page {
+    text-align: center;
+    .step-icon-success {
+      font-size: 0.75em;
+      border-radius: 50%;
+      border: 0.462em solid #e1e1e1;
+      width: 3.2em;
+      height: 3.2em;
+      line-height: 2.276;
+      display: inline-block;
+      box-sizing: border-box;
+      background: #0ea385;
+      border-color: #20d2b2;
+      color: #fff;
+      margin-bottom: 0.667em;
+    }
+    .submitted-text {
+      color: #0ea385;
+      margin-bottom: 2.167em;
+      font-size: 0.75em;
+    }
+    .content-type {
+      letter-spacing: 0.146em;
+      color: #303438;
+      margin-bottom: 0.7em;
+    }
+    .title {
+      font-size: 1.75em;
+      margin-bottom: 0.5em;
+      color: #1a1a1a;
+    }
+    .now-submitted-text {
+      font-size: 1.458em;
+      margin-bottom: 1.75em;
+      color: #1a1a1a;
+    }
+    .content-available {
+      font-size: 0.833em;
+      color: #707475;
+    }
+  }
+}
