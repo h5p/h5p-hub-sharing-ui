@@ -1,17 +1,17 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import TranslationContext from '../../context/Translation';
 import ImagePreview from '../generic/form/ImagePreview';
-import {replace, mandatoryDefinition, optionalDefinition} from '../../utils/helpers';
+import { replace, mandatoryDefinition, optionalDefinition } from '../../utils/helpers';
 import Message from '../generic/message/Message';
 import MetadataContext from '../../context/Metadata';
 
 import './Review.scss';
 
-const Definition = ({name, children}) => {
+const Definition = ({ name, children }) => {
   return (
     <div className="definition">
-        <dt>{name}</dt>
-        <dd>{children}</dd>
+      <dt>{name}</dt>
+      <dd>{children}</dd>
     </div>
   );
 }
@@ -48,11 +48,11 @@ const Review = ({
         </Definition>
         <Definition name={l10n.screenshots}>
           {
-            optionalInfo.screenshots.map((img, idx) => 
+            optionalInfo.screenshots.map((img, idx) =>
               img.file &&
               <div key={idx} className='row screenshots'>
-              <ImagePreview key={idx} src={img.src}/>
-              <div className='img-alt'>{img.alt}</div>
+                <ImagePreview key={idx} src={img.src} />
+                <div className='img-alt'>{img.alt}</div>
               </div>
             )
           }

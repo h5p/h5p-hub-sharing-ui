@@ -11,6 +11,21 @@ import ImageUpload from '../generic/form/ImageUpload';
 const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
   const l10n = React.useContext(TranslationContext);
+  const altInputRefs = React.useRef([]);
+
+  const uploadedImages = optionalInfo.screenshots.filter(el => el && el.src !== '' && el.src !== undefined);
+
+  /**
+   * Set focus to the newly added item
+   * Has to do it when there number of uploaded img change,
+   * because inputfield to focus on dosen't exist in setScreenshot
+   */
+  React.useEffect(() => {
+    altInputRefs.current = altInputRefs.current.slice(0, optionalInfo.screenshots.length);
+    if (altInputRefs.current[uploadedImages.length - 1]) {
+      altInputRefs.current[uploadedImages.length - 1].focus();
+    }
+  }, [uploadedImages.length]);
 
   /**
    * Set data in optionalInfo
@@ -32,9 +47,20 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
   const setScreenshot = (img, index) => {
     setOptionalInfo(() => {
       const tmpOptional = { ...optionalInfo };
-      tmpOptional.screenshots[index] = { ...tmpOptional.screenshots[index], src: img.src, file: img.file };
+      tmpOptional.screenshots[index] = { ...tmpOptional.screenshots[index], src: img.src, file: img.file, alt: '' };
+      //If img removed move all img one index up
+      if (img.src === undefined) {
+        for (let i = index; i < uploadedImages.length -1; i++) {
+          tmpOptional.screenshots[i] = optionalInfo.screenshots[i+1];
+        }
+        tmpOptional.screenshots[uploadedImages.length-1] = {src: '', alt: '', file: undefined};
+      } 
       return tmpOptional;
     });
+    if(altInputRefs.current[index]){
+      //Set focus if image is changed
+      altInputRefs.current[index].focus();
+    }
   };
 
   /**
@@ -45,7 +71,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
   const setAltText = (alt, index) => {
     setOptionalInfo(() => {
       const tmpOptional = { ...optionalInfo };
-      tmpOptional.screenshots[index] = { ...tmpOptional.screenshots[index], alt: alt };
+      tmpOptional.screenshots[index].alt = alt;
       return tmpOptional;
     })
   }
@@ -56,9 +82,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
   React.useEffect(() => {
     setIsValid(
       optionalInfo.screenshots.filter(img => img.file && img.alt === '').length === 0)
-    }, [optionalInfo, setIsValid]);
-  
-  const screenshotsLength = optionalInfo.screenshots.filter(screenshot => screenshot.file).length;
+  }, [optionalInfo, setIsValid]);
 
   return (
     <>
@@ -99,19 +123,23 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                     key={i}
                     img={img}
                     onFile={img => setScreenshot(img, i)}
-                    ariaLabel={l10n.screeenshots} />
+                    ariaLabel={l10n.screenshots} />
                   <FormElement label={l10n.altText} mandatory={true}>
-                    <input value={optionalInfo.screenshots[i].alt} onChange={(event) => setAltText(event.target.value, i)}></input>
+                    <input
+                      id={`alt-text`}
+                      value={optionalInfo.screenshots[i].alt}
+                      onChange={(event) => setAltText(event.target.value, i)}
+                      ref={el => altInputRefs.current[i] = el} />
                   </FormElement>
                 </div>
               )}
-              {screenshotsLength < 5
+              {uploadedImages.length < 5
                 &&
                 <ImageUpload
-                  key={screenshotsLength}
-                  img={optionalInfo.screenshots[screenshotsLength]}
-                  onFile={img => setScreenshot(img, screenshotsLength)}
-                  ariaLabel={l10n.screeenshots} />
+                  key={uploadedImages.length}
+                  img={optionalInfo.screenshots[uploadedImages.length]}
+                  onFile={img => setScreenshot(img, uploadedImages.length)}
+                  ariaLabel={l10n.screenshots} />
               }
             </div>
           </FormElement>

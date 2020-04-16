@@ -1,5 +1,4 @@
 .h5p-hub-publish .step-content.review {
-
   .review-header {
     margin-bottom: 1em;
     color: #363636;
@@ -11,7 +10,6 @@
   }
 
   .definition {
-
     border-bottom: 1px solid #d5d5d5;
     display: flex;
 
@@ -28,16 +26,16 @@
       margin: 0;
       padding: 0.5em 0 0.5em 1em;
     }
-    .img-alt{
+    .img-alt {
       display: flex;
       align-items: center;
     }
-    .screenshots{
+    .screenshots {
       margin-bottom: 0.2em;
-      &:last-child{
+      &:last-child {
         margin-bottom: 0;
       }
-      .image-preview{
+      .image-preview {
         font-size: 0.75em;
       }
     }

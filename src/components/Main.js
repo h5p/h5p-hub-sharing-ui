@@ -19,11 +19,14 @@ import './Main.scss';
  * @param {bool} shared Is this shared yet?
  */
 
-const getSteps = (shared, mandatory, optional, setMandatoryIsValid, setOptionalIsValid) => {
+const getSteps = (shared, mandatory, optional) => {
   let steps = [
     {
       title: 'requiredInfo',
-      content: <Mandatory mandatoryInfo={mandatory.info} setMandatoryInfo={mandatory.setter} setIsValid={setMandatoryIsValid} />,
+      content: <Mandatory
+        mandatoryInfo={mandatory.info}
+        setMandatoryInfo={mandatory.setter}
+        setIsValid={mandatory.setIsValid} />,
       nextButton: {
         label: 'next',
         variant: 'outlined'
@@ -36,7 +39,7 @@ const getSteps = (shared, mandatory, optional, setMandatoryIsValid, setOptionalI
       content: <Optional
         optionalInfo={optional.info}
         setOptionalInfo={optional.setter}
-        setIsValid={setOptionalIsValid} />,
+        setIsValid={optional.setIsValid} />,
       nextButton: {
         label: 'reviewInfo',
         variant: 'outlined'
@@ -86,11 +89,13 @@ function Main({ publishURL, contentType, language }) {
 
   const steps = getSteps(isShared, {
     info: mandatoryInfo,
-    setter: setMandatoryInfo
+    setter: setMandatoryInfo,
+    setIsValid: setMandatoryIsValid
   }, {
     info: optionalInfo,
-    setter: setOptionalInfo
-  }, setMandatoryIsValid, setOptionalIsValid);
+    setter: setOptionalInfo,
+    setIsValid: setOptionalIsValid
+  });
 
   const step = steps[activeStep];
 
