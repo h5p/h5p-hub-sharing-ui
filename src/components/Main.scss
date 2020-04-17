@@ -13,6 +13,15 @@
   font-display: block;
 }
 
+@keyframes spinner {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+         transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+}
+
 .h5p-hub-publish {
   position: relative;
   margin: 2em auto;
@@ -80,12 +89,28 @@
         transform: rotate(180deg);
       }
 
+      #share-in-process::before {
+        font-family: "h5p-hub-publish";
+        font-size: 0.75em;
+        content: "\e90b";
+        animation: 2s linear infinite spinner;
+        top: 0.5em;
+      }
+
       .next {
         margin-left: auto;
       }
     }
   }
 
+  .share-error {
+    padding: 0 2em 2em;
+    text-align: end;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
   .row {
     display: flex;
     flex-wrap: wrap;
@@ -106,6 +131,7 @@
       }
     }
   }
+
   .columns {
     display: flex;
     @media (max-width: $screen-small) {

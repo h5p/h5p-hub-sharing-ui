@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 
 import 'normalize.css';
 import './Main.scss';
+import Message from './generic/message/Message';
 
 /**
  * Creates the defintion of the steps in the wizard
@@ -72,6 +73,8 @@ const defaultImage = {
 function Main({ publishURL, contentType, language }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
+  const [shareFailed, setShareFailed] = React.useState(false);
+  const [shareInProcess, setShareInProcess] = React.useState(false);
   const [mandatoryIsValid, setMandatoryIsValid] = React.useState(false);
   const [optionalIsValid, setOptionalIsValid] = React.useState(false);
   const defaultOptional = { keywords: [], icon: defaultImage, screenshots: [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage] };
@@ -104,8 +107,13 @@ function Main({ publishURL, contentType, language }) {
    */
   const handleNext = () => {
     if (activeStep === 2) {
-      publishToHub(publishURL, {...mandatoryInfo, ...optionalInfo}, () => {
+      setShareInProcess(true);
+      publishToHub(publishURL, { ...mandatoryInfo, ...optionalInfo }, () => {
         setShared(true);
+        setShareInProcess(false);
+      }, () => {
+        setShareFailed(true);
+        setShareInProcess(false);
       })
     }
     else {
@@ -131,6 +139,7 @@ function Main({ publishURL, contentType, language }) {
   const mainTitle = replace(l10n.mainTitle, { ':title': 'Norwegian Language Course' });
 
   const nextButtonEnabled = activeStep === 2 || (activeStep === 0 && mandatoryIsValid) || (activeStep === 1 && optionalIsValid);
+
   return (
     <div className="h5p-hub-publish">
       <div className="header">
@@ -163,7 +172,11 @@ function Main({ publishURL, contentType, language }) {
                 {step.content}
               </div>
             </div>
-
+            {shareFailed &&
+              <div className='share-error'>
+                <Message severity='error'><span className='bold'>{l10n.shareFailed}</span> {l10n.shareTryAgain}</Message>
+              </div>
+            }
             <div className="footer">
               <div className="navigation">
                 {
@@ -174,8 +187,15 @@ function Main({ publishURL, contentType, language }) {
                 }
                 {
                   step.nextButton &&
-                  <Button name="next" variant={step.nextButton.variant} color="green" onClick={handleNext} enabled={nextButtonEnabled}>
-                    {l10n[step.nextButton.label]}
+                  <Button
+                    name="next"
+                    variant={step.nextButton.variant}
+                    color="green" onClick={handleNext}
+                    enabled={nextButtonEnabled && !shareInProcess}
+                    id={shareInProcess ? 'share-in-process' : ''}>
+                    {!shareInProcess ? l10n[step.nextButton.label]
+                      : <span>{l10n.pleaseWait}</span>
+                    }
                   </Button>
                 }
               </div>

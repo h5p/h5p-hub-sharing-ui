@@ -47,6 +47,9 @@ const trans = {
   icon: 'Icon',
   screenshots: 'Screenshots',
   helpChoosingLicense: 'Get help choosing the right license',
+  shareFailed: 'Share failed.',
+  shareTryAgain: 'Something went wrong, please try to share agian.',
+  pleaseWait: 'Please wait...',
 
   // Optional
   language: 'Language',

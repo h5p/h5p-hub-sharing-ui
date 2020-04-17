@@ -49,7 +49,7 @@ export const optionalDefinition = PropTypes.shape({
  * @param {object} values
  * @param {Function} done
  */
-export const publishToHub = (url, values, done) => {
+export const publishToHub = (url, values, done, fail) => {
   const fields = new FormData();
 
   fields.append('title', values.title);
@@ -80,5 +80,5 @@ export const publishToHub = (url, values, done) => {
       'Content-Type': 'multipart/form-data'
     }
   }).then(done)
-    .catch(done); // TODO - what if it fails?
+    .catch(fail)
 }

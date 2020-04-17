@@ -5,7 +5,11 @@
   margin: 0.5em 0;
 
   &.warning {
-    border-color: #FDCC31;
-    background: #FFF8E0;
+    border-color: #fdcc31;
+    background: #fff8e0;
+  }
+  &.error {
+    border-color: #c1494b;
+    background-color: #ece0e0;
   }
 }
