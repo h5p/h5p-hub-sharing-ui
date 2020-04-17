@@ -181,7 +181,7 @@ function Main({ publishURL, contentType, language }) {
               <div className="navigation">
                 {
                   step.backButton &&
-                  <Button name="back" variant="outlined" color="green" onClick={handleBack}>
+                  <Button name="back" variant="outlined" color="green" onClick={handleBack} enabled={!shareInProcess}>
                     {l10n.back}
                   </Button>
                 }
