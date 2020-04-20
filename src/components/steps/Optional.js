@@ -126,7 +126,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                     ariaLabel={l10n.screenshots} />
                   <FormElement label={l10n.altText} mandatory={true}>
                     <input
-                      id={`alt-text`}
+                      id={`alt-text-${i}`}
                       value={optionalInfo.screenshots[i].alt}
                       onChange={(event) => setAltText(event.target.value, i)}
                       ref={el => altInputRefs.current[i] = el} />
