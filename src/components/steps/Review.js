@@ -23,6 +23,7 @@ const Review = ({
   const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
   const license = metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion);
+  const disciplines = mandatoryInfo.disciplines.map(id => metadata.getDiscipline(id).name);
 
   return (
     <>
@@ -39,7 +40,7 @@ const Review = ({
         <Definition name={l10n.license}>{license}</Definition>
         <Definition name={l10n.language}>{metadata.getLanguage(mandatoryInfo.language).name}</Definition>
         <Definition name={l10n.level}>{metadata.getLevel(mandatoryInfo.level).name}</Definition>
-        <Definition name={l10n.disciplines}>{mandatoryInfo.disciplines.join(', ')}</Definition>
+        <Definition name={l10n.disciplines}>{disciplines.join(', ')}</Definition>
         <Definition name={l10n.keywords}>{optionalInfo.keywords.join(', ')}</Definition>
         <Definition name={l10n.shortDescription}>{optionalInfo.shortDescription}</Definition>
         <Definition name={l10n.longDescription}>{optionalInfo.longDescription}</Definition>
