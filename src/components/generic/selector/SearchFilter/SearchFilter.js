@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import CheckboxList from '../CheckboxList/CheckboxList';
 import CategoryList from '../CategoryList/CategoryList';
 import SearchField from '../SearchField/SearchField';
+
 import './SearchFilter.scss';
 
 class SearchFilter extends React.Component {
@@ -41,6 +42,9 @@ class SearchFilter extends React.Component {
     this.leafs.forEach(checkbox => this.checkboxRefs[checkbox.id] = React.createRef());
   }
 
+  /**
+   * Close dropdown on clicks outside of this component
+   */
   handleClickOutside = (event) => {
     if (this.state.dropdownOpen && 
         this.selfRef.current && 
@@ -198,7 +202,7 @@ class SearchFilter extends React.Component {
   }
 
   /**
-   * Open list with checkbox if search field is foused on. 
+   * Open list with checkbox if search field is focused on. 
    */
   handleSearchFocus = () => {
     if (!this.click && !this.state.dropdownOpen) {
@@ -248,7 +252,7 @@ class SearchFilter extends React.Component {
       }
       this.searchRef.current.focus();
     }
-    else if(!this.state.dropdownAlwaysOpen){
+    else if(!this.state.dropdownAlwaysOpen) {
       this.setState({
         dropdownOpen: true
       });
@@ -275,11 +279,18 @@ class SearchFilter extends React.Component {
     const sibling = this.state.checkboxElements[index];
 
     //Can't find sibling and set focused to first element
-    if (this.state.dropdownOpen && index !== this.state.checkboxElements.length && sibling === undefined && this.checkboxRefs[this.listRefId].current !== null) {
+    if (this.state.dropdownOpen &&
+        index !== this.state.checkboxElements.length &&
+        sibling === undefined &&
+        this.checkboxRefs[this.listRefId].current !== null
+    ) {
       this.setState({ focused: this.state.checkboxElements.map(element => element.id)[0] });
       this.checkboxRefs[this.listRefId].current.scrollTop = 0;
     }
-    else if (this.state.dropdownOpen && index !== this.state.checkboxElements.length && this.checkboxRefs[this.listRefId].current !== null) {
+    else if (this.state.dropdownOpen &&
+             index !== this.state.checkboxElements.length &&
+             this.checkboxRefs[this.listRefId].current !== null
+    ) {
       this.setState({ focused: sibling.id });
 
       //Calculate scrolltop
@@ -301,7 +312,7 @@ class SearchFilter extends React.Component {
           if (childrenCount > index) {
             break;
           }
-          if(cat.children){
+          if (cat.children) {
             childrenCount += cat.children.length;
           }
           categoriesCount += 1;
@@ -320,7 +331,11 @@ class SearchFilter extends React.Component {
     if (this.state.dropdownOpen && direction == -1 && this.state.parent) {
       this.navigateToParent();
     }
-    else if (this.state.dropdownOpen && direction == 1 && this.state.focused && this.getCheckboxFromId(this.state.focused, this.parents)) {
+    else if (this.state.dropdownOpen && 
+            direction == 1 &&
+            this.state.focused &&
+            this.getCheckboxFromId(this.state.focused, this.parents)
+    ) {
       this.navigateToChildren(this.state.focused, this.getCheckboxFromId(this.state.focused, this.parents).children);
     }
   }
@@ -406,7 +421,8 @@ class SearchFilter extends React.Component {
       if (element.children) {
         this.parents.push(element);
         this.setParentsAndLeafs(element.children);
-      } else if (this.getCheckboxFromId(element.id, this.leafs) === null) {
+      } 
+      else if (this.getCheckboxFromId(element.id, this.leafs) === null) {
         this.leafs.push(element);
       }
     }
@@ -436,7 +452,8 @@ class SearchFilter extends React.Component {
   checkedOf(element, checked) {
     if (Array.isArray(element) && checked) {
       return checked ? element.filter(element => checked.indexOf(element.id) !== -1).length > 0 : false;
-    } else {
+    } 
+    else {
       return this.props.checked.indexOf(element) != -1 || this.state.checkedParents.indexOf(element) !== -1;
     }
   }
@@ -451,7 +468,7 @@ class SearchFilter extends React.Component {
   }
 
   closeDropdown = () => {
-    if(!this.state.dropdownAlwaysOpen){
+    if (!this.state.dropdownAlwaysOpen) {
       this.setState({
         dropdownOpen: false
       });

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './CategoryList.scss';
 import { isChecked, descendantsChecked, boldTextNotMatching } from '../filters';
 import Checkbox from '../Checkbox/Checkbox';
+
+import './CategoryList.scss';
 
 const CategoryList = React.forwardRef(({
   onChecked,
@@ -50,7 +51,6 @@ const CategoryList = React.forwardRef(({
       role='group'
       aria-labelledby={filter.name}
       ref={ref && ref[listRefId]}>
-
       {
         categoryList.map(category => {
           return (
@@ -71,7 +71,6 @@ const CategoryList = React.forwardRef(({
           );
         })
       }
-
     </ul>
   );
 });

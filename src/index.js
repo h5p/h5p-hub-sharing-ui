@@ -1,9 +1,7 @@
 import 'react-app-polyfill/ie11';
-
 import React from 'react';
-
 import ReactDOM from 'react-dom';
-import './index.css';
+
 import Main from './components/Main';
 import * as serviceWorker from './serviceWorker';
 import TranslationContext from './context/Translation';
@@ -15,6 +13,8 @@ import languages from './test/languages.js';
 import levels from './test/levels.js';
 import Metadata from './utils/metadata';
 
+import './index.css';
+
 const metadata = new Metadata({
   licenses: licenses,
   disciplines: disciplines,
@@ -25,12 +25,18 @@ const metadata = new Metadata({
 const publishURL = 'http://localhost/d7/post.php';
 const contentType = 'Interactive video';
 const language = 'en';
+const title = 'My fantastic H5P';
 
 ReactDOM.render(
   <React.StrictMode>
     <TranslationContext.Provider value={l10n}>
       <MetadataContext.Provider value={metadata}>
-        <Main publishURL={publishURL} contentType={contentType} language={language}/>
+        <Main 
+          title={title}
+          publishURL={publishURL}
+          contentType={contentType}
+          language={language}
+        />
       </MetadataContext.Provider>
     </TranslationContext.Provider>
   </React.StrictMode>,

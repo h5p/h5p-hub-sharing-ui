@@ -6,21 +6,21 @@ import Mandatory from './steps/Mandatory';
 import Optional from './steps/Optional';
 import Review from './steps/Review';
 import Success from './steps/Success';
+import Message from './generic/message/Message';
 import TranslationContext from '../context/Translation';
 import { replace, publishToHub } from '../utils/helpers';
 import PropTypes from 'prop-types';
 
 import 'normalize.css';
 import './Main.scss';
-import Message from './generic/message/Message';
 
 /**
  * Creates the defintion of the steps in the wizard
  * 
- * @param {bool} shared Is this shared yet?
+ * @param {object} mandatory
+ * @param {object} optional
  */
-
-const getSteps = (shared, mandatory, optional) => {
+const getSteps = (mandatory, optional) => {
   let steps = [
     {
       title: 'requiredInfo',
@@ -70,27 +70,29 @@ const defaultImage = {
   alt: ''
 };
 
-function Main({ publishURL, contentType, language }) {
+function Main({ title, publishURL, contentType, language }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [shareFailed, setShareFailed] = React.useState(false);
   const [shareInProcess, setShareInProcess] = React.useState(false);
   const [mandatoryIsValid, setMandatoryIsValid] = React.useState(false);
   const [optionalIsValid, setOptionalIsValid] = React.useState(false);
-  const defaultOptional = { keywords: [], icon: defaultImage, screenshots: [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage] };
-  const [optionalInfo, setOptionalInfo] = React.useState(defaultOptional);
-  const l10n = useContext(TranslationContext);
-  const mandatoryDefaultValues = {
+  const [optionalInfo, setOptionalInfo] = React.useState({
+    keywords: [],
+    icon: defaultImage,
+    screenshots: [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage]
+  });
+  const [mandatoryInfo, setMandatoryInfo] = React.useState({
     license: '',
     language: language,
     level: '',
     licenseVersion: '',
-    title: '',
+    title: title,
     disciplines: []
-  };
-  const [mandatoryInfo, setMandatoryInfo] = React.useState(mandatoryDefaultValues);
+  });
+  const l10n = useContext(TranslationContext);
 
-  const steps = getSteps(isShared, {
+  const steps = getSteps({
     info: mandatoryInfo,
     setter: setMandatoryInfo,
     setIsValid: setMandatoryIsValid
@@ -136,7 +138,7 @@ function Main({ publishURL, contentType, language }) {
     // integrated into plugins
   };
 
-  const mainTitle = replace(l10n.mainTitle, { ':title': 'Norwegian Language Course' });
+  const mainTitle = replace(l10n.mainTitle, { ':title': title });
 
   const nextButtonEnabled = activeStep === 2 || (activeStep === 0 && mandatoryIsValid) || (activeStep === 1 && optionalIsValid);
 
@@ -221,9 +223,10 @@ function Main({ publishURL, contentType, language }) {
 }
 
 Main.propTypes = {
+  title: PropTypes.string.isRequired,
   publishURL: PropTypes.string.isRequired,
   contentType: PropTypes.string.isRequired,
-  language: PropTypes.string.isRequired
+  language: PropTypes.string.isRequired,
 }
 
 export default Main;

@@ -1,116 +1,111 @@
-//@import "../../../../../../../styles/base/mixins";
-//@import "../../../../../../../styles/base/colors";
+.h5p-hub-publish .search-filter {
+  position: relative;
+  border: 1px solid #bebdcd;
+  border-radius: 0.208em;
+  font-size: 0.833em;
 
-.h5p-hub-publish {
-  .search-filter {
-    position: relative;
-    border: 1px solid #bebdcd;
-    border-radius: 0.208em;
-    font-size: 0.833em;
-    
-    .clear-button {
-      background: none;
-      position: absolute;
-      top: 0;
-      padding: 1.6em;
-      right: 3em;
-      color: #757575;
-      border: none; 
+  .clear-button {
+    background: none;
+    position: absolute;
+    top: 0;
+    padding: 1.6em;
+    right: 3em;
+    color: #757575;
+    border: none; 
+    &::before {
+      content: "\e904";
+      font-family: "h5p-hub-publish";
+      font-style: normal;
+      font-size: 1em;
+    }
+  }
+  .navigate-parent {
+    font-size: 1.25em;
+    padding: 0.3534em;
+    display: flex;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    border-top: 1px solid #e6e6e8;
+    align-items: center;
+
+    button {
+      background-color: #ffffff;
+      position: relative;
+      font-style: normal;
+      font-size: 0.8em;
+      border-radius: 50%;
+      margin-right: 0.4em;
+      align-self: center;
+      padding: 0.5em;
+      border: none;
+
       &::before {
-        content: "\e904";
+        content: "\e90a";	
         font-family: "h5p-hub-publish";
-        font-style: normal;
-        font-size: 1em;
+        transform: rotate(180deg);
+        font-weight: normal;
+        display: inline-block;
+      }
+      &:hover {
+        background-color: #dadada;
+        cursor: pointer;
       }
     }
-    .navigate-parent {
-      font-size: 1.25em;
-      padding: 0.3534em;
-      display: flex;
-      font-weight: bold;
-      font-family: "Open Sans", sans-serif;
-      border-top: 1px solid #e6e6e8;
-      align-items: center;
+  }
 
-      button {
-        background-color: #ffffff;
-        position: relative;
-        font-style: normal;
-        font-size: 0.8em;
-        border-radius: 50%;
-        margin-right: 0.4em;
-        align-self: center;
-        padding: 0.5em;
-        border: none;
+  .checkbox-list {
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 25em;
+    margin: 0;
 
-        &::before {
-          content: "\e90a";	
-          font-family: "h5p-hub-publish";
-          transform: rotate(180deg);
-          font-weight: normal;
-          display: inline-block;
+    li {
+      border-bottom: 1px solid #e6e6e8;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:first-child {
+        border-top: 1px solid #e6e6e8;
+      }
+
+      .content {
+        padding: 0.3em;
+        .label-text {
+          margin-right: 1em;
         }
-        &:hover {
-          background-color: #dadada;
-          cursor: pointer;
-        }
+      }
+      &:focus {
+        border-color: #3ba0f2;
+        background-color: #fff;
+        outline: none;
+        box-shadow: none;
+      }
+      &:hover {
+        background-color: #f2f2f2;
+      }
+      &.highlighted {
+        outline: 1px solid #3ba0f2;
+        outline-offset: -1px;
+        background-color: #fff;
+        box-shadow: none;
+      }
+      &:hover {
+        background-color: rgba(230, 230, 232, 0.25);
       }
     }
 
-    .checkbox-list {
-      overflow: hidden;
-      overflow-y: scroll;
-      max-height: 25em;
-      margin: 0;
+    &::-webkit-scrollbar {
+      background-color: rgba(105, 117, 133, 0.25);
+      width: 0.54525em;
+      border-radius: 5.45256em;
+    }
 
-      li {
-        border-bottom: 1px solid #e6e6e8;
-
-        &:last-child {
-          border-bottom: none;
-        }
-
-        &:first-child {
-          border-top: 1px solid #e6e6e8;
-        }
-
-        .content {
-          padding: 0.3em;
-          .label-text {
-            margin-right: 1em;
-          }
-        }
-        &:focus {
-          border-color: #3ba0f2;
-          background-color: #fff;
-          outline: none;
-          box-shadow: none;
-        }
-        &:hover {
-          background-color: #f2f2f2;
-        }
-        &.highlighted {
-          outline: 1px solid #3ba0f2;
-          outline-offset: -1px;
-          background-color: #fff;
-          box-shadow: none;
-        }
-        &:hover {
-          background-color: rgba(230, 230, 232, 0.25);
-        }
-      }
-
-      &::-webkit-scrollbar {
-        background-color: rgba(105, 117, 133, 0.25);
-        width: 0.54525em;
-        border-radius: 5.45256em;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: #697585;
-        background-size: 24px 100%;
-        border-radius: 5.45256em;
-      }
+    &::-webkit-scrollbar-thumb {
+      background-color: #697585;
+      background-size: 24px 100%;
+      border-radius: 5.45256em;
     }
   }
 }

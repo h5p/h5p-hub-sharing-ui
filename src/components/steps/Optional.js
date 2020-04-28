@@ -25,7 +25,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
     if (altInputRefs.current[uploadedImages.length - 1]) {
       altInputRefs.current[uploadedImages.length - 1].focus();
     }
-  }, [uploadedImages, optionalInfo.screenshots]);
+  }, [uploadedImages.length, optionalInfo.screenshots.length]);
 
   /**
    * Set data in optionalInfo
@@ -129,6 +129,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                     ariaLabel={l10n.screenshots} />
                   <FormElement label={l10n.altText} mandatory={true}>
                     <input
+                      className="alt-text"
                       id={`alt-text-${i}`}
                       value={optionalInfo.screenshots[i].alt}
                       onChange={(event) => setAltText(event.target.value, i)}

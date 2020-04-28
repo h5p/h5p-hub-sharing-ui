@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './CheckboxList.scss';
 import Checkbox from '../Checkbox/Checkbox';
 import { isChecked, descendantsChecked } from '../filters';
+
+import './CheckboxList.scss';
 
 const CheckboxList = React.forwardRef(({
   items,

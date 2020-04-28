@@ -4,8 +4,7 @@ import './Chips.scss';
 import TranslationContext from '../../../context/Translation';
 import { replace } from '../../../utils/helpers';
 
-
-const Chips = ({ chips, setChips, deleteLastChip }) => {
+const Chips = ({ chips, setChips }) => {
 
   const l10n = React.useContext(TranslationContext);
   const chipsRef = React.useRef([]);
@@ -17,13 +16,22 @@ const Chips = ({ chips, setChips, deleteLastChip }) => {
     chipsRef.current = chipsRef.current.slice(0, chips.length);
   }, [chips]);
 
+
+  const findChip = (id) => {
+    for (let i = 0; i < chips.length; i++) {
+      if (chips[i].id === id) {
+        return chips[i];
+      }
+    }
+  }
+
   /**
    * Delete chip if enter, backspace or delete is pressed
    * @param  {Event} event
    */
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter' || event.key === 'Backspace' || event.key === 'Delete') {
-      removeChip(event.target.id);
+    if (event.key === 'Backspace' || event.key === 'Delete') {
+      removeChip(findChip(event.target.id));
     }
   }
 
