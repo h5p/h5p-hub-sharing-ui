@@ -53,7 +53,6 @@ const SearchField = React.forwardRef(({
           onNavigateSideway(-1);
           event.preventDefault();
         }
-
         break;
 
       case 'Enter': // Enter

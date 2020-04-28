@@ -34,6 +34,7 @@ const trans = {
   removeChip: 'Remove :chip from the list',
   keywordsPlaceholder: 'Add keywords',
   keywords: 'Keywords',
+  keywordsDescription: 'You can add multiple keywords. Press "Enter" to confirm each keyword',
   altText: 'Alt text',
   
   // Review
@@ -46,7 +47,7 @@ const trans = {
   longDescription: 'Long description',
   icon: 'Icon',
   screenshots: 'Screenshots',
-  helpChoosingLicense: 'Get help choosing the right license',
+  helpChoosingLicense: 'Help me choose a license',
   shareFailed: 'Share failed.',
   shareTryAgain: 'Something went wrong, please try to share agian.',
   pleaseWait: 'Please wait...',

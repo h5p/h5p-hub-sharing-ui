@@ -3,10 +3,11 @@
 
 .h5p-hub-publish {
   .search-filter {
-    outline: 0.06815em solid #bebdcd;
     position: relative;
-
+    border: 1px solid #bebdcd;
+    border-radius: 0.208em;
     font-size: 0.833em;
+    
     .clear-button {
       background: none;
       position: absolute;
@@ -28,7 +29,7 @@
       display: flex;
       font-weight: bold;
       font-family: "Open Sans", sans-serif;
-      border: 1px solid #e6e6e8;
+      border-top: 1px solid #e6e6e8;
       align-items: center;
 
       button {
@@ -60,10 +61,19 @@
       overflow: hidden;
       overflow-y: scroll;
       max-height: 25em;
-      margin-top: 0;
+      margin: 0;
 
       li {
-        border: 1px solid #e6e6e8;
+        border-bottom: 1px solid #e6e6e8;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:first-child {
+          border-top: 1px solid #e6e6e8;
+        }
+
         .content {
           padding: 0.3em;
           .label-text {
@@ -80,7 +90,8 @@
           background-color: #f2f2f2;
         }
         &.highlighted {
-          border-color: #3ba0f2;
+          outline: 1px solid #3ba0f2;
+          outline-offset: -1px;
           background-color: #fff;
           box-shadow: none;
         }

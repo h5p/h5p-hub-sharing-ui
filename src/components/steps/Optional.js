@@ -4,9 +4,9 @@ import Keywords from '../generic/keywords/Keywords';
 import FormElement from '../generic/form/Element';
 import TranslationContext from '../../context/Translation';
 import {optionalDefinition} from '../../utils/helpers';
+import ImageUpload from '../generic/form/ImageUpload';
 
 import './Optional.scss';
-import ImageUpload from '../generic/form/ImageUpload';
 
 const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
@@ -25,7 +25,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
     if (altInputRefs.current[uploadedImages.length - 1]) {
       altInputRefs.current[uploadedImages.length - 1].focus();
     }
-  }, [uploadedImages.length]);
+  }, [uploadedImages, optionalInfo.screenshots]);
 
   /**
    * Set data in optionalInfo
@@ -57,7 +57,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
       } 
       return tmpOptional;
     });
-    if(altInputRefs.current[index]){
+    if (altInputRefs.current[index]) {
       //Set focus if image is changed
       altInputRefs.current[index].focus();
     }
@@ -86,7 +86,10 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
   return (
     <>
-      <FormElement label={l10n.keywords}>
+      <FormElement 
+        label={l10n.keywords} 
+        description={l10n.keywordsDescription}
+      >
         <Keywords chips={optionalInfo.keywords} setKeywords={(chips) => setInfo(chips, 'keywords')} />
       </FormElement>
       <div className='columns'>

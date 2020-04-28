@@ -22,6 +22,7 @@ class SearchFilter extends React.Component {
     };
 
     this.searchRef = React.createRef();
+    this.selfRef = React.createRef();
     this.leafs = []; //List of elements that can be checked on or off and that are not a category
     this.allParents = [];
     this.parents = [];
@@ -40,6 +41,17 @@ class SearchFilter extends React.Component {
     this.leafs.forEach(checkbox => this.checkboxRefs[checkbox.id] = React.createRef());
   }
 
+  handleClickOutside = (event) => {
+    if (this.state.dropdownOpen && 
+        this.selfRef.current && 
+        !this.selfRef.current.contains(event.target)
+    ) {
+      this.setState({
+        dropdownOpen: false
+      });
+    }
+  }
+
   /**
    * Set the right parents to checked and keep dropdown open if any checked
    */
@@ -50,9 +62,16 @@ class SearchFilter extends React.Component {
         dropdownOpen: true
       });
     }
+    else {
+      document.addEventListener('mousedown', this.handleClickOutside);
+    }
   }
 
   componentWillUnmount() {
+    if (!this.props.dropdownAlwaysOpen) {
+      document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
     this.setState({
       parent: [],
       focused: null,
@@ -441,7 +460,7 @@ class SearchFilter extends React.Component {
 
   render() {
     return (
-      <div className="search-filter">
+      <div className="search-filter" ref={this.selfRef}>
         <SearchField
           ref={this.searchRef}
           value={this.state.searchValue}

@@ -26,8 +26,11 @@
     }
   }
 
-  .icon-arrow-down {
+  div.icon-arrow-down {
     position: relative;
+    line-height: 1.1em;
+    pointer-events: none;
+
     &:before {
       content: "\e900";	
       position: absolute;
