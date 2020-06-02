@@ -19,7 +19,8 @@ const Registration = ({
   licenseAgreementDescription,
   licenseAgreementMainText,
   postUrl,
-  accountSettingsUrl }) => {
+  accountSettingsUrl 
+}) => {
   const l10n = useContext(TranslationContext);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [shareFailed, setShareFailed] = useState(false);
@@ -200,7 +201,6 @@ const Registration = ({
                 checked={acceptedTerms}
                 filter=''
                 onChecked={(name, id, checked) => setAcceptedTerms(checked)} />
-
             </div>
           </div>
           <div className='footer'>
