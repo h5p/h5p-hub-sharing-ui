@@ -13,7 +13,7 @@ const Message = ({severity, children}) => {
 
 Message.propTypes = {
   severity: PropTypes.string.isRequired,
-  children: PropTypes.string
+  children: PropTypes.node
 }
 
 export default Message;

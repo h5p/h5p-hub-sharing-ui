@@ -1,8 +1,11 @@
-.h5p-hub-publish .image-preview {
-  width: 4em;
-  height: 3em;
-  margin-right: 0.5em;
-  display: inline-block;
-  background-size: cover;
-  background-position: center;
+.h5p-hub-publish,
+.h5p-registration-ui {
+  .image-preview {
+    width: 4em;
+    height: 3em;
+    margin-right: 0.5em;
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+  }
 }

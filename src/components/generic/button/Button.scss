@@ -1,47 +1,50 @@
-.h5p-hub-publish button {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 0.75em;
-  background: transparent;
-  padding: 0.75em 2em;
-  color: #757575;
-  border-radius: 3em;
-  border: 1px solid #d6d6d6;
-  cursor: pointer;
-  font-weight: bold;
+.h5p-hub-publish,
+.h5p-registration-ui {
+  button {
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.75em;
+    background: transparent;
+    padding: 0.75em 2em;
+    color: #757575;
+    border-radius: 3em;
+    border: 1px solid #d6d6d6;
+    cursor: pointer;
+    font-weight: bold;
 
-  &:before {
-    font-weight: normal;
-  }
-
-  &:hover {
-    color: #5f5f5f;
-    border-color: #5f5f5f;
-  }
-
-  &.contained.green {
-    color: #fff;
-    border-color: #2b9684;
-    background: #2b9684;
-
-    &:hover {
-      border-color: #257a70;
-      background: #257a70;
-    }
-  }
-
-  &.outlined.green {
-    border-width: 0.125em;
-    color: #2b9684;
-    border-color: #2b9684;
-
-    &:hover {
-      color: #257a70;
-      border-color: #257a70;
+    &:before {
+      font-weight: normal;
     }
 
-    &[disabled] {
-      color: #92cabf;
-      border-color: #92cabf;
+    &:hover {
+      color: #5f5f5f;
+      border-color: #5f5f5f;
+    }
+
+    &.contained.green {
+      color: #fff;
+      border-color: #2b9684;
+      background: #2b9684;
+
+      &:hover {
+        border-color: #257a70;
+        background: #257a70;
+      }
+    }
+
+    &.outlined.green {
+      border-width: 0.125em;
+      color: #2b9684;
+      border-color: #2b9684;
+
+      &:hover {
+        color: #257a70;
+        border-color: #257a70;
+      }
+
+      &[disabled] {
+        color: #92cabf;
+        border-color: #92cabf;
+      }
     }
   }
 }

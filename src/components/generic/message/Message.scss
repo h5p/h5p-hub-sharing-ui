@@ -1,15 +1,22 @@
-.h5p-hub-publish .message {
-  font-size: 0.833em;
-  border-left: 0.3em solid;
-  padding: 1em;
-  margin: 0.5em 0;
+.h5p-hub-publish,
+.h5p-registration-ui {
+  .message {
+    font-size: 0.833em;
+    border-left: 0.3em solid;
+    padding: 1em;
+    margin: 0.5em 0;
 
-  &.warning {
-    border-color: #fdcc31;
-    background: #fff8e0;
-  }
-  &.error {
-    border-color: #c1494b;
-    background-color: #ece0e0;
+    &.warning {
+      border-color: #fdcc31;
+      background: #fff8e0;
+    }
+    &.error {
+      border-color: #c1494b;
+      background-color: #ece0e0;
+    }
+    &.success {
+      border-color: #03a953;
+      background-color: #d9eae2;
+    }
   }
 }

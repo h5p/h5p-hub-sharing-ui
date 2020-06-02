@@ -82,3 +82,33 @@ export const publishToHub = (url, values, done, fail) => {
   }).then(done)
     .catch(fail)
 }
+
+/**
+ * Register on the hub
+ *
+ * @param {string} url
+ * @param {object} values
+ * @param {Function} done
+ * @param {Function} fail
+ */
+export const registerToHub = (url, values, done, fail) => {
+  const fields = new FormData();
+
+  fields.append('publisher', values.publisher);
+  fields.append('emailAddress', values.emailAddress);
+  fields.append('publisherDescription', values.publisherDescription);
+  fields.append('contactPerson', values.contactPerson);
+  fields.append('phone', values.phone);
+  fields.append('address', values.address);
+  fields.append('city', values.city);
+  fields.append('zip', values.zip);
+  fields.append('country', values.country);
+  fields.append('logo', values.logo.file);
+
+  axios.post(url, fields, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  }).then(done)
+    .catch(fail)
+}

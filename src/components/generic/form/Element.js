@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import './Element.scss';
 
-const FormElement = ({label, description, mandatory, children, link}) => {
+const FormElement = ({label, description, mandatory, children, link, className}) => {
   return (
-    <div className={`form-element ${mandatory ? 'mandatory' : ''}`}>
+    <div className={`form-element ${mandatory ? 'mandatory' : ''} ${className ? className : ''}`}>
       <label htmlFor={children.props.id}>{label}</label>
       <div className='details-row'>
       {
@@ -30,7 +30,8 @@ FormElement.propTypes = {
   link: PropTypes.shape({
     onClick: PropTypes.func.isRequired,
     linkText: PropTypes.string.isRequired
-  })
+  }),
+  className: PropTypes.string
 };
 
 export default FormElement;

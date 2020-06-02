@@ -1,0 +1,29 @@
+@import "../../../styles/mixins";
+
+.h5p-registration-ui {
+  .text-field {
+    padding: 1.5em;
+    overflow: hidden;
+    overflow-y: scroll;
+    border: 1px solid #bebdcd;
+    border-radius: 0.208em;
+    @include scrollbar;
+
+    .title {
+      color: #1a1a1a;
+      font-size: 1.250em;
+      margin-bottom: 0.5em;
+    }
+
+    .description {
+      color: #707475;
+      font-size: 0.833em;
+      margin-bottom: 1.5em;
+    }
+
+    .main-text {
+      color: #707475;
+      font-size: 0.833em;
+    }
+  }
+}

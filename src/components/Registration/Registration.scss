@@ -1,0 +1,58 @@
+.h5p-registration-ui {
+  .message-header {
+    font-weight: bold;
+    font-size: 1.042em;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .message-description {
+    margin-top: 0.5em;
+    font-size: 0.833em;
+    font-family: 'Open Sans', sans-serif;
+
+    a {
+      margin-left: 0.3em;
+      color: #000;
+    }
+  }
+
+
+  .step-panel .step-content .row .email-address {
+    margin-top: 1.7em;
+  }
+
+  .publisher-description {
+    height: 10em;
+  }
+  .logo-upload-text {
+    font-size: 0.917em;
+    color: #707475;
+    margin-bottom: 1em;
+    margin-top: 0.5em;
+  }
+  .text-field {
+    max-height: 10em;
+    margin-top: 1.5em;
+  }
+
+  .checkbox {
+    margin-top: 1.5em;
+    font-weight: normal;
+    font-size: 0.833em;
+  }
+
+  .register-hub {
+    color: #2b9684;
+    border: 2px solid #2b9684;
+
+    &[disabled] {
+      color: #92cabf;
+      border-color: #92cabf;
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

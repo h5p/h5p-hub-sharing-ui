@@ -8,6 +8,7 @@ const trans = {
   reviewInfo: 'Review info',
   share: 'Share',
   close: 'Close',
+  registerOnHub: 'Register on the Hub',
 
   // Steps
   requiredInfo: 'Required Info',
@@ -69,6 +70,26 @@ const trans = {
   // Dialog
   contentLicenseTitle: 'Content License Info',
   licenseDialogDescription: 'Click on a specific license to get info about proper usage',
+
+  //Publisher
+  publisherFieldTitle: 'Publisher',
+  publisherFieldDescription: 'This will display as a "Publisher name" on shared content',
+  emailAddress: 'Email Address',
+  publisherDescription: 'Publisher description',
+  publisherDescriptionText: 'This will display under "Publisher info" on shared content',
+  contactPerson: 'Contact Person',
+  phone: 'Phone',
+  address: 'Adress',
+  city: 'City',
+  zip: 'Zip',
+  country: 'Country',
+  logoUploadText: 'Organization logo or avatar',
+  acceptTerms: 'I accept the terms of the license agreement',
+  successfullyRegistred: 'You have successfully registred an account on the Hub',
+  successfullyRegistredDescription: 'You account details can be changed',
+  accountDetailsLinkText: 'here',
+  registrationFailed: 'An error occured',
+  registrationFailedDescription: 'We were not able to create an account at this point. Something went wrong. Try again later.'
 };
 
 export default trans;

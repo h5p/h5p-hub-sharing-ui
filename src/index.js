@@ -11,7 +11,9 @@ import licenses from './test/licenses.js';
 import disciplines from './test/disciplines.js';
 import languages from './test/languages.js';
 import levels from './test/levels.js';
+import licenseAgreementMainText from './test/licenseAgreement.js'
 import Metadata from './utils/metadata';
+import Registration from './components/Registration/Registration';
 
 import './index.css';
 
@@ -22,10 +24,18 @@ const metadata = new Metadata({
   levels: levels
 });
 
+//Publish
 const publishURL = 'http://localhost/d7/post.php';
 const contentType = 'Interactive video';
 const language = 'en';
 const title = 'My fantastic H5P';
+
+//Registration
+const registrationURL = 'http://localhost/d7/post.php';
+const registrationTitle = 'Hub Registration and End User Licence Agreement (EULA)';
+const licenseAgreementTitle = 'End User Licence Agreement (EULA)';
+const licenseAgreementDescription = 'Please read the following agreement before proceeding with the ';
+const accountSettingsUrl= '';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -38,6 +48,22 @@ ReactDOM.render(
           language={language}
         />
       </MetadataContext.Provider>
+    </TranslationContext.Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+ReactDOM.render(
+  <React.StrictMode>
+    <TranslationContext.Provider value={l10n}>
+        <Registration
+        mainTitle={registrationTitle}
+        licenseAgreementTitle={licenseAgreementTitle}
+        licenseAgreementDescription={licenseAgreementDescription}
+        licenseAgreementMainText={licenseAgreementMainText}
+        postUrl={registrationURL}
+        accountSettingsUrl={accountSettingsUrl}
+        />
     </TranslationContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
