@@ -6,7 +6,7 @@ import TranslationContext from '../../context/Translation';
 
 import './ModalContent.scss';
 
-const ModalContent = ({closeModal}) => {
+const ModalContent = React.forwardRef(({closeModal}, ref) => {
 
   const metadata = React.useContext(MetadataContext);
   const l10n = React.useContext(TranslationContext);
@@ -16,7 +16,7 @@ const ModalContent = ({closeModal}) => {
       <div className='dialog-header'>
         <div className='dialog-title'>
           <span>{l10n.contentLicenseTitle}</span>
-          <button onClick={closeModal}>{l10n.close}</button>
+          <button onClick={closeModal} ref={ref}>{l10n.close}</button>
         </div>
         <div className='dialog-description'>
           {l10n.licenseDialogDescription}
@@ -40,7 +40,7 @@ const ModalContent = ({closeModal}) => {
       </div>
     </>
   );
-}
+});
 
 ModalContent.propTypes = {
   closeModal: PropTypes.func.isRequired

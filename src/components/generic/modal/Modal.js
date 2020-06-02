@@ -4,22 +4,15 @@ import PropTypes from 'prop-types';
 
 import './Modal.scss'
 
-const Modal = ({ isOpen, closeModal, parent, children }) => {
+const Modal = ({ isOpen, closeModal, children, onAfterOpen }) => {
 
   /**
    * Handle closing of modal
    */
   const onClose = () => {
-    document.querySelector(parent).removeAttribute('aria-hidden');
+    document.querySelector('.h5p-hub-publish').removeAttribute('aria-hidden');
     closeModal();
   }
-
-  /**
-   * Set app element
-   */
-  React.useEffect(() => {
-    ReactModal.setAppElement(parent);
-  });
 
   return (
     <div>
@@ -27,8 +20,10 @@ const Modal = ({ isOpen, closeModal, parent, children }) => {
       isOpen={isOpen}
       className='modal-content'
       onRequestClose={onClose}
+      onAfterOpen={onAfterOpen}
       overlayClassName='modal-overlay'
-      parentSelector={() => document.querySelector(parent)}
+      appElement={document.getElementById('h5p-hub-publish-modal-wrapper')}
+      parentSelector={() => document.querySelector('.h5p-hub-publish')}
       >
         {children}
       </ReactModal>
@@ -39,8 +34,8 @@ const Modal = ({ isOpen, closeModal, parent, children }) => {
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
-  parent: PropTypes.string.isRequired,
-  children: PropTypes.shape()
+  children: PropTypes.shape(),
+  onAfterOpen: PropTypes.func
 };
 
 export default Modal;

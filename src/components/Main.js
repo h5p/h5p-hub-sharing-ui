@@ -144,79 +144,81 @@ function Main({ title, publishURL, contentType, language }) {
 
   return (
     <div className="h5p-hub-publish">
-      <div className="header">
-        <div
-          role="heading"
-          className="title"
-          dangerouslySetInnerHTML={{ __html: mainTitle }} />
-        <Button variant="outlined" color="primary" onClick={handleCancel}>
-          {l10n.cancel}
-        </Button>
-      </div>
+      <div id='h5p-hub-publish-modal-wrapper'>
+        <div className="header">
+          <div
+            role="heading"
+            className="title"
+            dangerouslySetInnerHTML={{ __html: mainTitle }} />
+          <Button variant="outlined" color="primary" onClick={handleCancel}>
+            {l10n.cancel}
+          </Button>
+        </div>
 
-      <div className="content">
-        {!isShared ?
-          <>
-            <Stepper activeStep={activeStep} completed={isShared} showSteps={!isShared}>
-              {steps.map((step, index) => {
-                return (
-                  <Step key={index} index={index} label={l10n[step.title]} />
-                );
-              })}
-            </Stepper>
+        <div className="content">
+          {!isShared ?
+            <>
+              <Stepper activeStep={activeStep} completed={isShared} showSteps={!isShared}>
+                {steps.map((step, index) => {
+                  return (
+                    <Step key={index} index={index} label={l10n[step.title]} />
+                  );
+                })}
+              </Stepper>
 
-            <div className="step-panel">
+              <div className="step-panel">
+                <div className="step-title" role="heading">
+                  <span className="sr-only">{replace(l10n.currentStep, { ':step': activeStep + 1, ':total': 3 })}</span>
+                  {l10n[step.title]}
+                </div>
+                <div className={`step-content ${step.id}`}>
+                  {step.content}
+                </div>
+              </div>
+              {shareFailed &&
+                <div className='share-error'>
+                  <Message severity='error'><span className='bold'>{l10n.shareFailed}</span> {l10n.shareTryAgain}</Message>
+                </div>
+              }
+              <div className="footer">
+                <div className="navigation">
+                  {
+                    step.backButton &&
+                    <Button name="back" variant="outlined" color="green" onClick={handleBack} enabled={!shareInProcess}>
+                      {l10n.back}
+                    </Button>
+                  }
+                  {
+                    step.nextButton &&
+                    <Button
+                      name="next"
+                      variant={step.nextButton.variant}
+                      color="green" onClick={handleNext}
+                      enabled={nextButtonEnabled && !shareInProcess}
+                      id={shareInProcess ? 'share-in-process' : ''}>
+                      {!shareInProcess ? l10n[step.nextButton.label]
+                        : <span>{l10n.pleaseWait}</span>
+                      }
+                    </Button>
+                  }
+                </div>
+                <div className="sharing-note">
+                  <i className="icon-info" />{l10n.sharingNote}
+                </div>
+              </div>
+            </>
+            :
+            // Success page
+            <>
               <div className="step-title" role="heading">
-                <span className="sr-only">{replace(l10n.currentStep, { ':step': activeStep + 1, ':total': 3 })}</span>
-                {l10n[step.title]}
+                {l10n.reviewAndShare}
               </div>
-              <div className={`step-content ${step.id}`}>
-                {step.content}
+              <div className={`step-content`}>
+                <Success title={mandatoryInfo.title} contentType={contentType} />
               </div>
-            </div>
-            {shareFailed &&
-              <div className='share-error'>
-                <Message severity='error'><span className='bold'>{l10n.shareFailed}</span> {l10n.shareTryAgain}</Message>
-              </div>
-            }
-            <div className="footer">
-              <div className="navigation">
-                {
-                  step.backButton &&
-                  <Button name="back" variant="outlined" color="green" onClick={handleBack} enabled={!shareInProcess}>
-                    {l10n.back}
-                  </Button>
-                }
-                {
-                  step.nextButton &&
-                  <Button
-                    name="next"
-                    variant={step.nextButton.variant}
-                    color="green" onClick={handleNext}
-                    enabled={nextButtonEnabled && !shareInProcess}
-                    id={shareInProcess ? 'share-in-process' : ''}>
-                    {!shareInProcess ? l10n[step.nextButton.label]
-                      : <span>{l10n.pleaseWait}</span>
-                    }
-                  </Button>
-                }
-              </div>
-              <div className="sharing-note">
-                <i className="icon-info" />{l10n.sharingNote}
-              </div>
-            </div>
-          </>
-          :
-          // Success page
-          <>
-            <div className="step-title" role="heading">
-              {l10n.reviewAndShare}
-            </div>
-            <div className={`step-content`}>
-              <Success title={mandatoryInfo.title} contentType={contentType} />
-            </div>
-          </>
-        }
+            </>
+          }
+        </div>
       </div>
     </div>
   );

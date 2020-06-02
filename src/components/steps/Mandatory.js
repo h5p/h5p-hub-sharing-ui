@@ -18,6 +18,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
   const license = metadata.getLicense(mandatoryInfo.license);
   const licenseVersions = license ? license.versions : [];
   const [modalOpen, setModalOpen] = React.useState(false);
+  const modalCloseButtonRef = React.createRef();
 
   /**
    * Update a field
@@ -53,10 +54,19 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
     setModalOpen(open)
   }
 
+  /**
+   * Set focus to close button when modal open
+   */
+  const onModalOpen = () => {
+    if(modalCloseButtonRef.current) {
+      modalCloseButtonRef.current.focus();
+    }
+  }
+
   return (
     <>
-      <Modal isOpen={modalOpen} closeModal={() => toggleLicense(false)} parent='.h5p-hub-publish'>
-        <ModalContent closeModal={() => toggleLicense(false)}/>
+      <Modal isOpen={modalOpen} closeModal={() => toggleLicense(false)} onAfterOpen={onModalOpen}>
+        <ModalContent closeModal={() => toggleLicense(false)} ref={modalCloseButtonRef}/>
       </Modal>
 
       <FormElement label={l10n.title} mandatory={true}>
