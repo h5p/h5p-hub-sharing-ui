@@ -83,7 +83,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           })}
         </Message>
       }
-      <div className='row dropdowns'>
+      <div className='row'>
         <FormElement 
           label={l10n.license}
           description={l10n.licenseDescription}
@@ -111,7 +111,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             onChange={e => setInfo(e.target.value, 'licenseVersion')} />
         </FormElement>
       </div>
-      <div className='row dropdowns'>
+      <div className='row'>
         <FormElement label={l10n.language} mandatory={true}>
           <Dropdown
             options={metadata.languages}

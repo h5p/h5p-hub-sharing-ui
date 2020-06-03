@@ -1,4 +1,6 @@
-.h5p-registration-ui {
+@import "../../styles/variables";
+
+.h5p-hub-registration {
   .message-header {
     font-weight: bold;
     font-size: 1.042em;
@@ -16,9 +18,10 @@
     }
   }
 
-
-  .step-panel .step-content .row .email-address {
-    margin-top: 1.7em;
+  .email-address {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
   .publisher-description {
@@ -42,6 +45,7 @@
   }
 
   .register-hub {
+    margin-left: 1em;
     color: #2b9684;
     border: 2px solid #2b9684;
 

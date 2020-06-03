@@ -22,7 +22,7 @@
     }
 }
 
-.h5p-hub-publish, .h5p-registration-ui-wrapper  {
+.h5p-hub-publish, .h5p-hub-registration-wrapper  {
   position: relative;
   margin: 2em auto;
   font-family: 'Open Sans', sans-serif;
@@ -114,16 +114,13 @@
   .row {
     display: flex;
     flex-wrap: wrap;
-
-    &.dropdowns {
-      margin-right: -1em;
-    }
+    margin-right: -1em;
 
     .form-element {
       flex-basis: 100%;
       flex: 1;
       min-width: 17em;
-      //Make space between dropdowns that isn't showed when wrapped
+      //Make space between elements that isn't showed when wrapped
       border-right: 1em solid #ffffff;
 
       @media (max-width: $screen-small) {

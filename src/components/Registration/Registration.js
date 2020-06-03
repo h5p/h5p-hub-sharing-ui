@@ -22,9 +22,7 @@ const Registration = ({
   accountSettingsUrl }) => {
   const l10n = useContext(TranslationContext);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [shareFailed, setShareFailed] = useState(false);
-  const [shareInProcess, setShareInProcess] = useState(false);
-  const [shareFinished, setShareFinished] = useState(false);
+  const [shareState, setShareState] = useState('');
   const shareFailedRef = React.useRef(null);
   const shareFinishedRef = React.useRef(null);
 
@@ -70,17 +68,14 @@ const Registration = ({
    * Attempt at registering to the hub and set share in process and failed accordingly
    */
   const onRegister = () => {
-    setShareInProcess(true);
+    setShareState('in-process');
     registerToHub(postUrl, fields, () => {
-      setShareFailed(false);
-      setShareInProcess(false);
-      setShareFinished(true);
+      setShareState('failed');
       if(shareFinishedRef.current) {
         scrollIntoView(shareFinishedRef.current)
       }
     }, () => {
-      setShareFailed(true);
-      setShareInProcess(false);
+      setShareState('finished');
       if(shareFailedRef.current) {
         scrollIntoView(shareFailedRef.current);
       }
@@ -97,15 +92,15 @@ const Registration = ({
   }
 
   return (
-    <div className='h5p-registration-ui'>
-      {shareFailed &&
+    <div className='h5p-hub-registration'>
+      {shareState === 'failed' &&
         <Message severity='error'>
           <div className='message-header' ref={shareFailedRef}>{l10n.registrationFailed}</div>
           <div className='message-description'>
             {l10n.registrationFailedDescription}</div>
         </Message>
       }
-      {shareFinished ?
+      {shareState === 'finished' ?
         <Message severity='success'>
           <div className='message-header' ref={shareFinishedRef}>{l10n.successfullyRegistred}</div>
           <div className='message-description'>
@@ -114,7 +109,7 @@ const Registration = ({
           </div>
         </Message>
         :
-        <div className='h5p-registration-ui-wrapper'>
+        <div className='h5p-hub-registration-wrapper'>
           <div className="step-panel">
             <div className="step-title" role="heading">
               {mainTitle}
@@ -210,7 +205,7 @@ const Registration = ({
             <Button
               variant='register-hub'
               onClick={onRegister}
-              enabled={isValid && !shareInProcess}>
+              enabled={isValid && shareState !== 'in-process'}>
               {l10n.registerOnHub}
             </Button>
           </div>

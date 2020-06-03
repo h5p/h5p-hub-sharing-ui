@@ -1,6 +1,6 @@
 @import '../../../styles/mixins';
 
-.h5p-hub-publish, .h5p-registration-ui {
+.h5p-hub-publish, .h5p-hub-registration {
   .form-element {
     font-family: 'Open Sans', sans-serif;
     padding: 1em 0;
@@ -36,6 +36,7 @@
       margin: 0 0 1em 0;
     }
     textarea {
+      border: 1px solid #bebdcd;
       resize: none;
       font-size: 0.833em;
       width: 100%;

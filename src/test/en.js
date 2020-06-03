@@ -79,7 +79,7 @@ const trans = {
   publisherDescriptionText: 'This will display under "Publisher info" on shared content',
   contactPerson: 'Contact Person',
   phone: 'Phone',
-  address: 'Adress',
+  address: 'Address',
   city: 'City',
   zip: 'Zip',
   country: 'Country',
