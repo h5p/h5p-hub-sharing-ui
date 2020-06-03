@@ -24,15 +24,15 @@ const metadata = new Metadata({
   levels: levels
 });
 
-//Publish
+// Publish
 const publishURL = 'http://localhost/d7/post.php';
 const contentType = 'Interactive video';
 const language = 'en';
 const title = 'My fantastic H5P';
 
-//Registration
+// Registration
 const registrationURL = 'http://localhost/d7/post.php';
-const registrationTitle = 'Hub Registration and End User Licence Agreement (EULA)';
+const registrationTitle = 'Hub Registration and End User License Agreement (EULA)';
 const licenseAgreementTitle = 'End User Licence Agreement (EULA)';
 const licenseAgreementDescription = 'Please read the following agreement before proceeding with the ';
 const accountSettingsUrl= '';
@@ -50,7 +50,7 @@ ReactDOM.render(
       </MetadataContext.Provider>
     </TranslationContext.Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('publish')
 );
 
 ReactDOM.render(
@@ -66,7 +66,7 @@ ReactDOM.render(
         />
     </TranslationContext.Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('register')
 );
 
 // If you want your app to work offline and load faster, you can change

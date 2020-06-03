@@ -71,12 +71,12 @@ const trans = {
   contentLicenseTitle: 'Content License Info',
   licenseDialogDescription: 'Click on a specific license to get info about proper usage',
 
-  //Publisher
+  // Publisher
   publisherFieldTitle: 'Publisher',
-  publisherFieldDescription: 'This will display as a "Publisher name" on shared content',
+  publisherFieldDescription: 'This will display as the "Publisher name" on shared content',
   emailAddress: 'Email Address',
   publisherDescription: 'Publisher description',
-  publisherDescriptionText: 'This will display under "Publisher info" on shared content',
+  publisherDescriptionText: 'This will be displayed under "Publisher info" on shared content',
   contactPerson: 'Contact Person',
   phone: 'Phone',
   address: 'Address',
@@ -85,7 +85,7 @@ const trans = {
   country: 'Country',
   logoUploadText: 'Organization logo or avatar',
   acceptTerms: 'I accept the terms of the license agreement',
-  successfullyRegistred: 'You have successfully registred an account on the Hub',
+  successfullyRegistred: 'You have successfully registered an account on the H5P Hub',
   successfullyRegistredDescription: 'You account details can be changed',
   accountDetailsLinkText: 'here',
   registrationFailed: 'An error occured',
