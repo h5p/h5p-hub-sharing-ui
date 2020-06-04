@@ -1,0 +1,324 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="dist/h5p-hub-sharing.css">
+    <link rel="stylesheet" href="dist/h5p-hub-registration.css">
+   
+    <script type="text/javascript" src="dist/h5p-hub-registration.js"></script>
+    <script type="text/javascript" src="dist/h5p-hub-sharing.js"></script>
+    <style>
+      #hub-client {
+        max-width: 1090px;
+        margin: 0 auto;
+      }
+      body > h1 {
+        text-align: center;
+      }
+    </style>
+    <title>H5P Hub Client</title>
+  </head>
+  <body>
+    <div id="registration"></div>
+    <div id="sharing"></div>
+
+    <script>
+
+    const l10n = {
+      "mainTitle": "Sharing <strong>:title</strong>",
+      "cancel": "Cancel",
+      "back": "Back",
+      "next": "Next",
+      "reviewInfo": "Review info",
+      "share": "Share",
+      "close": "Close",
+      "registerOnHub": "Register on the Hub",
+      "requiredInfo": "Required Info",
+      "optionalInfo": "Optional Info",
+      "reviewAndShare": "Review & Share",
+      "shared": "Shared",
+      "currentStep": "Step :step of :total",
+      "sharingNote": "All content details can be edited after sharing",
+      "licenseDescription": "Select a license for your content",
+      "licenseVersion": "License Version",
+      "licenseVersionDescription": "Select a license version",
+      "disciplineLabel": "Disciplines",
+      "disciplineDescription": "You can select multiple disciplines",
+      "discipline": {
+        "searchPlaceholder": "Select one or more disciplines",
+        "in": "in",
+        "dropdownButton": "Dropdown button"
+      },
+      "removeChip": "Remove :chip from the list",
+      "keywordsPlaceholder": "Add keywords",
+      "keywords": "Keywords",
+      "keywordsDescription": "You can add multiple keywords. Press \"Enter\" to confirm each keyword",
+      "altText": "Alt text",
+      "reviewMessage": "Please review the info below before you share",
+      "subContentWarning": "Sub-content (images, questions etc.) will be shared under :license unless otherwise specified in the authoring tool",
+      "title": "Title",
+      "license": "License",
+      "disciplines": "Disciplines",
+      "shortDescription": "Short description",
+      "longDescription": "Long description",
+      "icon": "Icon",
+      "screenshots": "Screenshots",
+      "helpChoosingLicense": "Help me choose a license",
+      "shareFailed": "Share failed.",
+      "shareTryAgain": "Something went wrong, please try to share agian.",
+      "pleaseWait": "Please wait...",
+      "language": "Language",
+      "level": "Level",
+      "shortDescriptionPlaceholder": "Short description of your content",
+      "longDescriptionPlaceholder": "Long description of your content",
+      "description": "Description",
+      "iconDescription": "640x480px. If not selected content will use category icon",
+      "screenshotsDescription": "Add up to five screenshots of your content",
+      "submitted": "Submitted!",
+      "isNowSubmitted": "Is now submitted to H5P Hub",
+      "contentAvailable": "Your content will soon be available for download",
+      "contentLicenseTitle": "Content License Info",
+      "licenseDialogDescription": "Click on a specific license to get info about proper usage",
+      "publisherFieldTitle": "Publisher",
+      "publisherFieldDescription": "This will display as the \"Publisher name\" on shared content",
+      "emailAddress": "Email Address",
+      "publisherDescription": "Publisher description",
+      "publisherDescriptionText": "This will be displayed under \"Publisher info\" on shared content",
+      "contactPerson": "Contact Person",
+      "phone": "Phone",
+      "address": "Address",
+      "city": "City",
+      "zip": "Zip",
+      "country": "Country",
+      "logoUploadText": "Organization logo or avatar",
+      "acceptTerms": "I accept the terms of the license agreement",
+      "successfullyRegistred": "You have successfully registered an account on the H5P Hub",
+      "successfullyRegistredDescription": "You account details can be changed",
+      "accountDetailsLinkText": "here",
+      "registrationTitle": "Hub Registration and End User License Agreement (EULA)",
+      "registrationFailed": "An error occured",
+      "registrationFailedDescription": "We were not able to create an account at this point. Something went wrong. Try again later."
+    };
+    
+    const licenses = [
+      {
+        "id": 5,
+        "name": "Attribution-NonCommercial-NoDerivs",
+        "versions": []
+      },
+      {
+        "id": 6,
+        "name": "Attribution",
+        "versions": [
+          {
+            "id": 1,
+            "name": "4.0 International"
+          },
+          {
+            "id": 2,
+            "name": "3.0 Unported"
+          },
+          {
+            "id": 3,
+            "name": "2.5 Generic"
+          },
+          {
+            "id": 4,
+            "name": "2.0 Generic"
+          },
+          {
+            "id": 5,
+            "name": "1.0 Generic"
+          }
+        ]
+      }
+    ];
+    const disciplines = [
+      {
+        "id": "1",
+        "name": "Humanities",
+        "children": [
+          {
+            "id": "10",
+            "name": "Arts",
+            "children": [
+              {
+                "id": "100",
+                "name": "Performing Arts"
+              },
+              {
+                "id": "101",
+                "name": "Visual Arts"
+              }
+            ]
+          },
+          {
+            "id": "11",
+            "name": "History"
+          },
+          {
+            "id": "12",
+            "name": "Languages and literature"
+          },
+          {
+            "id": "13",
+            "name": "Philosophy"
+          },
+          {
+            "id": "14",
+            "name": "Theology"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Social sciences",
+        "children": [
+          {
+            "id": "21",
+            "name": "Anthropology"
+          },
+          {
+            "id": "22",
+            "name": "Archaeology"
+          },
+          {
+            "id": "23",
+            "name": "Economics"
+          },
+          {
+            "id": "24",
+            "name": "Human geography"
+          },
+          {
+            "id": "25",
+            "name": "Political science"
+          },
+          {
+            "id": "26",
+            "name": "Psychology"
+          },
+          {
+            "id": "27",
+            "name": "Sociology"
+          },
+          {
+            "id": "28",
+            "name": "Social Work"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "name": "Natural Sciences",
+        "children": [
+          {
+            "id": "31",
+            "name": "Biology"
+          },
+          {
+            "id": "32",
+            "name": "Chemistry"
+          },
+          {
+            "id": "33",
+            "name": "Earth science"
+          },
+          {
+            "id": "34",
+            "name": "Space sciences"
+          },
+          {
+            "id": "35",
+            "name": "Physics"
+          }
+        ]
+      }
+    ];
+    
+    const languages = [
+      {
+        "id": "en",
+        "name": "English"
+      },
+      {
+        "id": "nb",
+        "name": "Norwegian bokmål"
+      },
+      {
+        "id": "da",
+        "name":"Danish"
+      },
+      {
+        "id": "nl",
+        "name":"Dutch"
+      },
+      {
+        "id": "fr",
+        "name":"French"
+      },
+      {
+        "id": "it",
+        "name":"Italian"
+      }
+    ];
+
+    const levels = [
+      {
+        "id": "beginner",
+        "name": "Introductory/Beginner"
+      },
+      {
+        "id": "intermediate",
+        "name": "Intermediate"
+      },
+      {
+        "id": "advanced",
+        "name": "Advanced"
+      }
+    ];     
+ 
+    // Publish
+    const publishURL = 'http://localhost/d7/post.php';
+    const contentType = 'Interactive video';
+    const language = 'en';
+    const title = 'My fantastic H5P';
+
+    // Registration
+    const registrationURL = 'http://localhost/d7/post.php';
+    const registrationTitle = 'Hub Registration and End User License Agreement (EULA)';
+    const licenseAgreementTitle = 'End User Licence Agreement (EULA)';
+    const licenseAgreementDescription = 'Please read the following agreement before proceeding with the ';
+    const accountSettingsUrl= '';
+
+    document.addEventListener("DOMContentLoaded", function() {
+      H5PHub.createRegistrationUI({
+        container: document.getElementById('registration'),
+        l10n: l10n,
+        licenseAgreementTitle: licenseAgreementTitle,
+        licenseAgreementDescription: licenseAgreementDescription,
+        licenseAgreementMainText: 'asdasdasd',
+        registrationURL: registrationURL,
+        accountSettingsUrl: accountSettingsUrl
+      });
+
+      H5PHub.createSharingUI({
+        container: document.getElementById('sharing'),
+        l10n: l10n,
+        metadata: {
+          licenses: licenses,
+          disciplines: disciplines,
+          languages: languages,
+          levels: levels
+        },
+        title: title,
+        publishURL: publishURL,
+        contentType: contentType,
+        language: language
+      });
+    });
+    </script>
+  </body>
+</html>

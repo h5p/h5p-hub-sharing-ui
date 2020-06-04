@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 @import "../styles/variables";
 
-@font-face {
+/*@font-face {
   font-family: 'h5p-hub-publish';
   src:  url('../assets/fonts/h5p-hub-publish.eot?wy8ylc');
   src:  url('../assets/fonts/h5p-hub-publish.eot?wy8ylc#iefix') format('embedded-opentype'),
@@ -11,15 +11,15 @@
   font-weight: normal;
   font-style: normal;
   font-display: block;
-}
+}*/
 
 @keyframes spinner {
-    0% {
-        transform: translate3d(-50%, -50%, 0) rotate(0deg);
-    }
-    100% {
-         transform: translate3d(-50%, -50%, 0) rotate(360deg);
-    }
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
 }
 
 .h5p-hub-publish, .h5p-hub-registration-wrapper  {

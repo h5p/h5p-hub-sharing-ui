@@ -14,7 +14,6 @@ import Checkbox from '../generic/selector/Checkbox/Checkbox';
 import Message from '../generic/message/Message';
 
 const Registration = ({
-  mainTitle,
   licenseAgreementTitle,
   licenseAgreementDescription,
   licenseAgreementMainText,
@@ -71,14 +70,14 @@ const Registration = ({
   const onRegister = () => {
     setShareState('in-process');
     registerToHub(postUrl, fields, () => {
-      setShareState('failed');
-      if(shareFinishedRef.current) {
-        scrollIntoView(shareFinishedRef.current)
-      }
-    }, () => {
       setShareState('finished');
       if(shareFailedRef.current) {
         scrollIntoView(shareFailedRef.current);
+      }
+    }, () => {
+      setShareState('failed');
+      if(shareFinishedRef.current) {
+        scrollIntoView(shareFinishedRef.current)
       }
     });
   }
@@ -113,7 +112,7 @@ const Registration = ({
         <div className='h5p-hub-registration-wrapper'>
           <div className="step-panel">
             <div className="step-title" role="heading">
-              {mainTitle}
+              {l10n.registrationTitle}
             </div>
             <div className={`step-content`}>
               <div className='row'>
@@ -216,7 +215,6 @@ const Registration = ({
 };
 
 Registration.propTypes = {
-  mainTitle: PropTypes.string.isRequired,
   licenseAgreementTitle: PropTypes.string.isRequired,
   licenseAgreementDescription: PropTypes.string.isRequired,
   licenseAgreementMainText: PropTypes.string.isRequired,
