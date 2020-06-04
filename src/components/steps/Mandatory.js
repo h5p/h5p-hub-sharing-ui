@@ -27,8 +27,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
    * @param {string} name 
    */
   const setInfo = (value, name) => {
-    setMandatoryInfo(() => ({
-      ...mandatoryInfo,
+    setMandatoryInfo(prevState=> ({
+      ...prevState,
       [name]: value
     }));
   };

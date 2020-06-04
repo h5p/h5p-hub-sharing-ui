@@ -47,8 +47,8 @@ const Registration = ({
    * @param {string} name 
    */
   const setInfo = (value, name) => {
-    setFields(() => ({
-      ...fields,
+    setFields(prevState => ({
+      ...prevState,
       [name]: value
     }));
   };

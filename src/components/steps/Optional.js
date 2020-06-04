@@ -33,8 +33,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
    * @param {string} type
    */
   const setInfo = (data, type) => {
-    setOptionalInfo(() => ({
-      ...optionalInfo,
+    setOptionalInfo(prevState => ({
+      ...prevState,
       [type]: data
     }));
   };
