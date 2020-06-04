@@ -71,38 +71,29 @@ const Registration = ({
     setShareState('in-process');
     registerToHub(postUrl, fields, () => {
       setShareState('finished');
-      if(shareFailedRef.current) {
-        scrollIntoView(shareFailedRef.current);
+      if (shareFinishedRef.current) {
+        shareFinishedRef.current.focus();
       }
     }, () => {
       setShareState('failed');
-      if(shareFinishedRef.current) {
-        scrollIntoView(shareFinishedRef.current)
+      if (shareFailedRef.current) {
+        shareFailedRef.current.focus();
       }
     });
-  }
-
-  /**
-   * Scroll and focus to the element
-   * @param  {HTMLElement} element
-   */
-  const scrollIntoView = (element) => {
-    element.focus();
-    element.scrollIntoView({behavior: 'smooth'});
   }
 
   return (
     <div className='h5p-hub-registration'>
       {shareState === 'failed' &&
         <Message severity='error'>
-          <div className='message-header' ref={shareFailedRef}>{l10n.registrationFailed}</div>
+          <div className='message-header' tabIndex="-1" ref={shareFailedRef}>{l10n.registrationFailed}</div>
           <div className='message-description'>
             {l10n.registrationFailedDescription}</div>
         </Message>
       }
       {shareState === 'finished' ?
         <Message severity='success'>
-          <div className='message-header' ref={shareFinishedRef}>{l10n.successfullyRegistred}</div>
+          <div className='message-header' tabIndex="-1" ref={shareFinishedRef}>{l10n.successfullyRegistred}</div>
           <div className='message-description'>
             {l10n.successfullyRegistredDescription}
             <a href={accountSettingsUrl}>{l10n.accountDetailsLinkText}</a>
