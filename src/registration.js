@@ -15,7 +15,8 @@ window.H5PHub.createRegistrationUI = ({
   licenseAgreementDescription,
   licenseAgreementMainText,
   registrationURL,
-  accountSettingsUrl
+  accountSettingsUrl,
+  token
 }) => {
   ReactDOM.render(
     <TranslationContext.Provider value={l10n}>
@@ -25,6 +26,7 @@ window.H5PHub.createRegistrationUI = ({
         licenseAgreementMainText={licenseAgreementMainText}
         postUrl={registrationURL}
         accountSettingsUrl={accountSettingsUrl}
+        token={token}
       />
     </TranslationContext.Provider>,
     container

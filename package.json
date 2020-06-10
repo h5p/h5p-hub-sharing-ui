@@ -60,5 +60,8 @@
       "@babel/transform-object-assign",
       "@babel/plugin-proposal-class-properties"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.11"
   }
 }
