@@ -18,7 +18,8 @@ const Registration = ({
   licenseAgreementDescription,
   licenseAgreementMainText,
   postUrl,
-  accountSettingsUrl 
+  accountSettingsUrl,
+  token
 }) => {
   const l10n = useContext(TranslationContext);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
@@ -41,9 +42,9 @@ const Registration = ({
 
   /**
    * Update a field
-   * 
+   *
    * @param {string} value
-   * @param {string} name 
+   * @param {string} name
    */
   const setInfo = (value, name) => {
     setFields(prevState => ({
@@ -69,7 +70,7 @@ const Registration = ({
    */
   const onRegister = () => {
     setShareState('in-process');
-    registerToHub(postUrl, fields, () => {
+    registerToHub(postUrl, token, fields, () => {
       setShareState('finished');
       if (shareFinishedRef.current) {
         shareFinishedRef.current.focus();

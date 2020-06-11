@@ -4,9 +4,9 @@ import axios from 'axios';
 /**
  * Replaces strings in a text. Usefull for handling translation texts
  * including variables.
- * 
- * @param {string} text 
- * @param {array} replacements 
+ *
+ * @param {string} text
+ * @param {array} replacements
  */
 export const replace = (text, replacements) => {
   for (let key in replacements) {
@@ -49,12 +49,13 @@ export const optionalDefinition = PropTypes.shape({
  * @param {object} values
  * @param {Function} done
  */
-export const publishToHub = (url, values, done, fail) => {
+export const publishToHub = (url, token, values, done, fail) => {
   const fields = new FormData();
 
+  fields.append('token', token);
   fields.append('title', values.title);
   fields.append('license', values.license);
-  fields.append('licenseVersion', values.licenseVersion);
+  fields.append('license_version', values.licenseVersion);
   fields.append('language', values.language);
   fields.append('level', values.level);
   values.disciplines.forEach(discipline => {
@@ -64,8 +65,8 @@ export const publishToHub = (url, values, done, fail) => {
     fields.append('keywords[]', keyword);
   });
 
-  fields.append('shortDescription', values.shortDescription);
-  fields.append('longDescription', values.longDescription)
+  fields.append('summary', values.shortDescription);
+  fields.append('description', values.longDescription)
   fields.append('icon', values.icon.file);
 
   values.screenshots.forEach(element => {
@@ -91,9 +92,10 @@ export const publishToHub = (url, values, done, fail) => {
  * @param {Function} done
  * @param {Function} fail
  */
-export const registerToHub = (url, values, done, fail) => {
+export const registerToHub = (url, token, values, done, fail) => {
   const fields = new FormData();
 
+  fields.append('token', token);
   fields.append('name', values.publisher);
   fields.append('email', values.emailAddress);
   fields.append('description', values.publisherDescription);

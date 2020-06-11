@@ -3,18 +3,26 @@
  */
 export default class Metadata {
   constructor({ licenses, disciplines, languages, levels }) {
-    this.licenses = licenses;
-    this.disciplines = disciplines;
-    this.languages = languages;
-    this.levels = levels;
-    this.flatDisciplines = this.flatDisciplines();
+    const massageDatas = function (datas) {
+      for (let i = 0; i < datas.length; i++) {
+        datas[i].id = datas[i].name;
+        datas[i].name = datas[i].translation ? datas[i].translation : datas[i].name;
+      }
+      return datas;
+    }
+
+    this.licenses = massageDatas(licenses);
+    this.disciplines = massageDatas(disciplines);
+    this.languages = massageDatas(languages);
+    this.levels = massageDatas(levels);
+    this.flatDisciplines = this.disciplines;
   }
 
   /**
    * Get a metadata by its ID
-   * 
+   *
    * @param {string} type 'licenses', 'disciplines', 'languages' or 'levels'
-   * @param {string} id 
+   * @param {string} id
    * @returns {object}
    */
   getById(type, id) {
@@ -30,7 +38,7 @@ export default class Metadata {
 
   /**
    * Get a license by its ID
-   * 
+   *
    * @param {string} id
    * @returns {object}
    */
@@ -60,9 +68,9 @@ export default class Metadata {
 
   /**
    * Get license version by its ID
-   * 
-   * @param {object} license 
-   * @param {string} id 
+   *
+   * @param {object} license
+   * @param {string} id
    * @returns {object}
    */
   getLicenseVersion(license, id) {
@@ -74,12 +82,12 @@ export default class Metadata {
       }
     }
   }
-  
+
   /**
    * Get license in a human readable format
-   * 
-   * @param {string} id 
-   * @param {string} versionId 
+   *
+   * @param {string} id
+   * @param {string} versionId
    * @returns {string}
    */
   getLicenseForHumans(id, versionId) {

@@ -16,7 +16,7 @@ import './Main.scss';
 
 /**
  * Creates the defintion of the steps in the wizard
- * 
+ *
  * @param {object} mandatory
  * @param {object} optional
  */
@@ -70,7 +70,7 @@ const defaultImage = {
   alt: ''
 };
 
-function Main({ title, publishURL, contentType, language }) {
+function Main({ title, publishURL, contentType, language, token }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [shareFailed, setShareFailed] = React.useState(false);
@@ -110,7 +110,7 @@ function Main({ title, publishURL, contentType, language }) {
   const handleNext = () => {
     if (activeStep === 2) {
       setShareInProcess(true);
-      publishToHub(publishURL, { ...mandatoryInfo, ...optionalInfo }, () => {
+      publishToHub(publishURL, token, { ...mandatoryInfo, ...optionalInfo }, () => {
         setShared(true);
         setShareInProcess(false);
       }, () => {

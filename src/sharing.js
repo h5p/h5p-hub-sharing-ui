@@ -17,16 +17,18 @@ window.H5PHub.createSharingUI = ({
   title,
   publishURL,
   contentType,
-  language
+  language,
+  token
 }) => {
   ReactDOM.render(
     <TranslationContext.Provider value={l10n}>
       <MetadataContext.Provider value={new Metadata(metadata)}>
-        <Main 
+        <Main
           title={title}
           publishURL={publishURL}
           contentType={contentType}
           language={language}
+          token={token}
         />
       </MetadataContext.Provider>
     </TranslationContext.Provider>,
