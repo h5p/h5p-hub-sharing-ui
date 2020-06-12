@@ -15,7 +15,7 @@ export default class Metadata {
     this.disciplines = massageDatas(disciplines);
     this.languages = massageDatas(languages);
     this.levels = massageDatas(levels);
-    this.flatDisciplines = this.disciplines;
+    this.flatDisciplines = this.flatDisciplines(this.disciplines);
   }
 
   /**
@@ -104,9 +104,9 @@ export default class Metadata {
     return forHumans;
   }
 
-  flatDisciplines() {
+  flatDisciplines(disciplines) {
     const list = [];
-    const stack = this.disciplines.slice();
+    const stack = disciplines.slice();
     while (stack.length > 0) {
       const element = stack.pop();
       if (element && element.children) {
