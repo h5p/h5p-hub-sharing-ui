@@ -93,7 +93,8 @@
       "zip": "Zip",
       "country": "Country",
       "logoUploadText": "Organization logo or avatar",
-      "acceptTerms": "I accept the terms of the license agreement",
+      "acceptTerms": "I approve the",
+      "licenseLinkText": "H5P Hub terms of use",
       "successfullyRegistred": "You have successfully registered an account on the H5P Hub",
       "successfullyRegistredDescription": "You account details can be changed",
       "accountDetailsLinkText": "here",
@@ -289,17 +290,14 @@
     // Registration
     const registrationURL = 'http://localhost/d7/post.php';
     const registrationTitle = 'Hub Registration and End User License Agreement (EULA)';
-    const licenseAgreementTitle = 'End User Licence Agreement (EULA)';
-    const licenseAgreementDescription = 'Please read the following agreement before proceeding with the ';
+    const licenseLink = 'https://h5p.org/';
     const accountSettingsUrl= '';
 
     document.addEventListener("DOMContentLoaded", function() {
       H5PHub.createRegistrationUI({
         container: document.getElementById('registration'),
         l10n: l10n,
-        licenseAgreementTitle: licenseAgreementTitle,
-        licenseAgreementDescription: licenseAgreementDescription,
-        licenseAgreementMainText: 'asdasdasd',
+        licenseLink: licenseLink,
         registrationURL: registrationURL,
         accountSettingsUrl: accountSettingsUrl
       });

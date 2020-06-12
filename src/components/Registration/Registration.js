@@ -14,9 +14,7 @@ import Checkbox from '../generic/selector/Checkbox/Checkbox';
 import Message from '../generic/message/Message';
 
 const Registration = ({
-  licenseAgreementTitle,
-  licenseAgreementDescription,
-  licenseAgreementMainText,
+  licenseLink,
   postUrl,
   accountSettingsUrl,
   token
@@ -177,16 +175,20 @@ const Registration = ({
                 onFile={img => setInfo(img, 'logo')}
                 ariaLabel={l10n.logoUploadText}
               />
-              <TextField
-                title={licenseAgreementTitle}
-                description={licenseAgreementDescription}
-                mainText={licenseAgreementMainText} />
               <Checkbox
-                label={l10n.acceptTerms}
                 id='accept-terms'
                 checked={acceptedTerms}
                 filter=''
-                onChecked={(name, id, checked) => setAcceptedTerms(checked)} />
+                onChecked={(name, id, checked) => setAcceptedTerms(checked)}>
+                {l10n.acceptTerms}
+                <span> </span>
+                <a
+                  onClick={(e) => { e.stopPropagation() }}
+                  target="_blank" rel="noopener noreferrer"
+                  href={licenseLink}>
+                  {l10n.licenseLinkText}
+                </a>
+              </Checkbox>
             </div>
           </div>
           <div className='footer'>
@@ -207,11 +209,9 @@ const Registration = ({
 };
 
 Registration.propTypes = {
-  licenseAgreementTitle: PropTypes.string.isRequired,
-  licenseAgreementDescription: PropTypes.string.isRequired,
-  licenseAgreementMainText: PropTypes.string.isRequired,
   postUrl: PropTypes.string.isRequired,
-  accountSettingsUrl: PropTypes.string.isRequired
+  accountSettingsUrl: PropTypes.string.isRequired,
+  licenseLink: PropTypes.string.isRequired
 }
 
 export default Registration;
