@@ -183,8 +183,9 @@ const Registration = ({
                 {l10n.acceptTerms}
                 <span> </span>
                 <a
-                  onClick={(e) => { e.stopPropagation() }}
-                  target="_blank" rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  onKeyDown={(e) => e.stopPropagation()}
+                  target="_blank"
                   href={licenseLink}>
                   {l10n.licenseLinkText}
                 </a>
