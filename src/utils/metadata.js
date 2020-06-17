@@ -11,11 +11,37 @@ export default class Metadata {
       return datas;
     }
 
+    const hierarchicalDisciplines = (disciplines) => {
+      //Create lookup table
+      const lookupTable = {};
+      for(let i=0; i<disciplines.length; i++) {
+        lookupTable[disciplines[i].id] = disciplines[i];
+      }
+
+      //Add children to parents
+      for(let i=0; i<disciplines.length; i++) {
+        if(disciplines[i].parent !== null) {
+          const parent = lookupTable[disciplines[i].parent];
+          parent.children = parent.children ? parent.children.concat([disciplines[i]]) : [disciplines[i]];
+        }
+      }
+
+      const hierarchicalList = [];
+
+      //Add all disciplines without parent to list
+      for(let discipline of Object.values(lookupTable)) {
+        if(discipline.parent === null) {
+          hierarchicalList.push(discipline);
+        }
+      }
+      return hierarchicalList;
+    }
+
     this.licenses = massageDatas(licenses);
-    this.disciplines = massageDatas(disciplines);
+    this.flatDisciplines = massageDatas(disciplines);
+    this.disciplines =  hierarchicalDisciplines(this.flatDisciplines);
     this.languages = massageDatas(languages);
     this.levels = massageDatas(levels);
-    this.flatDisciplines = this.flatDisciplines(this.disciplines);
   }
 
   /**
@@ -102,24 +128,6 @@ export default class Metadata {
     }
 
     return forHumans;
-  }
-
-  flatDisciplines(disciplines) {
-    const list = [];
-    const stack = disciplines.slice();
-    while (stack.length > 0) {
-      const element = stack.pop();
-      if (element && element.children) {
-        list.concat(element.children);
-        element.children.forEach(
-          element => {
-            list.push(element);
-            stack.push(element);
-          }
-        );
-      }
-    }
-    return list;
   }
 
   getDiscipline = (id) => {
