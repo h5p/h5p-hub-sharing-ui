@@ -166,12 +166,15 @@ class SearchFilter extends React.Component {
   makeCategorySearchList = (value) => {
     const searchList = [];
     //Add categories for each parent that has children that match the search
-    for (let i = 0; i < this.parents.length; i++) {
-      const element = this.parents[i];
+    for (let i = 0; i < this.props.items.length; i++) {
+      const element = this.props.items[i];
       //Check if the parent doesn't have a parent and match value 
       const parentMatch = RegExp(value.toUpperCase()).test(element.name.toUpperCase())
         && this.getCheckboxFromId(element.id, this.props.items);
-      const children = element.children.filter((element => RegExp(value.toUpperCase()).test(element.name.toUpperCase())));
+      let children = [];
+      if (element.children) {
+        children = element.children.filter((element => RegExp(value.toUpperCase()).test(element.name.toUpperCase())));
+      }
 
       if (children.length > 0) {
         searchList.push({
