@@ -176,6 +176,7 @@ const Registration = ({
                 ariaLabel={l10n.logoUploadText}
               />
               <Checkbox
+                label={l10n.acceptTerms}
                 id='accept-terms'
                 checked={acceptedTerms}
                 filter=''
