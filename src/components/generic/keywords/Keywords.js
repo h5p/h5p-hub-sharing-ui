@@ -2,12 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Chips from '../chips/Chips';
 import TranslationContext from '../../../context/Translation';
+import Tip from '../tip/Tip';
+
+import './Keywords.scss';
 
 const Keywords = ({ chips, setKeywords }) => {
 
   const inputField = React.useRef(null);
   const l10n = React.useContext(TranslationContext);
 
+  const [showTip, setShowTip] = React.useState(false);
+  const [inputFocus, setInputFocus] = React.useState(false);
   /**
    * Add chip when input is pressed
    * @param  {Event} event
@@ -16,10 +21,18 @@ const Keywords = ({ chips, setKeywords }) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       const value = event.target.value.trim();
-      if (chips.indexOf(value) === -1 && value !== '') {
-        setKeywords([...chips, value]);
+      const exists = chips.filter(chip => chip.toLowerCase() === value.toLowerCase());
+      if(exists.length > 0) {
+        setShowTip(true);
+        console.log('hei')
       }
-      inputField.current.value = '';
+      else if (chips.indexOf(value) === -1 && value !== '') {
+        setKeywords([...chips, value]);
+        inputField.current.value = '';
+      }
+    }
+    else {
+      setShowTip(false);
     }
   }
 
@@ -27,9 +40,9 @@ const Keywords = ({ chips, setKeywords }) => {
    * Set chips and focus to input field when last chip is deleted
    * @param  {string[]} chips - id of chips
    */
-  const setChips = (chips) =>{
+  const setChips = (chips) => {
     setKeywords(chips);
-    if(chips.length === 0){
+    if (chips.length === 0) {
       inputField.current.focus();
     }
   }
@@ -38,7 +51,7 @@ const Keywords = ({ chips, setKeywords }) => {
    * Return chips with id and name
    */
   const getChips = () => {
-    return chips.map(chip => {return {id: chip, name: chip}});
+    return chips.map(chip => { return { id: chip, name: chip } });
   }
 
   return (
@@ -48,7 +61,13 @@ const Keywords = ({ chips, setKeywords }) => {
         className='input-field'
         placeholder={l10n.keywordsPlaceholder}
         onKeyDown={event => handleKeyDown(event)}
-        ref={inputField} />
+        ref={inputField}
+        onFocus={() => setInputFocus(true)}
+        onBlur={() => setInputFocus(false)} />
+      <Tip
+        text={l10n.keywordExists}
+        open={showTip && inputFocus}
+        className='tip-keywords' />
     </>
   )
 };

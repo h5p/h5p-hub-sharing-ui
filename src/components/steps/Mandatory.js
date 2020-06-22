@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { replace, mandatoryDefinition } from '../../utils/helpers';
 import Modal from '../generic/modal/Modal';
 import DisciplineSelector from '../generic/discipline/DisciplineSelector';
-
+import Tip from '../generic/tip/Tip';
 import Message from '../generic/message/Message';
 import ModalContent from './ModalContent';
 
@@ -19,6 +19,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
   const licenseVersions = license ? license.versions : [];
   const [modalOpen, setModalOpen] = React.useState(false);
   const modalCloseButtonRef = React.createRef();
+  const titleMaxLength = 255;
+  const [titleFocus, setTitleFocus] = React.useState(false);
 
   /**
    * Update a field
@@ -27,7 +29,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
    * @param {string} name 
    */
   const setInfo = (value, name) => {
-    setMandatoryInfo(prevState=> ({
+    setMandatoryInfo(prevState => ({
       ...prevState,
       [name]: value
     }));
@@ -73,8 +75,15 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
         <input
           id="title"
           onChange={e => setInfo(e.target.value, 'title')}
-          value={mandatoryInfo.title} />
+          value={mandatoryInfo.title}
+          maxLength={titleMaxLength}
+          onFocus={() => setTitleFocus(true)}
+          onBlur={() => setTitleFocus(false)}/>
       </FormElement>
+      <Tip
+        text={replace(l10n.maxLength, { ':length': titleMaxLength })}
+        open={mandatoryInfo.title.length === titleMaxLength && titleFocus}
+        className='tip-text-field'/>
       {
         showLicenseWarning && mandatoryInfo.license &&
         <Message severity="warning">

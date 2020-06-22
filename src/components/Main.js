@@ -78,6 +78,8 @@ function Main({ title, publishURL, contentType, language, token }) {
   const [mandatoryIsValid, setMandatoryIsValid] = React.useState(false);
   const [optionalIsValid, setOptionalIsValid] = React.useState(false);
   const [optionalInfo, setOptionalInfo] = React.useState({
+    shortDescription: '',
+    longDescription: '',
     keywords: [],
     icon: defaultImage,
     screenshots: [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage]

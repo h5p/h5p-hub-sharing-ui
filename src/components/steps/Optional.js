@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Keywords from '../generic/keywords/Keywords';
 import FormElement from '../generic/form/Element';
 import TranslationContext from '../../context/Translation';
-import {optionalDefinition} from '../../utils/helpers';
+import { replace, optionalDefinition } from '../../utils/helpers';
 import ImageUpload from '../generic/form/ImageUpload';
+import Tip from '../generic/tip/Tip';
 
 import './Optional.scss';
 
@@ -12,8 +13,16 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
   const l10n = React.useContext(TranslationContext);
   const altInputRefs = React.useRef([]);
+  const shortDescriptionRef = React.useRef();
+  const longDescriptionRef = React.useRef();
 
   const uploadedImages = optionalInfo.screenshots.filter(el => el && el.src !== '' && el.src !== undefined);
+
+  const shortDescriptionMaxLength = 255;
+  const longDescriptionMaxLength = 511;
+
+  const [shortDescriptionFocus, setShortDescriptionFocus] = useState(false);
+  const [longDescriptionFocus, setLongDescriptionFocus] = useState(false);
 
   /**
    * Set focus to the newly added item
@@ -50,11 +59,11 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
       tmpOptional.screenshots[index] = { ...tmpOptional.screenshots[index], src: img.src, file: img.file, alt: '' };
       //If img removed move all img one index up
       if (img.src === undefined) {
-        for (let i = index; i < uploadedImages.length -1; i++) {
-          tmpOptional.screenshots[i] = optionalInfo.screenshots[i+1];
+        for (let i = index; i < uploadedImages.length - 1; i++) {
+          tmpOptional.screenshots[i] = optionalInfo.screenshots[i + 1];
         }
-        tmpOptional.screenshots[uploadedImages.length-1] = {src: '', alt: '', file: undefined};
-      } 
+        tmpOptional.screenshots[uploadedImages.length - 1] = { src: '', alt: '', file: undefined };
+      }
       return tmpOptional;
     });
     if (altInputRefs.current[index]) {
@@ -100,15 +109,29 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
               id="short-description"
               placeholder={l10n.shortDescriptionPlaceholder}
               onChange={(event) => setInfo(event.target.value, 'shortDescription')}
-              className='short-description' />
+              className='short-description'
+              maxLength={shortDescriptionMaxLength}
+              onFocus={() => setShortDescriptionFocus(true)}
+              onBlur={() => setShortDescriptionFocus(false)}/>
           </FormElement>
+          <Tip
+            text={replace(l10n.maxLength, { ':length': shortDescriptionMaxLength })}
+            open={optionalInfo.shortDescription.length === shortDescriptionMaxLength && shortDescriptionFocus}
+            className='tip-text-field'/>
           <FormElement label={l10n.description}>
             <textarea
               value={optionalInfo.longDescription ? optionalInfo.longDescription : ''}
               id="long-description"
               placeholder={l10n.longDescriptionPlaceholder}
-              onChange={(event) => setInfo(event.target.value, 'longDescription')} />
+              maxLength={longDescriptionMaxLength}
+              onChange={(event) => setInfo(event.target.value, 'longDescription')}
+              onFocus={() => setLongDescriptionFocus(true)}
+              onBlur={() => setLongDescriptionFocus(false)} />
           </FormElement>
+          <Tip
+            text={replace(l10n.maxLength, { ':length': longDescriptionMaxLength })}
+            open={optionalInfo.longDescription.length === longDescriptionMaxLength && longDescriptionFocus}
+            className='tip-text-field' />
         </div>
         <div className='column'>
           <FormElement label={l10n.icon} description={l10n.iconDescription}>

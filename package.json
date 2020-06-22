@@ -24,6 +24,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2",
+    "react-transition-group": "^4.4.1",
     "resolve-url-loader": "3.1.1",
     "sass-loader": "^7.3.1",
     "style-loader": "0.23.1",
