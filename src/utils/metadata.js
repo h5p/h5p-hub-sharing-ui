@@ -3,45 +3,59 @@
  */
 export default class Metadata {
   constructor({ licenses, disciplines, languages, levels }) {
-    const massageDatas = function (datas) {
-      for (let i = 0; i < datas.length; i++) {
-        datas[i].id = datas[i].name;
-        datas[i].name = datas[i].translation ? datas[i].translation : datas[i].name;
-      }
-      return datas;
+    disciplines = Metadata.massageList(disciplines);
+
+    this.disciplinesLookup = {};
+
+    // Create lookup table
+    for (let i = 0; i < disciplines.length; i++) {
+      this.disciplinesLookup[disciplines[i].id] = disciplines[i];
     }
 
-    const hierarchicalDisciplines = (disciplines) => {
-      //Create lookup table
-      const lookupTable = {};
-      for(let i=0; i<disciplines.length; i++) {
-        lookupTable[disciplines[i].id] = disciplines[i];
-      }
+    this.licenses = Metadata.massageList(licenses);
+    this.disciplines = Metadata.createHierarchy(disciplines, this.disciplinesLookup);
+    this.languages = Metadata.massageList(languages);
+    this.levels = Metadata.massageList(levels);
+  }
 
-      //Add children to parents
-      for(let i=0; i<disciplines.length; i++) {
-        if(disciplines[i].parent !== null) {
-          const parent = lookupTable[disciplines[i].parent];
-          parent.children = parent.children ? parent.children.concat([disciplines[i]]) : [disciplines[i]];
-        }
-      }
+  /**
+   * Convert backend format to the format needed by the UX
+   *
+   * @param {*} list
+   */
+  static massageList(list) {
+    return list.map(element => {
+      return {...element, id: element.name, name: element.translation || element.name};
+    });
+  }
 
-      const hierarchicalList = [];
-
-      //Add all disciplines without parent to list
-      for(let discipline of Object.values(lookupTable)) {
-        if(discipline.parent === null) {
-          hierarchicalList.push(discipline);
-        }
+  /**
+   * Create a hierarcical list based on a flat list (which gives the hierarchy through a parent field)
+   *
+   * @param {Array} flat
+   * @param {Array} lookup
+   * 
+   * @returns {Array}
+   */
+  static createHierarchy(flat, lookup) {
+    // Add children to parents
+    for (let i = 0; i < flat.length; i++) {
+      if (flat[i].parent !== null) {
+        const parent = lookup[flat[i].parent];
+        parent.children = parent.children ? parent.children.concat([flat[i]]) : [flat[i]];
       }
-      return hierarchicalList;
     }
 
-    this.licenses = massageDatas(licenses);
-    this.flatDisciplines = massageDatas(disciplines);
-    this.disciplines =  hierarchicalDisciplines(this.flatDisciplines);
-    this.languages = massageDatas(languages);
-    this.levels = massageDatas(levels);
+    const hierarchicalList = [];
+
+    // Add all disciplines without parent to list
+    for (let discipline of Object.values(lookup)) {
+      if (discipline.parent === null) {
+        hierarchicalList.push(discipline);
+      }
+    }
+
+    return hierarchicalList;
   }
 
   /**
@@ -130,12 +144,13 @@ export default class Metadata {
     return forHumans;
   }
 
+  /**
+   * Get a discipline for a given ID
+   * 
+   * @param {*} id 
+   * @returns {Object}
+   */
   getDiscipline = (id) => {
-    for (let i = 0; i < this.flatDisciplines.length; i++) {
-      // Note: intentionally not using trippel quotes. A mix of strings an ints
-      if (this.flatDisciplines[i].id == id) {
-        return this.flatDisciplines[i];
-      }
-    }
+    return this.disciplinesLookup[id];
   }
 };
