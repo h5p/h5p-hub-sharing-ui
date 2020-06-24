@@ -98,7 +98,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           description={l10n.licenseDescription}
           mandatory={true}
           link={{
-            linkText: l10n.helpChoosingLicense,
+            linkText: l10n.licenseDetails,
             onClick: () => toggleLicense(true)
           }}
         >

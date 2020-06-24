@@ -37,7 +37,7 @@
   "longDescription": "Long description",
   "icon": "Icon",
   "screenshots": "Screenshots",
-  "helpChoosingLicense": "Help me choose a license",
+  "licenseDetails": "License details",
   "shareFailed": "Share failed.",
   "shareTryAgain": "Something went wrong, please try to share agian.",
   "pleaseWait": "Please wait...",
