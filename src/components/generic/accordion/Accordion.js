@@ -27,20 +27,24 @@ const Accordion = ({ children }) => {
       </dt>
       {open == child.props.id &&
         <dl>
-        <div className="panel-body">
-          {child}
-        </div>
-      </dl>
+          <div className="panel-body">
+            {child}
+          </div>
+        </dl>
       }
     </div>
   ));
 }
 
 Accordion.propTypes = {
-  children: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    header: PropTypes.string.isRequired
-  })
+  children: PropTypes.arrayOf(
+    PropTypes.shape({
+      props: PropTypes.shape({
+        header: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired,
+      }).isRequired
+    }).isRequired
+  ).isRequired
 }
 
 export default Accordion;
