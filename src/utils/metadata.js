@@ -12,7 +12,7 @@ export default class Metadata {
       this.disciplinesLookup[disciplines[i].id] = disciplines[i];
     }
 
-    this.licenses = Metadata.massageList(licenses);
+    this.licenses = Metadata.massageLicenses(licenses);
     this.disciplines = Metadata.createHierarchy(disciplines, this.disciplinesLookup);
     this.languages = Metadata.massageList(languages);
     this.levels = Metadata.massageList(levels);
@@ -25,7 +25,22 @@ export default class Metadata {
    */
   static massageList(list) {
     return list.map(element => {
-      return {...element, id: element.name, name: element.translation || element.name};
+      return { ...element, id: element.name, name: element.translation || element.name };
+    });
+  }
+
+  /**
+   * Convert backend format of licenses to the format needed by the UX
+   *
+   * @param {*} list
+   */
+  static massageLicenses(list) {
+    return list.map(element => {
+      return {
+        ...element,
+        id: element.name,
+        name: element.translation || element.name,
+        versions: this.massageList(element.versions) };
     });
   }
 
