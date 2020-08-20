@@ -4,7 +4,7 @@ import ImagePreview from './ImagePreview';
 
 import './ImageUpload.scss';
 
-const ImageUpload = ({onFile, img, ariaLabel}) => {
+const ImageUpload = ({onFile, clearImage, img, ariaLabel}) => {
   const input = React.createRef();
 
   /**
@@ -28,6 +28,9 @@ const ImageUpload = ({onFile, img, ariaLabel}) => {
    */
   const removeImage = () => {
     onFile({});
+    if (clearImage) {
+      clearImage();
+    }
   };
 
   /**
@@ -48,14 +51,14 @@ const ImageUpload = ({onFile, img, ariaLabel}) => {
   return (
     <div className="image-upload-container" role="button" tabIndex="0" onKeyDown={handleKeyDown} aria-label={ariaLabel}>
       { 
-        img.file && (
+        img.src && (
           <>
             <ImagePreview src={img.src} />
             <span className="icon-close" onClick={removeImage}/>
           </>
         )
       }
-      <div className={`image-upload ${img.file ? 'image-selected' : ''}`}>
+      <div className={`image-upload ${img.src ? 'image-selected' : ''}`}>
         <input tabIndex="-1" ref={input} type="file" onChange={handleChange}/>
       </div>
     </div>
@@ -64,6 +67,7 @@ const ImageUpload = ({onFile, img, ariaLabel}) => {
 
 ImageUpload.propTypes = {
   onFile: PropTypes.func.isRequired,
+  clearImage: PropTypes.func,
   img: PropTypes.object.isRequired,
   ariaLabel: PropTypes.string.isRequired
 };

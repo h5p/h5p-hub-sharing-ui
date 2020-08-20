@@ -17,7 +17,8 @@ const Registration = ({
   licenseLink,
   postUrl,
   accountSettingsUrl,
-  token
+  token,
+  accountInfo,
 }) => {
   const l10n = useContext(TranslationContext);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
@@ -26,16 +27,19 @@ const Registration = ({
   const shareFinishedRef = React.useRef(null);
 
   const [fields, setFields] = useState({
-    publisher: '',
-    emailAddress: '',
-    publisherDescription: '',
-    contactPerson: '',
-    phone: '',
-    address: '',
-    city: '',
-    zip: '',
-    country: '',
-    logo: {}
+    publisher: accountInfo.name || '',
+    emailAddress: accountInfo.email || '',
+    publisherDescription: accountInfo.description || '',
+    contactPerson: accountInfo.contactPerson || '',
+    phone: accountInfo.phone || '',
+    address: accountInfo.address || '',
+    city: accountInfo.city || '',
+    zip: accountInfo.zip || '',
+    country: accountInfo.country || '',
+    logo: {
+      src: accountInfo.logo,
+    },
+    removeLogo: false,
   });
 
   /**
@@ -173,6 +177,7 @@ const Registration = ({
               <ImageUpload
                 img={fields.logo}
                 onFile={img => setInfo(img, 'logo')}
+                clearImage={setInfo.bind(this, true, 'removeLogo')}
                 ariaLabel={l10n.logoUploadText}
               />
               <Checkbox
@@ -213,6 +218,7 @@ const Registration = ({
 Registration.propTypes = {
   postUrl: PropTypes.string.isRequired,
   accountSettingsUrl: PropTypes.string.isRequired,
+  accountInfo: PropTypes.object,
   licenseLink: PropTypes.string.isRequired
 }
 

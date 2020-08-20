@@ -106,6 +106,7 @@ export const registerToHub = (url, token, values, done, fail) => {
   fields.append('zip', values.zip);
   fields.append('country', values.country);
   fields.append('logo', values.logo.file);
+  fields.append('remove_logo', values.removeLogo ? '1' : '0');
 
   axios.post(url, fields, {
     headers: {
