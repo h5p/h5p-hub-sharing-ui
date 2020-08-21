@@ -75,9 +75,10 @@
       display: flex;
       
       button:before {
-        font-family: 'h5p-hub-publish';
+        font-family: 'h5p';
         font-size: 0.75em;
-        content: "\e902";
+        content: "\e91a";
+        transform: rotate(180deg);
         display: inline-block;
         margin-right: 1em;
         line-height: 1;
@@ -86,13 +87,13 @@
       }
 
       .back:before {
-        transform: rotate(180deg);
+        transform: rotate(0);
       }
 
       #share-in-process::before {
-        font-family: "h5p-hub-publish";
+        font-family: "h5p";
         font-size: 0.75em;
-        content: "\e90b";
+        content: "\e928";
         animation: 2s linear infinite spinner;
         top: 0.5em;
       }
@@ -187,7 +188,7 @@
 
   [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'h5p-hub-publish' !important;
+    font-family: 'h5p' !important;
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -201,21 +202,21 @@
   }
 
   .icon-dropdown:before {	
-    content: "\e900";	
+    content: "\e925";
   }
   .icon-info:before {
-    content: "\e901";
+    content: "\e93c";
   }
   .icon-thick-arrow:before {
-    content: "\e902";
+    content: "\e91a";
   }
   .icon-check:before {
-    content: "\e903";
+    content: "\e933";
   }
   .icon-close:before {
-    content: "\e904";
+    content: "\e93a";
   }
   .icon-plus:before {
-    content: "\e905";
+    content: "\e939";
   }
 }
