@@ -24,7 +24,6 @@ const Keywords = ({ chips, setKeywords }) => {
       const exists = chips.filter(chip => chip.toLowerCase() === value.toLowerCase());
       if(exists.length > 0) {
         setShowTip(true);
-        console.log('hei')
       }
       else if (chips.indexOf(value) === -1 && value !== '') {
         setKeywords([...chips, value]);
