@@ -70,7 +70,7 @@ const defaultImage = {
   alt: ''
 };
 
-function Main({ title, publishURL, contentType, language, token }) {
+function Main({ title, publishURL, contentType, language, token, hubContent}) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [shareFailed, setShareFailed] = React.useState(false);
@@ -78,19 +78,19 @@ function Main({ title, publishURL, contentType, language, token }) {
   const [mandatoryIsValid, setMandatoryIsValid] = React.useState(false);
   const [optionalIsValid, setOptionalIsValid] = React.useState(false);
   const [optionalInfo, setOptionalInfo] = React.useState({
-    shortDescription: '',
-    longDescription: '',
-    keywords: [],
-    icon: defaultImage,
-    screenshots: [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage]
+    shortDescription: hubContent && hubContent.summary ? hubContent.summary : '',
+    longDescription: hubContent && hubContent.description ? hubContent.description : '',
+    keywords: hubContent && hubContent.keywords ? hubContent.keywords : [],
+    icon: hubContent && hubContent.icon ? hubContent.icon : defaultImage,
+    screenshots: hubContent && hubContent.screenshots ? hubContent.screenshots : [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage]
   });
   const [mandatoryInfo, setMandatoryInfo] = React.useState({
-    license: '',
-    language: language,
-    level: '',
-    licenseVersion: '',
-    title: title,
-    disciplines: []
+    license: hubContent ? hubContent.license : '',
+    language: hubContent ? hubContent.language : language,
+    level: hubContent ? hubContent.level : '',
+    licenseVersion:  hubContent ? hubContent.licenseVersion : '',
+    title: hubContent ? hubContent.title : title,
+    disciplines: hubContent ? hubContent.disciplines : []
   });
   const l10n = useContext(TranslationContext);
 

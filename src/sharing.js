@@ -10,15 +10,15 @@ import Metadata from './utils/metadata';
 
 window.H5PHub = window.H5PHub || {};
 
-window.H5PHub.createSharingUI = ({
-  container,
+window.H5PHub.createSharingUI = (container, {
   l10n,
   metadata,
   title,
   publishURL,
   contentType,
   language,
-  token
+  token,
+  hubContent
 }) => {
   ReactDOM.render(
     <TranslationContext.Provider value={l10n}>
@@ -29,6 +29,7 @@ window.H5PHub.createSharingUI = ({
           contentType={contentType}
           language={language}
           token={token}
+          hubContent={hubContent}
         />
       </MetadataContext.Provider>
     </TranslationContext.Provider>,
