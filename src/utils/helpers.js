@@ -55,7 +55,9 @@ export const publishToHub = (url, token, values, done, fail) => {
   fields.append('token', token);
   fields.append('title', values.title);
   fields.append('license', values.license);
-  fields.append('license_version', values.licenseVersion);
+  if (values.licenseVersion !== null) {
+    fields.append('license_version', values.licenseVersion);
+  }
   fields.append('language', values.language);
   fields.append('level', values.level);
   values.disciplines.forEach(discipline => {
@@ -67,13 +69,22 @@ export const publishToHub = (url, token, values, done, fail) => {
 
   fields.append('summary', values.shortDescription);
   fields.append('description', values.longDescription)
-  fields.append('icon', values.icon.file);
-
+  if (values.icon.file !== undefined) {
+    fields.append('icon', values.icon.file);
+  }
+  if (values.remove_icon) {
+    fields.append('remove_icon', 1);
+  }
+  
   values.screenshots.forEach(element => {
     if (element.file) {
       fields.append("screenshots[]", element.file);
-      fields.append("screenshotAltTexts[]", element.alt);
     }
+    fields.append("screenshot_alt_texts[]", element.alt);
+  });
+
+  values.remove_screenshots.forEach(removed_screenshot => {
+      fields.append("remove_screenshots[]", removed_screenshot);
   });
 
   axios.post(url, fields, {

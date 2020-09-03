@@ -81,8 +81,10 @@ function Main({ title, publishURL, contentType, language, token, hubContent}) {
     shortDescription: hubContent && hubContent.summary ? hubContent.summary : '',
     longDescription: hubContent && hubContent.description ? hubContent.description : '',
     keywords: hubContent && hubContent.keywords ? hubContent.keywords : [],
-    icon: hubContent && hubContent.icon ? hubContent.icon : defaultImage,
-    screenshots: hubContent && hubContent.screenshots ? hubContent.screenshots : [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage]
+    icon: hubContent && hubContent.icon ? {src: hubContent.icon, alt: '', old: true} : defaultImage,
+    remove_icon: null,
+    screenshots: hubContent && hubContent.screenshots ? hubContent.screenshots.map(pat => ({src: pat.path, alt: pat.altText, old: true})) : [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage],
+    remove_screenshots: []
   });
   const [mandatoryInfo, setMandatoryInfo] = React.useState({
     license: hubContent ? hubContent.license : '',

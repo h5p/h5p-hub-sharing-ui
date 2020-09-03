@@ -95,8 +95,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
   return (
     <>
-      <FormElement 
-        label={l10n.keywords} 
+      <FormElement
+        label={l10n.keywords}
         description={l10n.keywordsDescription}
       >
         <Keywords chips={optionalInfo.keywords} setKeywords={(chips) => setInfo(chips, 'keywords')} />
@@ -138,17 +138,29 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
             <ImageUpload
               img={optionalInfo.icon}
               onFile={img => setInfo(img, 'icon')}
+              clearImage={() =>
+                setOptionalInfo(prevState => ({
+                  ...prevState,
+                  remove_icon: !!optionalInfo.icon.old
+                }))
+              }
               ariaLabel={l10n.icon} />
           </FormElement>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
             <div id='screenshots'>
               {optionalInfo.screenshots.map((img, i) =>
-                img.file &&
+                img.src &&
                 <div className='row' key={i}>
                   <ImageUpload
                     key={i}
                     img={img}
                     onFile={img => setScreenshot(img, i)}
+                    clearImage={() =>
+                      img.old ? setOptionalInfo(prevState => ({
+                        ...prevState,
+                        remove_screenshots: [...prevState.remove_screenshots, img.src.match(/([^\/])+$/)[0]]
+                      })) : null
+                    }
                     ariaLabel={l10n.screenshots} />
                   <FormElement label={l10n.altText} mandatory={true}>
                     <input
@@ -163,8 +175,6 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
               {uploadedImages.length < 5
                 &&
                 <ImageUpload
-                  key={uploadedImages.length}
-                  img={optionalInfo.screenshots[uploadedImages.length]}
                   onFile={img => setScreenshot(img, uploadedImages.length)}
                   ariaLabel={l10n.screenshots} />
               }

@@ -40,7 +40,7 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel}) => {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       // Enter means selecting a file
-      input.current.click(); 
+      input.current.click();
     }
     else if (['Delete', 'Backspace'].indexOf(event.key) !== -1) {
       // Delete or backspace means removing the image
@@ -50,15 +50,15 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel}) => {
 
   return (
     <div className="image-upload-container" role="button" tabIndex="0" onKeyDown={handleKeyDown} aria-label={ariaLabel}>
-      { 
-        img.src && (
+      {
+        img && img.src && (
           <>
             <ImagePreview src={img.src} />
             <span className="icon-close" onClick={removeImage}/>
           </>
         )
       }
-      <div className={`image-upload ${img.src ? 'image-selected' : ''}`}>
+      <div className={`image-upload ${img && img.src ? 'image-selected' : ''}`}>
         <input tabIndex="-1" ref={input} type="file" onChange={handleChange}/>
       </div>
     </div>
@@ -68,7 +68,7 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel}) => {
 ImageUpload.propTypes = {
   onFile: PropTypes.func.isRequired,
   clearImage: PropTypes.func,
-  img: PropTypes.object.isRequired,
+  img: PropTypes.object,
   ariaLabel: PropTypes.string.isRequired
 };
 
