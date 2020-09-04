@@ -18,10 +18,34 @@ window.H5PHub.createSharingUI = (container, {
   contentType,
   language,
   token,
-  hubContent
+  hubContent,
+  context
 }) => {
+
+  /**
+   * Replace given values with already existing values in the source.
+   *
+   * @param {Object} source Source object
+   * @param {Object} values Key value
+   */
+  const remap = (source, values) => {
+    for (let value in values) {
+      if (values.hasOwnProperty(value) && source.hasOwnProperty(value)) {
+        source[value] = source[values[value]];
+      }
+    }
+    return source;
+  };
+
   ReactDOM.render(
-    <TranslationContext.Provider value={l10n}>
+    <TranslationContext.Provider value={context === 'edit' ? remap(l10n, {
+      mainTitle: 'editInfoTitle',
+      reviewAndShare: 'reviewAndSave',
+      share: 'saveChanges',
+      shareFailed: 'editingFailed',
+      isNowSubmitted: 'changeHasBeenSubmitted',
+      contentAvailable: 'contentUpdateSoon'
+    }) : l10n}>
       <MetadataContext.Provider value={new Metadata(metadata)}>
         <Main
           title={title}

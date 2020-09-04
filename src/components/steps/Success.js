@@ -8,6 +8,12 @@ const Success = ({ title, contentType }) => {
 
   const l10n = React.useContext(TranslationContext);
 
+  const submittedText = (
+    <div className='now-submitted-text'>
+      {l10n.isNowSubmitted}
+    </div>
+  );
+
   return (
     <>
       <div className='success-page'>
@@ -20,12 +26,15 @@ const Success = ({ title, contentType }) => {
         <div className='content-type'>
           {contentType}
         </div>
+        { l10n.isNowSubmitted === l10n.changeHasBeenSubmitted &&
+          submittedText
+        }
         <div className='title'>
           {title}
         </div>
-        <div className='now-submitted-text'>
-          {l10n.isNowSubmitted}
-        </div>
+        { l10n.isNowSubmitted !== l10n.changeHasBeenSubmitted &&
+          submittedText
+        }
         <div className='content-available'>
           {l10n.contentAvailable}
         </div>
