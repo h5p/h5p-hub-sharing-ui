@@ -29,11 +29,19 @@
       font-size: 1.75em;
       margin-bottom: 0.5em;
       color: #1a1a1a;
+
+      &.is-edit {
+        margin-bottom: 1.75em;
+      }
     }
     .now-submitted-text {
       font-size: 1.458em;
       margin-bottom: 1.75em;
       color: #1a1a1a;
+
+      &.is-edit {
+        margin-bottom: .5em;
+      }
     }
     .content-available {
       font-size: 0.833em;

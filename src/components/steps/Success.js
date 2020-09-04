@@ -8,8 +8,9 @@ const Success = ({ title, contentType }) => {
 
   const l10n = React.useContext(TranslationContext);
 
+  const isEdit = (l10n.isNowSubmitted === l10n.changeHasBeenSubmitted);
   const submittedText = (
-    <div className='now-submitted-text'>
+    <div className={ 'now-submitted-text' + (isEdit ? ' is-edit' : '') }>
       {l10n.isNowSubmitted}
     </div>
   );
@@ -26,13 +27,13 @@ const Success = ({ title, contentType }) => {
         <div className='content-type'>
           {contentType}
         </div>
-        { l10n.isNowSubmitted === l10n.changeHasBeenSubmitted &&
+        { isEdit &&
           submittedText
         }
-        <div className='title'>
+        <div className={ 'title' + (isEdit ? ' is-edit' : '') }>
           {title}
         </div>
-        { l10n.isNowSubmitted !== l10n.changeHasBeenSubmitted &&
+        { !isEdit &&
           submittedText
         }
         <div className='content-available'>
