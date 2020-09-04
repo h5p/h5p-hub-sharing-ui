@@ -133,15 +133,7 @@ function Main({ title, publishURL, contentType, language, token, hubContent}) {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
-  /**
-   * Handle cancel button is clicked
-   */
-  const handleCancel = () => {
-    // TODO - Implementation needs to be figured out when
-    // integrated into plugins
-  };
-
+  
   const mainTitle = replace(l10n.mainTitle, { ':title': title });
 
   const nextButtonEnabled = activeStep === 2 || (activeStep === 0 && mandatoryIsValid) || (activeStep === 1 && optionalIsValid);
@@ -154,9 +146,6 @@ function Main({ title, publishURL, contentType, language, token, hubContent}) {
             role="heading"
             className="title"
             dangerouslySetInnerHTML={{ __html: mainTitle }} />
-          <Button variant="outlined" color="primary" onClick={handleCancel}>
-            {l10n.cancel}
-          </Button>
         </div>
 
         <div className="content">
