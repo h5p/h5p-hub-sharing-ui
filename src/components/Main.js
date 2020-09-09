@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from './generic/button/Button';
 import Stepper from './generic/stepper/Stepper';
 import Step from './generic/stepper/Step';
@@ -74,6 +74,7 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [shareFailed, setShareFailed] = React.useState(false);
+  const [shareFailedMessage, setShareFailedMessage] = useState(null);
   const [shareInProcess, setShareInProcess] = React.useState(false);
   const [mandatoryIsValid, setMandatoryIsValid] = React.useState(false);
   const [optionalIsValid, setOptionalIsValid] = React.useState(false);
@@ -114,10 +115,19 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
   const handleNext = () => {
     if (activeStep === 2) {
       setShareInProcess(true);
-      publishToHub(publishURL, token, { ...mandatoryInfo, ...optionalInfo }, () => {
-        setShared(true);
-        setShareInProcess(false);
+      publishToHub(publishURL, token, { ...mandatoryInfo, ...optionalInfo }, (response) => {
+        const data = response.data;
+        if (!data.success) {
+          setShareFailedMessage(data.message || null);
+          setShareFailed(true);
+          setShareInProcess(false);
+        }
+        else {
+          setShared(true);
+          setShareInProcess(false);
+        }
       }, () => {
+        setShareFailedMessage(null);
         setShareFailed(true);
         setShareInProcess(false);
       })
@@ -170,7 +180,15 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
               </div>
               {shareFailed &&
                 <div className='share-error'>
-                  <Message severity='error'><span className='bold'>{l10n.shareFailed}</span> {l10n.shareTryAgain}</Message>
+                  <Message severity='error'>
+                    {
+                      shareFailedMessage
+                      ? <span className='bold'>{ shareFailedMessage }</span>
+                      : <>
+                          <span className='bold'>{ l10n.shareFailed}</span> {l10n.shareTryAgain}
+                        </>
+                    }
+                  </Message>
                 </div>
               }
               <div className="footer">
