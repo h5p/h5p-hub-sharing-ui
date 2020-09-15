@@ -36,7 +36,7 @@ window.H5PHub.createSharingUI = (container, {
     }
     return source;
   };
-
+  
   ReactDOM.render(
     <TranslationContext.Provider value={context === 'edit' ? remap(l10n, {
       mainTitle: 'editInfoTitle',

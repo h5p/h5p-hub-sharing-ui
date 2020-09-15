@@ -24,9 +24,9 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
   /**
    * Update a field
-   * 
+   *
    * @param {string} value
-   * @param {string} name 
+   * @param {string} name
    */
   const setInfo = (value, name) => {
     setMandatoryInfo(prevState => ({
@@ -93,7 +93,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
         </Message>
       }
       <div className='row'>
-        <FormElement 
+        <FormElement
           label={l10n.license}
           description={l10n.licenseDescription}
           mandatory={true}
@@ -102,10 +102,10 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             onClick: () => toggleLicense(true)
           }}
         >
-          <Dropdown 
+          <Dropdown
             options={metadata.licenses}
-            selected={mandatoryInfo.license}
-            allowNone={true}
+            selected={mandatoryInfo.license || 'U'}
+            allowNone={false}
             onChange={e => setInfo(e.target.value, 'license')}/>
         </FormElement>
         <FormElement
@@ -127,7 +127,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             onChange={(e) => setInfo(e.target.value, 'language')}
             selected={mandatoryInfo.language} />
         </FormElement>
-      
+
         <FormElement label={l10n.level} mandatory={true}>
           <Dropdown
             options={metadata.levels}
@@ -141,7 +141,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
         description={l10n.disciplineDescription}
         mandatory={true}
       >
-        <DisciplineSelector 
+        <DisciplineSelector
         disciplines={mandatoryInfo.disciplines}
         setDisciplines={(checked) => setInfo(checked, 'disciplines')}/>
       </FormElement>

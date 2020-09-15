@@ -36,11 +36,16 @@ export default class Metadata {
    */
   static massageLicenses(list) {
     return list.map(element => {
-      return {
-        ...element,
-        id: element.name,
-        name: element.translation || element.name,
-        versions: this.massageList(element.versions) };
+      const result = {...element};
+      if (result.licenses !== undefined) {
+        result.licenses = this.massageLicenses(result.licenses);
+      }
+      else {
+        result.id =  result.name,
+        result.name = result.translation || result.name,
+        result.versions = this.massageList(result.versions);
+      }
+      return result;
     });
   }
 
@@ -49,7 +54,7 @@ export default class Metadata {
    *
    * @param {Array} flat
    * @param {Array} lookup
-   * 
+   *
    * @returns {Array}
    */
   static createHierarchy(flat, lookup) {
@@ -76,17 +81,21 @@ export default class Metadata {
   /**
    * Get a metadata by its ID
    *
-   * @param {string} type 'licenses', 'disciplines', 'languages' or 'levels'
+   * @param {Array} container
    * @param {string} id
    * @returns {object}
    */
-  getById(type, id) {
-    const container = this[type];
-
-    for (let i=0; i < container.length; i++) {
+  getById(container, id) {
+    for (let i = 0; i < container.length; i++) {
       // Note: intentionally not using trippel quotes. A mix of strings an ints
       if (container[i].id == id) {
         return container[i];
+      }
+      else if (container[i].licenses !== undefined) {
+        const license = this.getById(container[i].licenses, id);
+        if (license) {
+          return license;
+        }
       }
     }
   }
@@ -98,7 +107,7 @@ export default class Metadata {
    * @returns {object}
    */
   getLicense(id) {
-    return this.getById('licenses', id);
+    return this.getById(this.licenses, id);
   }
 
   /**
@@ -108,7 +117,7 @@ export default class Metadata {
    * @returns {object}
    */
   getLevel(id) {
-    return this.getById('levels', id);
+    return this.getById(this.levels, id);
   }
 
   /**
@@ -118,7 +127,7 @@ export default class Metadata {
    * @returns {object}
    */
   getLanguage(id) {
-    return this.getById('languages', id);
+    return this.getById(this.languages, id);
   }
 
   /**
@@ -161,8 +170,8 @@ export default class Metadata {
 
   /**
    * Get a discipline for a given ID
-   * 
-   * @param {*} id 
+   *
+   * @param {*} id
    * @returns {Object}
    */
   getDiscipline = (id) => {
