@@ -54,6 +54,7 @@ const registrationConfig = createConfig('registration');
 
 module.exports = (env, argv) => {
   if (argv.mode === 'development') {
+    sharingConfig.devtool = 'inline-source-map';
     registrationConfig.devtool = 'inline-source-map';
     // config.entry = "./src/entries/dev.js";
   }
