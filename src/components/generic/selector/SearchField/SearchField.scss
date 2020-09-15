@@ -3,12 +3,13 @@
     width: 100%;
     .search-field {
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
       .icon-arrow {
         position: absolute;
         font-size: 1.30353em;
-        top: 1.2em;
-        right: 0.7em;
         cursor: pointer;
         color: #000000;
         transform: rotate(90deg);
