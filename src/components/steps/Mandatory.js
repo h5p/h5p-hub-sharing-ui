@@ -125,7 +125,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           <Dropdown
             options={metadata.languages}
             onChange={(e) => setInfo(e.target.value, 'language')}
-            selected={mandatoryInfo.language} />
+            selected={mandatoryInfo.language}
+            allowNone={true} />
         </FormElement>
 
         <FormElement label={l10n.level} mandatory={true}>
