@@ -90,7 +90,8 @@ export const publishToHub = (url, token, values, done, fail) => {
   axios.post(url, fields, {
     headers: {
       'Content-Type': 'multipart/form-data'
-    }
+    },
+    timeout: 10000,
   }).then(done)
     .catch(fail)
 }
@@ -122,7 +123,8 @@ export const registerToHub = (url, token, values, done, fail) => {
   axios.post(url, fields, {
     headers: {
       'Content-Type': 'multipart/form-data'
-    }
+    },
+    timeout: 10000,
   }).then(done)
     .catch(fail)
 }

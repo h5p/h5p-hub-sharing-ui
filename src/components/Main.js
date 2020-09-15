@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from './generic/button/Button';
 import Stepper from './generic/stepper/Stepper';
 import Step from './generic/stepper/Step';
@@ -70,29 +70,30 @@ const defaultImage = {
   alt: ''
 };
 
-function Main({ title, publishURL, contentType, language, token, hubContent}) {
+function Main({ title, publishURL, contentType, language, token, hubContent = {}}) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [shareFailed, setShareFailed] = React.useState(false);
+  const [shareFailedMessage, setShareFailedMessage] = useState(null);
   const [shareInProcess, setShareInProcess] = React.useState(false);
   const [mandatoryIsValid, setMandatoryIsValid] = React.useState(false);
   const [optionalIsValid, setOptionalIsValid] = React.useState(false);
   const [optionalInfo, setOptionalInfo] = React.useState({
-    shortDescription: hubContent && hubContent.summary ? hubContent.summary : '',
-    longDescription: hubContent && hubContent.description ? hubContent.description : '',
-    keywords: hubContent && hubContent.keywords ? hubContent.keywords : [],
-    icon: hubContent && hubContent.icon ? {src: hubContent.icon, alt: '', old: true} : defaultImage,
+    shortDescription:  hubContent.summary || '',
+    longDescription:  hubContent.description || '',
+    keywords:  hubContent.keywords || [],
+    icon:  hubContent.icon ? {src: hubContent.icon, alt: '', old: true} : defaultImage,
     remove_icon: null,
-    screenshots: hubContent && hubContent.screenshots ? hubContent.screenshots.map(pat => ({src: pat.path, alt: pat.altText, old: true})) : [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage],
+    screenshots:  hubContent.screenshots ? hubContent.screenshots.map(pat => ({src: pat.path, alt: pat.altText, old: true})) : [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage],
     remove_screenshots: []
   });
   const [mandatoryInfo, setMandatoryInfo] = React.useState({
-    license: hubContent ? hubContent.license : '',
-    language: hubContent ? hubContent.language : language,
-    level: hubContent ? hubContent.level : '',
-    licenseVersion:  hubContent ? hubContent.licenseVersion : '',
-    title: hubContent ? hubContent.title : title,
-    disciplines: hubContent ? hubContent.disciplines : []
+    license: hubContent.license || '',
+    language: hubContent.language || language,
+    level: hubContent.level || '',
+    licenseVersion:  hubContent.licenseVersion || '',
+    title: hubContent.title || title,
+    disciplines: hubContent.disciplines || []
   });
   const l10n = useContext(TranslationContext);
 
@@ -114,10 +115,19 @@ function Main({ title, publishURL, contentType, language, token, hubContent}) {
   const handleNext = () => {
     if (activeStep === 2) {
       setShareInProcess(true);
-      publishToHub(publishURL, token, { ...mandatoryInfo, ...optionalInfo }, () => {
-        setShared(true);
-        setShareInProcess(false);
+      publishToHub(publishURL, token, { ...mandatoryInfo, ...optionalInfo }, (response) => {
+        const data = response.data;
+        if (!data.success) {
+          setShareFailedMessage(data.message || null);
+          setShareFailed(true);
+          setShareInProcess(false);
+        }
+        else {
+          setShared(true);
+          setShareInProcess(false);
+        }
       }, () => {
+        setShareFailedMessage(null);
         setShareFailed(true);
         setShareInProcess(false);
       })
@@ -170,7 +180,15 @@ function Main({ title, publishURL, contentType, language, token, hubContent}) {
               </div>
               {shareFailed &&
                 <div className='share-error'>
-                  <Message severity='error'><span className='bold'>{l10n.shareFailed}</span> {l10n.shareTryAgain}</Message>
+                  <Message severity='error'>
+                    {
+                      shareFailedMessage
+                      ? <span className='bold'>{ shareFailedMessage }</span>
+                      : <>
+                          <span className='bold'>{ l10n.shareFailed}</span> {l10n.shareTryAgain}
+                        </>
+                    }
+                  </Message>
                 </div>
               }
               <div className="footer">

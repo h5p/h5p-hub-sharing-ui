@@ -24,6 +24,7 @@ const Registration = ({
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [shareState, setShareState] = useState('');
   const shareFailedRef = React.useRef(null);
+  const [shareFailedMessage, setShareFailedMessage] = useState(null);
   const shareFinishedRef = React.useRef(null);
 
   const [fields, setFields] = useState({
@@ -72,13 +73,30 @@ const Registration = ({
    */
   const onRegister = () => {
     setShareState('in-process');
-    registerToHub(postUrl, token, fields, () => {
-      setShareState('finished');
-      if (shareFinishedRef.current) {
-        shareFinishedRef.current.focus();
+    registerToHub(postUrl, token, fields, (response) => {
+      if (response.data && response.data.success) {
+        setShareState('finished');
+        setShareFailedMessage(null);
+        if (shareFinishedRef.current) {
+          shareFinishedRef.current.focus();
+        }
       }
-    }, () => {
+      else {
+        let msg = (response.data && response.data.message) || null;
+        setShareFailedMessage(msg);
+        setShareState('failed');
+        if (shareFailedRef.current) {
+          shareFailedRef.current.focus();
+        }
+      }
+    }, (error) => {
       setShareState('failed');
+      let message = (
+        error.response
+        && error.response.data
+        && error.response.data.message
+      ) || null;
+      setShareFailedMessage(message);
       if (shareFailedRef.current) {
         shareFailedRef.current.focus();
       }
@@ -91,7 +109,8 @@ const Registration = ({
         <Message severity='error'>
           <div className='message-header' tabIndex="-1" ref={shareFailedRef}>{l10n.registrationFailed}</div>
           <div className='message-description'>
-            {l10n.registrationFailedDescription}</div>
+            {shareFailedMessage || l10n.registrationFailedDescription}
+          </div>
         </Message>
       }
       {shareState === 'finished' ?
