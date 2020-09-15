@@ -27,15 +27,8 @@
       outline: none;
     }
 
-    &:hover {
-      &.parent:after {
-        @include arrow-right;
-      }
-    }
-    &.highlighted {
-      &.parent:after {
-        @include arrow-right;
-      }
+    &.parent::after {
+      @include arrow-right;
     }
 
     .content {
