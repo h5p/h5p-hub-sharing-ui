@@ -16,8 +16,11 @@
 
     .icon-close {
       cursor: pointer;
+      font-size: 1em;
+      border: none;
+      outline: none;
 
-      &:before {
+      &::before {
         font-size: 0.6em;
         padding: 0.5em;
         line-height: 1.1;
@@ -35,9 +38,14 @@
         transition: all 0.3s;
       }
 
-      &:hover:before {
+      &:hover::before {
         background: #eee;
         color: #000;
+      }
+
+      &:focus::before {
+        outline: #000;
+        outline-style: auto;
       }
     }
 

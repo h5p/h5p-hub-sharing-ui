@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import './ImagePreview.scss';
 
 const ImagePreview = ({src}) => {
 
-  const img = new Image();
-  img.src = src;
+  const img = useMemo(() => {
+    const img = new Image();
+    img.src = src;
+    return img;
+  }, [src]);
 
   const style = {
     backgroundImage: `url('${img.src}')`
