@@ -144,7 +144,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                   remove_icon: !!optionalInfo.icon.old
                 }))
               }
-              ariaLabel={l10n.icon} />
+              ariaLabel={l10n.icon}
+              removeImageLabel={l10n.removeImage} />
           </FormElement>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
             <div id='screenshots'>
@@ -161,7 +162,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                         remove_screenshots: [...prevState.remove_screenshots, img.src.match(/([^\/])+$/)[0]]
                       })) : null
                     }
-                    ariaLabel={l10n.screenshots} />
+                    ariaLabel={l10n.screenshots}
+                    removeImageLabel={l10n.removeImage} />
                   <FormElement label={l10n.altText} mandatory={true}>
                     <input
                       className="alt-text"
@@ -176,7 +178,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                 &&
                 <ImageUpload
                   onFile={img => setScreenshot(img, uploadedImages.length)}
-                  ariaLabel={l10n.screenshots} />
+                  ariaLabel={l10n.screenshots}
+                  removeImageLabel={l10n.removeImage} />
               }
             </div>
           </FormElement>

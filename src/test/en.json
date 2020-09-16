@@ -71,5 +71,7 @@
   "accountDetailsLinkText": "here",
   "registrationTitle": "Hub Registration and End User License Agreement (EULA)",
   "registrationFailed": "An error occured",
-  "registrationFailedDescription": "We were not able to create an account at this point. Something went wrong. Try again later."
+  "registrationFailedDescription": "We were not able to create an account at this point. Something went wrong. Try again later.",
+  "remove": "Remove",
+  "removeImage": "Remove image"
 }

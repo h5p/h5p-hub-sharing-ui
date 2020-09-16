@@ -4,7 +4,7 @@ import ImagePreview from './ImagePreview';
 
 import './ImageUpload.scss';
 
-const ImageUpload = ({onFile, clearImage, img, ariaLabel}) => {
+const ImageUpload = ({onFile, clearImage, img, ariaLabel, removeImageLabel}) => {
   const input = React.createRef();
 
   /**
@@ -49,13 +49,20 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel}) => {
     }
   }
 
+  const handleRemoveImage = (event) => {
+    event.stopPropagation();
+    if (['Enter', 'Space'].indexOf(event.key) !== -1) {
+      removeImage();
+    }
+  }
+
   return (
     <div className="image-upload-container" role="button" tabIndex="0" onKeyDown={handleKeyDown} aria-label={ariaLabel}>
       {
         img && img.src && (
           <>
             <ImagePreview src={img.src} />
-            <span className="icon-close" onClick={removeImage}/>
+            <button className="icon-close" aria-label={removeImageLabel} onKeyDown={handleRemoveImage} onClick={handleRemoveImage} tabIndex="0" />
           </>
         )
       }
@@ -70,7 +77,8 @@ ImageUpload.propTypes = {
   onFile: PropTypes.func.isRequired,
   clearImage: PropTypes.func,
   img: PropTypes.object,
-  ariaLabel: PropTypes.string.isRequired
+  ariaLabel: PropTypes.string.isRequired,
+  removeImageLabel: PropTypes.string.isRequired
 };
 
 export default ImageUpload;

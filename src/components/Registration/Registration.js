@@ -195,9 +195,13 @@ const Registration = ({
               </div>
               <ImageUpload
                 img={fields.logo}
-                onFile={img => setInfo(img, 'logo')}
+                onFile={img => { 
+                  setInfo(false, 'removeLogo');
+                  setInfo(img, 'logo'); 
+                }}
                 clearImage={setInfo.bind(this, true, 'removeLogo')}
                 ariaLabel={l10n.logoUploadText}
+                removeImageLabel={l10n.removeImage}
               />
               <Checkbox
                 label={l10n.acceptTerms}
