@@ -28,6 +28,7 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel}) => {
    */
   const removeImage = () => {
     onFile({});
+    input.current.value = null;
     if (clearImage) {
       clearImage();
     }
