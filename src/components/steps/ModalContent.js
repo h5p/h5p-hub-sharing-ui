@@ -6,6 +6,45 @@ import TranslationContext from '../../context/Translation';
 
 import './ModalContent.scss';
 
+/**
+ * Get licenses or license versions if they exist for a given license
+ *
+ * @param license
+ * @returns {{name: string, id: string, url: string}[]}
+ */
+const getLicenseVersions = (license) => {
+  if (license.versions.length) {
+    return license.versions.map(version => ({
+      id: `${license.id}-${version.id}`,
+      name: `${license.name} ${version.name}`,
+      url: version.url
+    }));
+  }
+
+  return [license];
+}
+
+/**
+ * Get licenses in a listable format
+ *
+ * @param arr
+ * @param license
+ * @returns {any[]}
+ */
+const getLicensesReducer = (arr, license) => {
+  if (license.licenses) {
+    // Flatten option group
+    const licenses = license.licenses.reduce((optGroupArr, optGroupLicense) => {
+      const licenseVersions = getLicenseVersions(optGroupLicense);
+      return optGroupArr.concat(licenseVersions);
+    }, []);
+    return arr.concat(licenses);
+  }
+
+  const licenseVersions = getLicenseVersions(license);
+  return arr.concat(licenseVersions);
+}
+
 const ModalContent = React.forwardRef(({closeModal}, ref) => {
 
   const metadata = React.useContext(MetadataContext);
@@ -23,17 +62,9 @@ const ModalContent = React.forwardRef(({closeModal}, ref) => {
         </div>
       </div>
       <div className='dialog-content'>
-        <Accordion>{metadata.licenses.map(license =>
+        <Accordion>{metadata.licenses.reduce(getLicensesReducer, []).map(license =>
           <div key={license.id} id={license.id} header={license.name}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Sed id tortor metus. In in ipsum ipsum.
-            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In non sagittis ante.
-            Phasellus volutpat dapibus mollis.
-            Fusce sed odio non ante venenatis ultrices.
-            Maecenas dictum, quam quis sagittis mattis, odio urna tincidunt ipsum, eu congue leo sem lacinia ante.
-            Vivamus massa dui, luctus et aliquam sit amet, faucibus vitae nibh. Suspendisse quis dapibus tellus.
-            Fusce tempus est rutrum massa mollis venenatis. Aenean quis ante vel lacus facilisis venenatis ut nec nisl.
-            Nulla laoreet tincidunt sapien vitae gravida.
+            <a href={license.url} target="_blank">{license.url}</a>
           </div>
         )}
         </Accordion>
