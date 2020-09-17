@@ -1,0 +1,41 @@
+.h5p-hub-publish {
+
+  .cancel-publish-confirmation-modal {
+    margin: 2em auto;
+    width: max-content;
+  
+    .dialog-header {
+      padding: 1.708em 2.292em;
+      border-bottom: 1px solid #d5d5d7;
+      
+      .dialog-title {
+        display: flex;
+        justify-content: space-between;
+    
+        span {
+          font-size: 1.458em;
+          color: #1a1a1a;
+          margin-bottom: 0.2em;
+        }
+      }
+    }
+
+    .dialog-content {
+      
+      .dialog-description {
+        font-size: 0.833em;
+        color: #707475;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 2em;
+
+        button {
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+}

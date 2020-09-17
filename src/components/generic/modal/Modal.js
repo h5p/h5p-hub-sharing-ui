@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import './Modal.scss'
 
-const Modal = ({ isOpen, closeModal, children, onAfterOpen }) => {
+const Modal = ({ isOpen, closeModal, children, onAfterOpen, className }) => {
 
   /**
    * Handle closing of modal
@@ -18,7 +18,7 @@ const Modal = ({ isOpen, closeModal, children, onAfterOpen }) => {
     <div>
       <ReactModal 
       isOpen={isOpen}
-      className='modal-content'
+      className={className}
       onRequestClose={onClose}
       onAfterOpen={onAfterOpen}
       overlayClassName='modal-overlay'
