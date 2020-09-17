@@ -81,6 +81,7 @@ const SearchField = React.forwardRef(({
           onKeyDown={event => handleKeyDown(event)}
           onChange={handleInput}
           onFocus={onFocus}
+          autoComplete="off"
         >
         </input>
         <div className="icon-arrow" />
