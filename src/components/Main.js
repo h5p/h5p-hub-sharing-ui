@@ -7,6 +7,8 @@ import Optional from './steps/Optional';
 import Review from './steps/Review';
 import Success from './steps/Success';
 import Message from './generic/message/Message';
+import Modal from './generic/modal/Modal';
+import ConfirmationDialog from './generic/confirmation-dialog/ConfirmationDialog';
 import TranslationContext from '../context/Translation';
 import { replace, publishToHub } from '../utils/helpers';
 import PropTypes from 'prop-types';
@@ -77,6 +79,7 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
   const [shareFailedMessage, setShareFailedMessage] = useState(null);
   const [shareInProcess, setShareInProcess] = React.useState(false);
   const [mandatoryIsValid, setMandatoryIsValid] = React.useState(false);
+  const [showConfirmationDialog, setShowConfirmationDialog] = React.useState(false);
   const [optionalIsValid, setOptionalIsValid] = React.useState(false);
   const [optionalInfo, setOptionalInfo] = React.useState({
     shortDescription:  hubContent.summary || '',
@@ -143,7 +146,21 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  
+
+  /**
+   * Handle cancel button is clicked
+   */
+  const handleCancel = () => {
+    setShowConfirmationDialog(true);
+  };
+
+  /**
+   * Cancel the sharing process and navigate back
+   */
+  const cancelSharing = () => {
+    window.history.back();
+  };
+
   const mainTitle = replace(l10n.mainTitle, { ':title': title });
 
   const nextButtonEnabled = activeStep === 2 || (activeStep === 0 && mandatoryIsValid) || (activeStep === 1 && optionalIsValid);
@@ -151,11 +168,17 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
   return (
     <div className="h5p-hub-publish">
       <div id='h5p-hub-publish-modal-wrapper'>
+        <Modal isOpen={showConfirmationDialog} closeModal={() => setShowConfirmationDialog(false)} className="cancel-publish-confirmation-modal">
+          <ConfirmationDialog l10n={l10n} onConfirm={cancelSharing} onCancel={() => setShowConfirmationDialog(false)} />
+        </Modal>
         <div className="header">
           <div
             role="heading"
             className="title"
             dangerouslySetInnerHTML={{ __html: mainTitle }} />
+          <Button variant="outlined" color="primary" onClick={handleCancel}>
+            {l10n.cancel}
+          </Button>
         </div>
 
         <div className="content">

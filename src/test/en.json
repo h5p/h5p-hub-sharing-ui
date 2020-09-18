@@ -73,5 +73,9 @@
   "registrationFailed": "An error occured",
   "registrationFailedDescription": "We were not able to create an account at this point. Something went wrong. Try again later.",
   "remove": "Remove",
-  "removeImage": "Remove image"
+  "removeImage": "Remove image",
+  "cancelPublishConfirmationDialogTitle": "Cancel sharing",
+  "cancelPublishConfirmationDialogDescription": "Are you sure you want to cancel the sharing process?",
+  "cancelPublishConfirmationDialogCancelButtonText": "No",
+  "cancelPublishConfirmationDialogConfirmButtonText": "Yes"
 }
