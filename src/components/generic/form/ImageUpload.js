@@ -51,7 +51,7 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel, removeImageLabel}) => 
 
   const handleRemoveImage = (event) => {
     event.stopPropagation();
-    if (['Enter', 'Space'].indexOf(event.key) !== -1) {
+    if (event.type === 'click' || ['Enter', 'Space'].indexOf(event.key) !== -1) {
       removeImage();
     }
   }
