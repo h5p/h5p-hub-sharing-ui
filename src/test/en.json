@@ -69,7 +69,7 @@
   "successfullyRegistred": "You have successfully registered an account on the H5P Hub",
   "successfullyRegistredDescription": "You account details can be changed",
   "accountDetailsLinkText": "here",
-  "registrationTitle": "Hub Registration",
+  "registrationTitle": "H5P Hub Registration",
   "registrationFailed": "An error occured",
   "registrationFailedDescription": "We were not able to create an account at this point. Something went wrong. Try again later.",
   "remove": "Remove",
