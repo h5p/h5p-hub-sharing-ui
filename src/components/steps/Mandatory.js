@@ -67,7 +67,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
   return (
     <>
-      <Modal isOpen={modalOpen} closeModal={() => toggleLicense(false)} onAfterOpen={onModalOpen} className="modal-content">
+      <Modal isOpen={modalOpen} closeModal={() => toggleLicense(false)} onAfterOpen={onModalOpen}>
         <ModalContent closeModal={() => toggleLicense(false)} ref={modalCloseButtonRef}/>
       </Modal>
 
