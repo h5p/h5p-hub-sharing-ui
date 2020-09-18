@@ -49,9 +49,13 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel, removeImageLabel}) => 
     }
   }
 
-  const handleRemoveImage = (event) => {
-    event.stopPropagation();
-    if (event.type === 'click' || ['Enter', 'Space'].indexOf(event.key) !== -1) {
+  /**
+   * Handle "Enter" and "Space" keydown on remove image button
+   * @param {*} event
+   */
+  const handleRemoveImageByKeyboard = (event) => {
+    if (['Enter', 'Space'].indexOf(event.key) !== -1) {
+      event.stopPropagation();
       removeImage();
     }
   }
@@ -62,7 +66,7 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel, removeImageLabel}) => 
         img && img.src && (
           <>
             <ImagePreview src={img.src} />
-            <button className="icon-close" aria-label={removeImageLabel} onKeyDown={handleRemoveImage} onClick={handleRemoveImage} tabIndex="0" />
+            <button className="icon-close" aria-label={removeImageLabel} onKeyDown={handleRemoveImageByKeyboard} onClick={removeImage} tabIndex="0" />
           </>
         )
       }
