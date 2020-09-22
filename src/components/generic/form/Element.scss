@@ -1,7 +1,7 @@
 @import '../../../styles/mixins';
 
 .h5p-hub-publish, .h5p-hub-registration {
-  .form-element {
+  .h5p-hub-form-element {
     font-family: 'Open Sans', sans-serif;
     padding: 1em 0;
 
@@ -11,7 +11,7 @@
       margin-bottom: 0.4em;
       font-weight: bold;
     }
-    &.mandatory label:after {
+    &.h5p-hub-mandatory label:after {
       content: '*';
       color: #d11e15;    
       position: relative;
@@ -30,7 +30,7 @@
         font-style: italic;
       }
     }
-    .description {
+    .h5p-hub-description {
       font-size: 0.833em;
       color: #707475;
       margin: 0 0 1em 0;
@@ -48,7 +48,7 @@
         font-style: italic;
       }
     }
-    .link-button {
+    .h5p-hub-link-button {
       border: none;
       color: #2c67b0;
       text-decoration: underline;
@@ -56,7 +56,7 @@
       padding: 0;
       text-align: right;
     }
-    .details-row {
+    .h5p-hub-details-row {
       display: flex;
       align-content: center;
       align-items: center;
@@ -65,7 +65,7 @@
   }
 
   // Hit only form-elements on the first level
-  .step-content > .form-element {
+  .h5p-hub-step-content > .h5p-hub-form-element {
     &:first-child {
       padding-top: 0;
     }

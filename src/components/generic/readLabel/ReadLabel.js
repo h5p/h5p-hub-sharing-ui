@@ -6,7 +6,7 @@ import './ReadLabel.scss';
 const ReadLabel = ({ label, read }) => (
   <div
     aria-live='polite'
-    className='h5p-hidden-read'
+    className='h5p-hub-hidden-read'
     dangerouslySetInnerHTML={{ __html: read ? label: '' }} />
 )
 

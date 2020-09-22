@@ -16,7 +16,7 @@ const ImagePreview = ({src}) => {
   };
 
   return (
-    <span className="image-preview" style={style} />
+    <span className="h5p-hub-image-preview" style={style} />
   );
 };
 

@@ -1,13 +1,13 @@
 @import "../../styles/variables";
 
 .h5p-hub-registration {
-  .message-header {
+  .h5p-hub-message-header {
     font-weight: bold;
     font-size: 1.042em;
     font-family: 'Open Sans', sans-serif;
   }
 
-  .message-description {
+  .h5p-hub-message-description {
     margin-top: 0.5em;
     font-size: 0.833em;
     font-family: 'Open Sans', sans-serif;
@@ -18,33 +18,33 @@
     }
   }
 
-  .email-address {
+  .h5p-hub-email-address {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
   }
 
-  .publisher-description {
+  .h5p-hub-publisher-description {
     height: 10em;
   }
-  .logo-upload-text {
+  .h5p-hub-logo-upload-text {
     font-size: 0.917em;
     color: #707475;
     margin-bottom: 1em;
     margin-top: 0.5em;
   }
-  .text-field {
+  .h5p-hub-text-field {
     max-height: 10em;
     margin-top: 1.5em;
   }
 
-  .checkbox {
+  .h5p-hub-checkbox {
     margin-top: 1.5em;
     font-weight: normal;
     font-size: 0.833em;
   }
 
-  .register-hub {
+  .h5p-hub-register-hub {
     margin-left: 1em;
     color: #2b9684;
     border: 2px solid #2b9684;
@@ -55,7 +55,7 @@
     }
   }
 
-  .footer {
+  .h5p-hub-footer {
     display: flex;
     justify-content: flex-end;
   }

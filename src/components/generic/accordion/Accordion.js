@@ -18,16 +18,16 @@ const Accordion = ({ children }) => {
   return children.map(child => (
     <div key={child.props.id}>
       <dt className="h5p-hub-accordion-heading">
-        <span className={'icon-dropdown' + (open === child.props.id ? ' open' : '')}></span>
-        <button className='accordion-button'
+        <span className={'h5p-hub-icon-dropdown' + (open === child.props.id ? ' h5p-hub-open' : '')}></span>
+        <button className='h5p-hub-accordion-button'
           onClick={() => handleToggle(child.props.id)}
           aria-expanded={open === child.props.id}>
-          <span className='accordion-header'>{child.props.header}</span>
+          <span className='h5p-hub-accordion-header'>{child.props.header}</span>
         </button>
       </dt>
       {open == child.props.id &&
         <dl>
-          <div className="panel-body">
+          <div className="h5p-hub-panel-body">
             {child}
           </div>
         </dl>

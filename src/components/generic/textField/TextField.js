@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import './TextField.scss';
 
 const TextField = ({ title, description, mainText }) => (
-  <div className='text-field'>
-    <div className='title'>
+  <div className='h5p-hub-text-field'>
+    <div className='h5p-hub-title'>
       {title}
     </div>
-    <div className='description'>
+    <div className='h5p-hub-description'>
       {description}
     </div>
-    <div className='main-text'>
+    <div className='h5p-hub-main-text'>
       {mainText}
     </div>
   </div>

@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
   
-    .icon-dropdown {
+    .h5p-hub-icon-dropdown {
       font-size: 0.4em;
       color: #616161;
       display: inline-block;
@@ -11,13 +11,13 @@
       display: flex;
       padding: 0.2em 0.2em;
       transform: rotate(-90deg);
-      &.open {
+      &.h5p-hub-open {
         transform: rotate(0);
       }
     }
   }
 
-  .accordion-button {
+  .h5p-hub-accordion-button {
     border: none;
     position: relative;
     padding: 0.2em 0.2em;
@@ -25,13 +25,13 @@
     justify-self: start;
     display: flex;
     
-    .accordion-header {
+    .h5p-hub-accordion-header {
       border: none;
       text-align: left;
       color: #616161;
     }
   }
-  .panel-body {
+  .h5p-hub-panel-body {
     font-size: 0.833em;
     margin-left: 0.7em;
     color: #707475;

@@ -1,10 +1,10 @@
-.h5p-hub-publish .step {
+.h5p-hub-publish .h5p-hub-step {
   
   text-align: center;
   font-size: 0.75em;
   font-weight: bold;
 
-  .step-icon {
+  .h5p-hub-step-icon {
     color: #303030;
     border-radius: 50%;
     border: 0.462em solid #e1e1e1;
@@ -17,18 +17,18 @@
     background: #fff;
     box-sizing: border-box;
 
-    .icon-check {
+    .h5p-hub-icon-check {
       line-height: 2.276;
     }
   }
 
-  .step-label {
+  .h5p-hub-step-label {
     color: #757575;
     margin-top: 0.5em;
     min-width: 8em;
   }
 
-  &.active {
+  &.h5p-hub-active {
     color: #20d2b2;
     .step-icon {
       border-color: #20d2b2;
@@ -36,8 +36,8 @@
     }
   }
 
-  &.completed {
-    .step-icon {
+  &.h5p-hub-completed {
+    .h5p-hub-step-icon {
       background: #0ea385;
       border-color: #20d2b2;
       color: #fff;

@@ -101,15 +101,15 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
       >
         <Keywords chips={optionalInfo.keywords} setKeywords={(chips) => setInfo(chips, 'keywords')} />
       </FormElement>
-      <div className='columns'>
-        <div className='column'>
+      <div className='h5p-hub-columns'>
+        <div className='h5p-hub-column'>
           <FormElement label={l10n.shortDescription}>
             <textarea
               value={optionalInfo.shortDescription ? optionalInfo.shortDescription : ''}
-              id="short-description"
+              id="h5p-hub-short-description"
               placeholder={l10n.shortDescriptionPlaceholder}
               onChange={(event) => setInfo(event.target.value, 'shortDescription')}
-              className='short-description'
+              className='h5p-hub-short-description'
               maxLength={shortDescriptionMaxLength}
               onFocus={() => setShortDescriptionFocus(true)}
               onBlur={() => setShortDescriptionFocus(false)}/>
@@ -117,11 +117,11 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
           <Tip
             text={replace(l10n.maxLength, { ':length': shortDescriptionMaxLength })}
             open={optionalInfo.shortDescription.length === shortDescriptionMaxLength && shortDescriptionFocus}
-            className='tip-text-field'/>
+            className='h5p-hub-tip-text-field'/>
           <FormElement label={l10n.description}>
             <textarea
               value={optionalInfo.longDescription ? optionalInfo.longDescription : ''}
-              id="long-description"
+              id="h5p-hub-long-description"
               placeholder={l10n.longDescriptionPlaceholder}
               maxLength={longDescriptionMaxLength}
               onChange={(event) => setInfo(event.target.value, 'longDescription')}
@@ -131,9 +131,9 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
           <Tip
             text={replace(l10n.maxLength, { ':length': longDescriptionMaxLength })}
             open={optionalInfo.longDescription.length === longDescriptionMaxLength && longDescriptionFocus}
-            className='tip-text-field' />
+            className='h5p-hub-tip-text-field' />
         </div>
-        <div className='column'>
+        <div className='h5p-hub-column'>
           <FormElement label={l10n.icon} description={l10n.iconDescription}>
             <ImageUpload
               img={optionalInfo.icon}
@@ -148,10 +148,10 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
               removeImageLabel={l10n.removeImage} />
           </FormElement>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
-            <div id='screenshots'>
+            <div id='h5p-hub-screenshots'>
               {optionalInfo.screenshots.map((img, i) =>
                 img.src &&
-                <div className='row' key={i}>
+                <div className='h5p-hub-row' key={i}>
                   <ImageUpload
                     key={i}
                     img={img}
@@ -166,8 +166,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                     removeImageLabel={l10n.removeImage} />
                   <FormElement label={l10n.altText} mandatory={true}>
                     <input
-                      className="alt-text"
-                      id={`alt-text-${i}`}
+                      className="h5p-hub-alt-text"
+                      id={`h5p-hub-alt-text-${i}`}
                       value={optionalInfo.screenshots[i].alt}
                       onChange={(event) => setAltText(event.target.value, i)}
                       ref={el => altInputRefs.current[i] = el} />

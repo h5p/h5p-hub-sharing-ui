@@ -5,7 +5,7 @@ import './Message.scss';
 
 const Message = ({severity, children}) => {
   return (
-    <div className={`message ${severity}`}>
+    <div className={`h5p-hub-message h5p-hub-${severity}`}>
       {children}
     </div>
   );

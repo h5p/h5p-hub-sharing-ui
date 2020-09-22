@@ -10,33 +10,33 @@ const Success = ({ title, contentType }) => {
 
   const isEdit = (l10n.isNowSubmitted === l10n.changeHasBeenSubmitted);
   const submittedText = (
-    <div className={ 'now-submitted-text' + (isEdit ? ' is-edit' : '') }>
+    <div className={ 'h5p-hub-now-submitted-text' + (isEdit ? ' h5p-hub-is-edit' : '') }>
       {l10n.isNowSubmitted}
     </div>
   );
 
   return (
     <>
-      <div className='success-page'>
-        <div className='step-icon-success'>
-          <i className="icon-check" />
+      <div className='h5p-hub-success-page'>
+        <div className='h5p-hub-step-icon-success'>
+          <i className="h5p-hub-icon-check" />
         </div>
-        <div className='submitted-text'>
+        <div className='h5p-hub-submitted-text'>
           {l10n.submitted}
         </div>
-        <div className='content-type'>
+        <div className='h5p-hub-content-type'>
           {contentType}
         </div>
         { isEdit &&
           submittedText
         }
-        <div className={ 'title' + (isEdit ? ' is-edit' : '') }>
+        <div className={ 'h5p-hub-title' + (isEdit ? ' h5p-hub-is-edit' : '') }>
           {title}
         </div>
         { !isEdit &&
           submittedText
         }
-        <div className='content-available'>
+        <div className='h5p-hub-content-available'>
           {l10n.contentAvailable}
         </div>
       </div>

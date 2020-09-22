@@ -7,7 +7,7 @@ import './Tip.scss';
 
 const Tip = React.forwardRef(({ open, text, className, onTransitionEnd }, ref) => {
 
-  const classNameCombined = `tip${className ? ' ' + className : ''}`;
+  const classNameCombined = `h5p-hub-tip${className ? ' ' + className : ''}`;
 
   return (
     <div
@@ -16,13 +16,13 @@ const Tip = React.forwardRef(({ open, text, className, onTransitionEnd }, ref) =
       <CSSTransition
         in={open}
         timeout={200}
-        classNames="tip-wrapper"
+        classNames="h5p-hub-tip-wrapper"
         onEntered={onTransitionEnd}
         onExited={onTransitionEnd}
       >
-        <div ref={ref} className="tip-wrapper">
+        <div ref={ref} className="h5p-hub-tip-wrapper">
           <div
-            className="tip"
+            className="h5p-hub-tip"
             dangerouslySetInnerHTML={{ __html: text }}
           />
         </div>

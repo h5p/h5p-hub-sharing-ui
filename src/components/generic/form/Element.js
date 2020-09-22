@@ -5,16 +5,16 @@ import './Element.scss';
 
 const FormElement = ({label, description, mandatory, children, link, className}) => {
   return (
-    <div className={`form-element ${mandatory ? 'mandatory' : ''} ${className ? className : ''}`}>
+    <div className={`h5p-hub-form-element ${mandatory ? 'h5p-hub-mandatory' : ''} ${className ? className : ''}`}>
       <label htmlFor={children.props.id}>{label}</label>
-      <div className='details-row'>
+      <div className='h5p-hub-details-row'>
       {
         description &&
-        <div className="description">{description}</div>
+        <div className="h5p-hub-description">{description}</div>
       }
       {
         link &&
-        <button className='link-button' onClick={link.onClick}>{link.linkText}</button>
+        <button className='h5p-hub-link-button' onClick={link.onClick}>{link.linkText}</button>
       }
       </div>
       {children}

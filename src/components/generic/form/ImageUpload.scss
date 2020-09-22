@@ -1,12 +1,12 @@
 .h5p-hub-publish,
 .h5p-hub-registration {
-  .image-upload-container {
+  .h5p-hub-image-upload-container {
     width: 4em;
     height: 3em;
     margin-right: 1em;
     position: relative;
 
-    .image-preview {
+    .h5p-hub-image-preview {
       position: absolute;
       left: 4px;
       top: 4px;
@@ -14,7 +14,7 @@
       height: calc(100% - 4px);
     }
 
-    .icon-close {
+    .h5p-hub-icon-close {
       cursor: pointer;
       font-size: 1em;
       border: none;
@@ -49,7 +49,7 @@
       }
     }
 
-    .image-upload {
+    .h5p-hub-image-upload {
       position: absolute;
       top: 0;
       left: 0;
@@ -87,7 +87,7 @@
         transform: translateY(-50%);
       }
 
-      &.image-selected {
+      &.h5p-hub-image-selected {
         border-style: solid;
         border-radius: 0.1em;
 

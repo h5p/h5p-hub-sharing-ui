@@ -52,18 +52,18 @@ const ModalContent = React.forwardRef(({closeModal}, ref) => {
 
   return (
     <>
-      <div className='dialog-header'>
-        <div className='dialog-title'>
+      <div className='h5p-hub-dialog-header'>
+        <div className='h5p-hub-dialog-title'>
           <span>{l10n.contentLicenseTitle}</span>
           <button onClick={closeModal} ref={ref}>{l10n.close}</button>
         </div>
-        <div className='dialog-description'>
+        <div className='h5p-hub-dialog-description'>
           {l10n.licenseDialogDescription}
         </div>
       </div>
-      <div className='dialog-content'>
+      <div className='h5p-hub-dialog-content'>
         <Accordion>{metadata.licenses.reduce(getLicensesReducer, []).map(license =>
-          <div key={license.id} id={license.id} header={license.name}>
+          <div key={license.id} id={'h5p-hub-' + license.id} header={license.name}>
             <a href={license.url} target="_blank">{license.url}</a>
           </div>
         )}

@@ -1,14 +1,14 @@
 .h5p-hub-publish {
 
-  .cancel-publish-confirmation-modal {
+  .h5p-hub-cancel-publish-confirmation-modal {
     margin: 2em auto;
     width: max-content;
   
-    .dialog-header {
+    .h5p-hub-dialog-header {
       padding: 1.708em 2.292em;
       border-bottom: 1px solid #d5d5d7;
       
-      .dialog-title {
+      .h5p-hub-dialog-title {
         display: flex;
         justify-content: space-between;
     
@@ -20,14 +20,14 @@
       }
     }
 
-    .dialog-content {
+    .h5p-hub-dialog-content {
       
-      .dialog-description {
+      .h5p-hub-dialog-description {
         font-size: 0.833em;
         color: #707475;
       }
 
-      .button-group {
+      .h5p-hub-button-group {
         display: flex;
         justify-content: flex-end;
         margin-top: 2em;

@@ -57,7 +57,6 @@ const Keywords = ({ chips, setKeywords }) => {
     <>
       <Chips chips={getChips()} setChips={setChips}></Chips>
       <input
-        className='input-field'
         placeholder={l10n.keywordsPlaceholder}
         onKeyDown={event => handleKeyDown(event)}
         ref={inputField}
@@ -66,7 +65,7 @@ const Keywords = ({ chips, setKeywords }) => {
       <Tip
         text={l10n.keywordExists}
         open={showTip && inputFocus}
-        className='tip-keywords' />
+        className='h5p-hub-tip-keywords' />
     </>
   )
 };

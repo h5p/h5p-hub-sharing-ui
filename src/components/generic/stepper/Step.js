@@ -5,24 +5,24 @@ import './Step.scss';
 
 const Step = ({active, label, index, completed}) => {
 
-  let classes = ['step'];
+  let classes = ['h5p-hub-step'];
   if (active) {
-    classes.push('active');
+    classes.push('h5p-hub-active');
   }
   if (completed) {
-    classes.push('completed');
+    classes.push('h5p-hub-completed');
   }
 
   return (
     <div className={classes.join(' ')}>
-      <div className="step-icon">
+      <div className="h5p-hub-step-icon">
         {
           completed ? 
-          <i className="icon-check"/> : 
+          <i className="h5p-hub-icon-check"/> :
           index+1
         }
       </div>
-      <div className="step-label">{label}</div>
+      <div className="h5p-hub-step-label">{label}</div>
     </div>
   );
 };

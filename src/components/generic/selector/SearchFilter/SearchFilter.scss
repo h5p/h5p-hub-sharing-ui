@@ -1,10 +1,10 @@
-.h5p-hub-publish .search-filter {
+.h5p-hub-publish .h5p-hub-search-filter {
   position: relative;
   border: 1px solid #bebdcd;
   border-radius: 0.208em;
   font-size: 0.833em;
 
-  .clear-button {
+  .h5p-hub-clear-button {
     background: none;
     position: absolute;
     top: 0;
@@ -19,7 +19,7 @@
       font-size: 1em;
     }
   }
-  .navigate-parent {
+  .h5p-hub-navigate-parent {
     font-size: 1.25em;
     padding: 0.3534em;
     display: flex;
@@ -53,7 +53,7 @@
     }
   }
 
-  .checkbox-list {
+  .h5p-hub-checkbox-list {
     overflow: hidden;
     overflow-y: scroll;
     max-height: 25em;
@@ -70,9 +70,9 @@
         border-top: 1px solid #e6e6e8;
       }
 
-      .content {
+      .h5p-hub-content {
         padding: 0.3em;
-        .label-text {
+        .h5p-hub-label-text {
           margin-right: 1em;
         }
       }
@@ -85,7 +85,7 @@
       &:hover {
         background-color: #f2f2f2;
       }
-      &.highlighted {
+      &.h5p-hub-highlighted {
         outline: 1px solid #3ba0f2;
         outline-offset: -1px;
         background-color: #fff;

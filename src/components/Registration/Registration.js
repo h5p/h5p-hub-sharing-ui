@@ -107,37 +107,37 @@ const Registration = ({
     <div className='h5p-hub-registration'>
       {shareState === 'failed' &&
         <Message severity='error'>
-          <div className='message-header' tabIndex="-1" ref={shareFailedRef}>{l10n.registrationFailed}</div>
-          <div className='message-description'>
+          <div className='h5p-hub-message-header' tabIndex="-1" ref={shareFailedRef}>{l10n.registrationFailed}</div>
+          <div className='h5p-hub-message-description'>
             {shareFailedMessage || l10n.registrationFailedDescription}
           </div>
         </Message>
       }
       {shareState === 'finished' ?
         <Message severity='success'>
-          <div className='message-header' tabIndex="-1" ref={shareFinishedRef}>{l10n.successfullyRegistred}</div>
-          <div className='message-description'>
+          <div className='h5p-hub-message-header' tabIndex="-1" ref={shareFinishedRef}>{l10n.successfullyRegistred}</div>
+          <div className='h5p-hub-message-description'>
             {l10n.successfullyRegistredDescription}
             <a href={accountSettingsUrl}>{l10n.accountDetailsLinkText}</a>
           </div>
         </Message>
         :
         <div className='h5p-hub-registration-wrapper'>
-          <div className="step-panel">
-            <div className="step-title" role="heading">
+          <div className="h5p-hub-step-panel">
+            <div className="h5p-hub-step-title" role="heading">
               {l10n.registrationTitle}
             </div>
-            <div className={`step-content`}>
-              <div className='row'>
+            <div className={`h5p-hub-step-content`}>
+              <div className='h5p-hub-row'>
                 <FormElement label={l10n.publisherFieldTitle} mandatory={true} description={l10n.publisherFieldDescription}>
                   <input
-                    id="publisher"
+                    id="h5p-hub-publisher"
                     onChange={e => setInfo(e.target.value, 'publisher')}
                     value={fields.publisher} />
                 </FormElement>
-                <FormElement label={l10n.emailAddress} mandatory={true} className='email-address'>
+                <FormElement label={l10n.emailAddress} mandatory={true} className='h5p-hub-email-address'>
                   <input
-                    id="email-address"
+                    id="h5p-hub-email-address"
                     onChange={e => setInfo(e.target.value, 'emailAddress')}
                     value={fields.emailAddress} />
                 </FormElement>
@@ -145,52 +145,52 @@ const Registration = ({
               <FormElement label={l10n.publisherDescription} description={l10n.publisherDescriptionText} mandatory={false}>
                 <textarea
                   value={fields.publisherDescription}
-                  id="publisher-description"
+                  id="h5p-hub-publisher-description"
                   placeholder=''
                   onChange={(event) => setInfo(event.target.value, 'publisherDescription')}
-                  className='publisher-description' />
+                  className='h5p-hub-publisher-description' />
               </FormElement>
-              <div className='row'>
+              <div className='h5p-hub-row'>
                 <FormElement label={l10n.contactPerson} mandatory={false}>
                   <input
-                    id="contact-person"
+                    id="h5p-hub-contact-person"
                     onChange={e => setInfo(e.target.value, 'contactPerson')}
                     value={fields.contactPerson} />
                 </FormElement>
                 <FormElement label={l10n.phone} mandatory={false}>
                   <input
-                    id="phone"
+                    id="h5p-hub-phone"
                     onChange={e => setInfo(e.target.value, 'phone')}
                     value={fields.phone} />
                 </FormElement>
               </div>
               <FormElement label={l10n.address} mandatory={false}>
                 <input
-                  id="address"
+                  id="h5p-hub-address"
                   onChange={e => setInfo(e.target.value, 'address')}
                   value={fields.address} />
               </FormElement>
-              <div className='row'>
+              <div className='h5p-hub-row'>
                 <FormElement label={l10n.city} mandatory={false}>
                   <input
-                    id="city"
+                    id="h5p-hub-city"
                     onChange={e => setInfo(e.target.value, 'city')}
                     value={fields.city} />
                 </FormElement>
                 <FormElement label={l10n.zip} mandatory={false}>
                   <input
-                    id="zip"
+                    id="h5p-hub-zip"
                     onChange={e => setInfo(e.target.value, 'zip')}
                     value={fields.zip} />
                 </FormElement>
                 <FormElement label={l10n.country} mandatory={false}>
                   <input
-                    id="country"
+                    id="h5p-hub-country"
                     onChange={e => setInfo(e.target.value, 'country')}
                     value={fields.country} />
                 </FormElement>
               </div>
-              <div className='logo-upload-text'>
+              <div className='h5p-hub-logo-upload-text'>
                 {l10n.logoUploadText}
               </div>
               <ImageUpload
@@ -205,7 +205,7 @@ const Registration = ({
               />
               <Checkbox
                 label={l10n.acceptTerms}
-                id='accept-terms'
+                id='h5p-hub-accept-terms'
                 checked={acceptedTerms}
                 filter=''
                 onChecked={(name, id, checked) => setAcceptedTerms(checked)}>
@@ -221,7 +221,7 @@ const Registration = ({
               </Checkbox>
             </div>
           </div>
-          <div className='footer'>
+          <div className='h5p-hub-footer'>
             <Button onClick={onCancel}>
               {l10n.cancel}
             </Button>

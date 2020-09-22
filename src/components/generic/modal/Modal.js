@@ -18,10 +18,10 @@ const Modal = ({ isOpen, closeModal, children, onAfterOpen, className='' }) => {
     <div>
       <ReactModal 
       isOpen={isOpen}
-      className={`modal-content ${className}`}
+      className={`h5p-hub-modal-content ${className}`}
       onRequestClose={onClose}
       onAfterOpen={onAfterOpen}
-      overlayClassName='modal-overlay'
+      overlayClassName='h5p-hub-modal-overlay'
       appElement={document.getElementById('h5p-hub-publish-modal-wrapper')}
       parentSelector={() => document.querySelector('.h5p-hub-publish')}
       >

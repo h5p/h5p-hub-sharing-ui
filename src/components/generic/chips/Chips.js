@@ -50,18 +50,18 @@ const Chips = ({ chips, setChips }) => {
 
   return (
     chips.length > 0 ?
-      <ul className='chips-list'>
+      <ul className='h5p-hub-chips-list'>
         {chips.map((chip, i) =>
           <li key={chip.id}>
-            <span className='sr-only'>{chip.name}</span>
+            <span className='h5p-hub-sr-only'>{chip.name}</span>
             <button
               ref={el => chipsRef.current[i] = el}
               aria-label={replace(l10n.removeChip, { ':chip': chip.name })}
               onClick={() => removeChip(chip)}
               onKeyDown={event => handleKeyDown(event)}
-              id={chip.id}>
+              id={'h5p-hub-' + chip.id}>
               {chip.name}
-              <div className='icon-close'></div>
+              <div className='h5p-hub-icon-close'></div>
             </button>
           </li>)}
       </ul>

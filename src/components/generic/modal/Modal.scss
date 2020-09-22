@@ -1,5 +1,5 @@
 .h5p-hub-publish {
-  .modal-content {
+  .h5p-hub-modal-content {
     z-index: 2;
     background-color: #ffffff;
     opacity: 1;
@@ -7,7 +7,7 @@
     margin: 2em 3em;
     border-radius: 0.167em;
   }
-  .modal-overlay {
+  .h5p-hub-modal-overlay {
     position: absolute;
     top: 0;
     left: 0px;

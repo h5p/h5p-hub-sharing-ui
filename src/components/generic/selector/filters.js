@@ -39,21 +39,21 @@ export const boldTextNotMatching = (label, searchValue) => {
 
   const spans = [(<span
     key={'checkbox-span-bold-start'}
-    className='bold'>
+    className='h5p-hub-bold'>
       {label.slice(0, indexes[0])}
     </span>
   )];
   indexes.forEach((index, i = 0) => {
     spans.push(<span 
       key={'checkbox-span-' + i}
-      className='non-bold'>
+      className='h5p-hub-non-bold'>
         {label.slice(index, index + length)}
       </span>
     );
     if (indexes[i + 1]) {
       spans.push(<span
         key={'checkbox-span-bold-' + i}
-        className='bold'>
+        className='h5p-hub-bold'>
           {label.slice(index + length, indexes[i + 1])}
         </span>
       );
@@ -61,7 +61,7 @@ export const boldTextNotMatching = (label, searchValue) => {
     else {
       spans.push(<span
         key={'checkbox-span-bold-' + i}
-        className='bold'>
+        className='h5p-hub-bold'>
           {label.slice(index + length)}
         </span>
       );

@@ -1,35 +1,35 @@
-.h5p-hub-publish .tip {
+.h5p-hub-publish .h5p-hub-tip {
   position: relative;
   display: block;
-  &.positioned {
+  &.h5p-hub-positioned {
     position: unset;
   }
 
-  &.bottom .tip-wrapper {
+  &.h5p-hub-bottom .h5p-hub-tip-wrapper {
     top: 115%;
 
-    .arrow:after {
+    .h5p-hub-arrow:after {
       top: -0.75em;
       border-bottom-color: black;
       border-top-color: transparent;
     }
   }
 
-  &.left-aligned .tip-wrapper {
+  &.h5p-hub-left-aligned .h5p-hub-tip-wrapper {
     transform: none;
     top: -0.85em;
     right: 0;
-    .tip {
+    .h5p-hub-tip {
       white-space: normal;
     }
-    .arrow:after {
+    .h5p-hub-arrow:after {
       left: auto;
       transform: none;
       right: 1.3em;
     }
   }
 
-  .tip-wrapper {
+  .h5p-hub-tip-wrapper {
     display: none;
     position: absolute;
     top: -3.5em;
@@ -38,42 +38,45 @@
     color: white;
     border-radius: 0.4em;
     z-index: 2;
-    
 
-    &.tip-wrapper-enter-done, &.tip-wrapper-enter, &.tip-wrapper-enter-active, &.tip-wrapper-exit, &.tip-wrapper-exit-active {
+    &.h5p-hub-tip-wrapper-enter-done,
+    &.h5p-hub-tip-wrapper-enter,
+    &.h5p-hub-tip-wrapper-enter-active,
+    &.h5p-hub-tip-wrapper-exit,
+    &.h5p-hub-tip-wrapper-exit-active {
       display: block;
     }
 
-    &.tip-wrapper-enter {
+    &.h5p-hub-tip-wrapper-enter {
       transform: translate(0, 30%);
       opacity: 0;
     }
 
-    &.tip-wrapper-enter-active {
+    &.h5p-hub-tip-wrapper-enter-active {
       transform: translate(0, 0);
       opacity: 1;
-      transition: opacity 0.2s, transform 0.2s; 
+      transition: opacity 0.2s, transform 0.2s;
     }
 
-    &.tip-wrapper-exit {
+    &.h5p-hub-tip-wrapper-exit {
       transform: translate(0, 0);
       opacity: 1;
     }
 
-    &.tip-wrapper-exit-active {
+    &.h5p-hub-tip-wrapper-exit-active {
       transform: translate(0, 30%);
       opacity: 0;
       transition: opacity 0.2s, transform 0.2s;
     }
 
-    .tip {
+    .h5p-hub-tip {
       white-space: nowrap;
       background: black;
       padding: 0.3em 1em;
       border-radius: 0.4em;
     }
 
-    .arrow:after {
+    .h5p-hub-arrow:after {
       content: " ";
       position: absolute;
       left: 50%;

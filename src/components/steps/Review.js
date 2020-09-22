@@ -9,7 +9,7 @@ import './Review.scss';
 
 const Definition = ({ name, children }) => {
   return (
-    <div className="definition">
+    <div className="h5p-hub-definition">
       <dt>{name}</dt>
       <dd>{children}</dd>
     </div>
@@ -27,7 +27,7 @@ const Review = ({
 
   return (
     <>
-      <div className="review-header">{l10n.reviewMessage}</div>
+      <div className="h5p-hub-review-header">{l10n.reviewMessage}</div>
 
       <Message severity="warning">
         {replace(l10n.subContentWarning, {
@@ -51,9 +51,9 @@ const Review = ({
           {
             optionalInfo.screenshots.map((img, idx) =>
               img.file &&
-              <div key={idx} className='row screenshots'>
+              <div key={idx} className='h5p-hub-row h5p-hub-screenshots'>
                 <ImagePreview key={idx} src={img.src} />
-                <div className='img-alt'>{img.alt}</div>
+                <div className='h5p-hub-img-alt'>{img.alt}</div>
               </div>
             )
           }

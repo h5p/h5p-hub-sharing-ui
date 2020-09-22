@@ -1,5 +1,5 @@
 .h5p-hub-publish {
-  .stepper {
+  .h5p-hub-stepper {
     display: flex;
     width: 100%;
     max-width: 40em;
@@ -10,7 +10,7 @@
     box-sizing: border-box;
   }
 
-  .step-connector {
+  .h5p-hub-step-connector {
     flex-grow: 1;
     margin-left: -2em;
     margin-right: -2em;
@@ -18,7 +18,7 @@
     top: -0.6em;
   }
 
-  .step-connector-line {
+  .h5p-hub-step-connector-line {
     display: block;
     border-top-style: solid;
     border-top-width: 1px;

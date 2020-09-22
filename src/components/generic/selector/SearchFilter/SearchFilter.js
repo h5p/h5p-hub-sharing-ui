@@ -480,7 +480,7 @@ class SearchFilter extends React.Component {
 
   render() {
     return (
-      <div className="search-filter" ref={this.selfRef}>
+      <div className="h5p-hub-search-filter" ref={this.selfRef}>
         <SearchField
           ref={this.searchRef}
           value={this.state.searchValue}
@@ -496,13 +496,13 @@ class SearchFilter extends React.Component {
           closeDropdown={this.closeDropdown}
         />
         {this.state.parent.length > 0 && this.state.dropdownOpen &&
-          <div className='navigate-parent'>
+          <div className='h5p-hub-navigate-parent'>
             <button onClick={this.navigateToParent} />
             {this.getCheckboxFromId(this.state.parent[this.state.parent.length - 1], this.parents).name}
           </div>
         }
         {this.state.searchValue.length > 0 &&
-          <button onClick={this.handleClearSearch} className="clear-button" />
+          <button onClick={this.handleClearSearch} className="h5p-hub-clear-button" />
         }
         {this.state.dropdownOpen && this.props.items && (!this.props.category || this.state.searchValue.length < 2) &&
           <CheckboxList

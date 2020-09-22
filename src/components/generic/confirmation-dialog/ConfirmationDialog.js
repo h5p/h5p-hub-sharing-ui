@@ -6,18 +6,18 @@ import './ConfirmationDialog.scss';
 const ConfirmationDialog = ({ onConfirm, onCancel, l10n }) => {
   return (
     <>
-      <div className='dialog-header'>
-        <div className='dialog-title'>
+      <div className='h5p-hub-dialog-header'>
+        <div className='h5p-hub-dialog-title'>
           <span>{l10n.cancelPublishConfirmationDialogTitle}</span>
         </div>
       </div>
-      <div className="dialog-content">
+      <div className="h5p-hub-dialog-content">
         {l10n.cancelPublishConfirmationDialogDescription}
-        <div className="button-group">
+        <div className="h5p-hub-button-group">
           <button onClick={onCancel} autoFocus={true}>
             {l10n.cancelPublishConfirmationDialogCancelButtonText}
           </button>
-          <button onClick={onConfirm} className="danger">
+          <button onClick={onConfirm} className="h5p-hub-danger">
             {l10n.cancelPublishConfirmationDialogConfirmButtonText}
           </button>
         </div>

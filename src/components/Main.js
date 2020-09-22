@@ -168,20 +168,20 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
   return (
     <div className="h5p-hub-publish">
       <div id='h5p-hub-publish-modal-wrapper'>
-        <Modal isOpen={showConfirmationDialog} closeModal={() => setShowConfirmationDialog(false)} className="cancel-publish-confirmation-modal">
+        <Modal isOpen={showConfirmationDialog} closeModal={() => setShowConfirmationDialog(false)} className="h5p-hub-cancel-publish-confirmation-modal">
           <ConfirmationDialog l10n={l10n} onConfirm={cancelSharing} onCancel={() => setShowConfirmationDialog(false)} />
         </Modal>
-        <div className="header">
+        <div className="h5p-hub-header">
           <div
             role="heading"
-            className="title"
+            className="h5p-hub-title"
             dangerouslySetInnerHTML={{ __html: mainTitle }} />
           <Button variant="outlined" color="primary" onClick={handleCancel}>
             {l10n.cancel}
           </Button>
         </div>
 
-        <div className="content">
+        <div className="h5p-hub-content">
           {!isShared ?
             <>
               <Stepper activeStep={activeStep} completed={isShared} showSteps={!isShared}>
@@ -192,30 +192,30 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
                 })}
               </Stepper>
 
-              <div className="step-panel">
-                <div className="step-title" role="heading">
-                  <span className="sr-only">{replace(l10n.currentStep, { ':step': activeStep + 1, ':total': 3 })}</span>
+              <div className="h5p-hub-step-panel">
+                <div className="h5p-hub-step-title" role="heading">
+                  <span className="h5p-hub-sr-only">{replace(l10n.currentStep, { ':step': activeStep + 1, ':total': 3 })}</span>
                   {l10n[step.title]}
                 </div>
-                <div className={`step-content ${step.id}`}>
+                <div className={`h5p-hub-step-content h5p-hub-${step.id}`}>
                   {step.content}
                 </div>
               </div>
               {shareFailed &&
-                <div className='share-error'>
+                <div className='h5p-hub-share-error'>
                   <Message severity='error'>
                     {
                       shareFailedMessage
-                      ? <span className='bold'>{ shareFailedMessage }</span>
+                      ? <span className='h5p-hub-bold'>{ shareFailedMessage }</span>
                       : <>
-                          <span className='bold'>{ l10n.shareFailed}</span> {l10n.shareTryAgain}
+                          <span className='h5p-hub-bold'>{ l10n.shareFailed}</span> {l10n.shareTryAgain}
                         </>
                     }
                   </Message>
                 </div>
               }
-              <div className="footer">
-                <div className="navigation">
+              <div className="h5p-hub-footer">
+                <div className="h5p-hub-navigation">
                   {
                     step.backButton &&
                     <Button name="back" variant="outlined" color="green" onClick={handleBack} enabled={!shareInProcess}>
@@ -229,25 +229,25 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
                       variant={step.nextButton.variant}
                       color="green" onClick={handleNext}
                       enabled={nextButtonEnabled && !shareInProcess}
-                      id={shareInProcess ? 'share-in-process' : ''}>
+                      id={shareInProcess ? 'h5p-hub-share-in-process' : ''}>
                       {!shareInProcess ? l10n[step.nextButton.label]
                         : <span>{l10n.pleaseWait}</span>
                       }
                     </Button>
                   }
                 </div>
-                <div className="sharing-note">
-                  <i className="icon-info" />{l10n.sharingNote}
+                <div className="h5p-hub-sharing-note">
+                  <i className="h5p-hub-icon-info" />{l10n.sharingNote}
                 </div>
               </div>
             </>
             :
             // Success page
             <>
-              <div className="step-title" role="heading">
+              <div className="h5p-hub-step-title" role="heading">
                 {l10n.reviewAndShare}
               </div>
-              <div className={`step-content`}>
+              <div className={`h5p-hub-step-content`}>
                 <Success title={mandatoryInfo.title} contentType={contentType} />
               </div>
             </>

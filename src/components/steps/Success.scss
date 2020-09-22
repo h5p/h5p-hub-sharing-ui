@@ -1,7 +1,7 @@
 .h5p-hub-publish {
-  .success-page {
+  .h5p-hub-success-page {
     text-align: center;
-    .step-icon-success {
+    .h5p-hub-step-icon-success {
       font-size: 0.75em;
       border-radius: 50%;
       border: 0.462em solid #e1e1e1;
@@ -15,35 +15,35 @@
       color: #fff;
       margin-bottom: 0.667em;
     }
-    .submitted-text {
+    .h5p-hub-submitted-text {
       color: #0ea385;
       margin-bottom: 2.167em;
       font-size: 0.75em;
     }
-    .content-type {
+    .h5p-hub-content-type {
       letter-spacing: 0.146em;
       color: #303438;
       margin-bottom: 0.7em;
     }
-    .title {
+    .h5p-hub-title {
       font-size: 1.75em;
       margin-bottom: 0.5em;
       color: #1a1a1a;
 
-      &.is-edit {
+      &.h5p-hub-is-edit {
         margin-bottom: 1.75em;
       }
     }
-    .now-submitted-text {
+    .h5p-hub-now-submitted-text {
       font-size: 1.458em;
       margin-bottom: 1.75em;
       color: #1a1a1a;
 
-      &.is-edit {
+      &.h5p-hub-is-edit {
         margin-bottom: .5em;
       }
     }
-    .content-available {
+    .h5p-hub-content-available {
       font-size: 0.833em;
       color: #707475;
     }

@@ -30,7 +30,7 @@ const createOptions = (options, allowNone) => {
 
 const Dropdown = ({ selected, options, onChange, allowNone }) => (
   <>
-    <div className="icon-arrow-down"></div>
+    <div className="h5p-hub-icon-arrow-down"></div>
     <select value={selected} onChange={onChange} disabled={options.length === 0}>
       {createOptions(options, allowNone)}
     </select>

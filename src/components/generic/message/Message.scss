@@ -1,20 +1,20 @@
 .h5p-hub-publish,
 .h5p-hub-registration {
-  .message {
+  .h5p-hub-message {
     font-size: 0.833em;
     border-left: 0.3em solid;
     padding: 1em;
     margin: 0.5em 0;
 
-    &.warning {
+    &.h5p-hub-warning {
       border-color: #fdcc31;
       background: #fff8e0;
     }
-    &.error {
+    &.h5p-hub-error {
       border-color: #c1494b;
       background-color: #ece0e0;
     }
-    &.success {
+    &.h5p-hub-success {
       border-color: #03a953;
       background-color: #d9eae2;
     }

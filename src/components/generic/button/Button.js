@@ -8,13 +8,13 @@ const Button = ({children, name, onClick, variant, color, enabled, id}) => {
   let classes = [];
 
   if (name) {
-    classes.push(name);
+    classes.push('h5p-hub-' + name);
   }
   if (variant) {
-    classes.push(variant);
+    classes.push('h5p-hub-' + variant);
   }
   if (color) {
-    classes.push(color);
+    classes.push('h5p-hub-' + color);
   }
 
   return (

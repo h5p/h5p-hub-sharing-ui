@@ -5,8 +5,8 @@ import './Stepper.scss';
 
 const StepConnector = () => {
   return (
-    <span className="step-connector">
-      <span className="step-connector-line"></span>
+    <span className="h5p-hub-step-connector">
+      <span className="h5p-hub-step-connector-line"></span>
     </span>
   );
 }
@@ -34,7 +34,7 @@ const Stepper = ({activeStep, children, completed}) => {
   });
 
   return (
-    <div className="stepper" aria-hidden={true}>
+    <div className="h5p-hub-stepper" aria-hidden={true}>
       {steps}
     </div>
   );

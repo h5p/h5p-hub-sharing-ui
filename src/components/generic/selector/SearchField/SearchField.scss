@@ -1,13 +1,13 @@
 .h5p-hub-publish {
-  .search-button {
+  .h5p-hub-search-button {
     width: 100%;
-    .search-field {
+    .h5p-hub-search-field {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      .icon-arrow {
+      .h5p-hub-icon-arrow {
         position: absolute;
         right: 1em;
         font-size: 1.30353em;
@@ -25,7 +25,7 @@
     }
   }
 
-  #filter-search-bar {
+  #h5p-hub-filter-search-bar {
     border: none;
     padding: 0.833em;
     font-style: italic;

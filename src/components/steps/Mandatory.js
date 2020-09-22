@@ -73,7 +73,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
       <FormElement label={l10n.title} mandatory={true}>
         <input
-          id="title"
+          id="h5p-hub-title"
           onChange={e => setInfo(e.target.value, 'title')}
           value={mandatoryInfo.title}
           maxLength={titleMaxLength}
@@ -83,7 +83,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
       <Tip
         text={replace(l10n.maxLength, { ':length': titleMaxLength })}
         open={mandatoryInfo.title.length === titleMaxLength && titleFocus}
-        className='tip-text-field'/>
+        className='h5p-hub-tip-text-field'/>
       {
         showLicenseWarning && mandatoryInfo.license &&
         <Message severity="warning">
@@ -92,7 +92,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           })}
         </Message>
       }
-      <div className='row'>
+      <div className='h5p-hub-row'>
         <FormElement
           label={l10n.license}
           description={l10n.licenseDescription}
@@ -120,7 +120,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             onChange={e => setInfo(e.target.value, 'licenseVersion')} />
         </FormElement>
       </div>
-      <div className='row'>
+      <div className='h5p-hub-row'>
         <FormElement label={l10n.language} mandatory={true}>
           <Dropdown
             options={metadata.languages}
