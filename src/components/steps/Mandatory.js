@@ -181,8 +181,6 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
           errors={fieldErrors.disciplines}
           setDisciplines={handleSetDisciplines}/>
       </FormElement>
-
-      <p>{fieldErrors.disciplines && JSON.stringify(fieldErrors.disciplines)}</p>
     </>
   );
 };
