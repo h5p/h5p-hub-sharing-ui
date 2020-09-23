@@ -75,6 +75,10 @@
     .h5p-hub-navigation {
       display: flex;
       
+      button {
+        z-index: 1;
+      }
+
       button:before {
         font-family: 'h5p';
         font-size: 0.75em;
@@ -158,7 +162,6 @@
     font-size: 0.833em;
     width: calc(100% - 4.9em);
     position: absolute;
-    z-index: -1;
     top: 0.65em;
     box-sizing: border-box;
     padding: 0 8em;
