@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import SearchFilter from '../selector/SearchFilter/SearchFilter';
 
-const DisciplineSelector = ({ disciplines, setDisciplines }) => {
+const DisciplineSelector = ({ disciplines, errors, setDisciplines }) => {
 
   const metadata = useContext(MetadataContext);
   const l10n = useContext(TranslationContext);
@@ -58,6 +58,7 @@ const DisciplineSelector = ({ disciplines, setDisciplines }) => {
         />
       <SearchFilter
         items={metadata.disciplines}
+        errors={errors}
         handleChecked={handleChecked}
         checked={disciplines}
         filter='discipline'
@@ -71,6 +72,7 @@ const DisciplineSelector = ({ disciplines, setDisciplines }) => {
 
 DisciplineSelector.propTypes = {
   disciplines: PropTypes.array.isRequired,
+  errors: PropTypes.object,
   setDisciplines: PropTypes.func.isRequired
 };
 

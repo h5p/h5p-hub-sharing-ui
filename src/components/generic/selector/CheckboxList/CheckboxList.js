@@ -7,6 +7,7 @@ import './CheckboxList.scss';
 
 const CheckboxList = React.forwardRef(({
   items,
+  errors,
   onChecked,
   checkedParents,
   checked,
@@ -29,6 +30,7 @@ const CheckboxList = React.forwardRef(({
       {items.map(element =>
         <Checkbox
           key={parent + element.id}
+          errorMessage={errors && errors[element.id]}
           id={element.id}
           label={element.name}
           checked={isChecked(element.id, checked)}
@@ -46,8 +48,10 @@ const CheckboxList = React.forwardRef(({
     </ul>
   );
 });
+
 CheckboxList.propTypes = {
   items: PropTypes.array,
+  errors: PropTypes.object,
   onChecked: PropTypes.func.isRequired,
   checked: PropTypes.array,
   filter: PropTypes.string.isRequired,

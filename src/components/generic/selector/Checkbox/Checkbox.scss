@@ -12,6 +12,7 @@
 }
 
 .h5p-hub-publish , .h5p-hub-registration {
+
   .h5p-hub-checkbox {
     font-size: 1.05em;
     padding: 0.5em 0;
@@ -22,6 +23,19 @@
     color: #4d5057;
     width: 100%;
     position: relative;
+
+    .h5p-hub-checkbox-error-tip {
+      top: 5em;
+      position: absolute;
+      margin-left: 2.5em;
+      z-index: 1;
+    }
+
+    &:last-child {
+      .h5p-hub-checkbox-error-tip {
+        top: 2.5em;
+      }
+    }
 
     &:focus {
       box-shadow: 0 0 0.4em 0.01em RGBA(26, 147, 244, 0.7);
