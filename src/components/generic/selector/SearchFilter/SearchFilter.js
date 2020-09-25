@@ -508,6 +508,7 @@ class SearchFilter extends React.Component {
           <CheckboxList
             onChecked={this.handleChecked}
             items={this.state.checkboxElements}
+            errors={this.props.errors}
             checked={this.props.checked.concat(this.state.checkedParents)}
             checkedParents={this.state.checkedParents}
             filter={this.props.filter}
@@ -545,6 +546,7 @@ class SearchFilter extends React.Component {
 
 SearchFilter.propTypes = {
   items: PropTypes.array,
+  errors: PropTypes.object,
   handleChecked: PropTypes.func.isRequired,
   checked: PropTypes.array,
   filter: PropTypes.string.isRequired,

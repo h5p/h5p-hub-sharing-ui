@@ -9,10 +9,10 @@
       display: inline-block;
       left: 0;
       display: flex;
-      padding: 0.2em 0.2em;
-      transform: rotate(-90deg);
+      padding: 0.2em;
+      
       &.h5p-hub-open {
-        transform: rotate(0);
+        transform: rotate(90deg);
       }
     }
   }
@@ -20,7 +20,7 @@
   .h5p-hub-accordion-button {
     border: none;
     position: relative;
-    padding: 0.2em 0.2em;
+    padding: 0.2em;
     width: 100%;
     justify-self: start;
     display: flex;
@@ -31,9 +31,11 @@
       color: #616161;
     }
   }
+
   .h5p-hub-panel-body {
     font-size: 0.833em;
-    margin-left: 0.7em;
+    margin: 0.8em;
+    margin-bottom: 0;
     color: #707475;
   }
 }
