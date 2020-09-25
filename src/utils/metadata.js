@@ -69,9 +69,9 @@ export default class Metadata {
     const hierarchicalList = [];
 
     // Add all disciplines without parent to list
-    for (let discipline of Object.values(lookup)) {
-      if (discipline.parent === null) {
-        hierarchicalList.push(discipline);
+    for (let discipline in lookup) {
+      if (lookup[discipline].parent === null) {
+        hierarchicalList.push(lookup[discipline]);
       }
     }
 
