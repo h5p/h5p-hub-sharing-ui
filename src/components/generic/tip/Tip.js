@@ -32,6 +32,9 @@ const Tip = React.forwardRef(({ open, text, className, onTransitionEnd }, ref) =
   );
 });
 
+Tip.displayName = 'Tip';
+
+
 Tip.propTypes = {
   open: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,

@@ -19,14 +19,14 @@ const DisciplineSelector = ({ disciplines, errors, setDisciplines }) => {
    */
   const handleChecked = (filter, checked, checkedOf) => {
     if (Array.isArray(checked) && checked !== null) {
-      const tempDisciplines = checkedOf ?
-        disciplines.filter(element => checked.indexOf(element) === -1).concat(checked)
-        : disciplines.filter(id => checked.indexOf(id) === -1);
-      setDisciplines(tempDisciplines);
+      if (checkedOf) {
+        setDisciplines(disciplines.filter(element => checked.indexOf(element) === -1).concat(checked));
+      }
     }
     else if (checked != null) {
-      const tempDisciplines = checkedOf ? [...disciplines, checked] : disciplines.filter(id => id !== checked);
-      setDisciplines(tempDisciplines);
+      if (checkedOf) {
+        setDisciplines( [...disciplines, checked]);
+      }
     }
   }
 

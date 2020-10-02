@@ -77,5 +77,6 @@
   "cancelPublishConfirmationDialogTitle": "Cancel sharing",
   "cancelPublishConfirmationDialogDescription": "Are you sure you want to cancel the sharing process?",
   "cancelPublishConfirmationDialogCancelButtonText": "No",
-  "cancelPublishConfirmationDialogConfirmButtonText": "Yes"
+  "cancelPublishConfirmationDialogConfirmButtonText": "Yes",
+  "add": "Add"
 }

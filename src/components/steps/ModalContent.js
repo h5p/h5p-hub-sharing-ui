@@ -73,6 +73,8 @@ const ModalContent = React.forwardRef(({closeModal}, ref) => {
   );
 });
 
+ModalContent.displayName = 'ModalContent';
+
 ModalContent.propTypes = {
   closeModal: PropTypes.func.isRequired
 };

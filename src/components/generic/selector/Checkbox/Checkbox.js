@@ -7,7 +7,6 @@ import './Checkbox.scss';
 
 const Checkbox = React.forwardRef(({
   id,
-  errorMessage,
   label,
   checked,
   filter,
@@ -66,15 +65,15 @@ const Checkbox = React.forwardRef(({
           {children ? children : label}
           {descendantsChecked > 0 && ` (${descendantsChecked})`}
         </div>
-        <Tip text={errorMessage} open={errorMessage != undefined} className='h5p-hub-checkbox-error-tip' />
       </div>
     </li>
   );
 });
 
+Checkbox.displayName = 'Checkbox';
+
 Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
-  errorMessage: PropTypes.string,
   label: PropTypes.string.isRequired,
   onChecked: PropTypes.func.isRequired,
   checked: PropTypes.bool.isRequired,

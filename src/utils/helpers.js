@@ -128,3 +128,44 @@ export const registerToHub = (url, token, values, done, fail) => {
   }).then(done)
     .catch(fail)
 }
+
+/**
+ * Return all elements that have children
+ * @param  {Object[]} items
+ */
+export const getParents = (items) => {
+  const parents = [];
+  const list = items.concat([]);
+  while (list.length > 0) {
+    const element = list.pop();
+    if (element && element.children) {
+      parents.push(element);
+      element.children.forEach(
+        element => {
+          list.push(element);
+        }
+      );
+    }
+  }
+  return parents;
+}
+
+/**
+ * Return a list of all disciplines with it's ancestors
+ * @param  {String[]} items
+ * @param  {Object[]} parents
+ */
+export const getDisciplinesWithAncestors = (items, parents) => {
+  const disciplines = items.concat([]); //Create copy
+  for (let parent of parents) {
+    if (disciplines.indexOf(parent.id) === -1) {
+      for (let child of parent.children) {
+        if (items.indexOf(child.id) !== -1) {
+          disciplines.push(parent.id);
+          break;
+        }
+      }
+    }
+  }
+  return disciplines;
+}

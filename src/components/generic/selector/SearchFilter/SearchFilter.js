@@ -241,18 +241,8 @@ class SearchFilter extends React.Component {
   handleChecked = (filter, checkbox, checkedOf) => {
     if (this.state.dropdownOpen && checkbox && this.state.checkboxElements[this.indexOfId(checkbox)]) {
       this.setState({ setFocus: true, focused: checkbox });
-      const children = this.state.checkboxElements[this.indexOfId(checkbox)].children;
-
-      //The checkbox is a category and all it's descendants should either be checked on or off.
-      if (children) {
-        this.props.handleChecked(filter,
-          this.getDescendants(this.getCheckboxFromId(checkbox, this.parents))
-            .filter(element => this.getCheckboxFromId(element.id, this.parents) === null)
-            .map(element => element.id), checkedOf);
-      }
-      else {
-        this.props.handleChecked(filter, checkbox, checkedOf);
-      }
+      //Only parent should be selected
+      this.props.handleChecked(filter, checkbox, checkedOf);
       this.searchRef.current.focus();
     }
     else if(!this.state.dropdownAlwaysOpen) {
@@ -509,7 +499,7 @@ class SearchFilter extends React.Component {
             onChecked={this.handleChecked}
             items={this.state.checkboxElements}
             errors={this.props.errors}
-            checked={this.props.checked.concat(this.state.checkedParents)}
+            checked={this.props.checked}
             checkedParents={this.state.checkedParents}
             filter={this.props.filter}
             focused={this.state.focused}
@@ -525,7 +515,7 @@ class SearchFilter extends React.Component {
           this.state.dropdownOpen && this.props.items && this.props.category && (this.state.categoryList.length > 0 || this.state.categoryList.topCategories) && this.state.inSearch &&
           <CategoryList
             onChecked={this.handleChecked}
-            checked={this.props.checked.concat(this.state.checkedParents)}
+            checked={this.props.checked}
             checkedParents={this.state.checkedParents}
             filter={this.props.filter}
             focused={this.state.focused}

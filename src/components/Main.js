@@ -10,7 +10,8 @@ import Message from './generic/message/Message';
 import Modal from './generic/modal/Modal';
 import ConfirmationDialog from './generic/confirmation-dialog/ConfirmationDialog';
 import TranslationContext from '../context/Translation';
-import { replace, publishToHub } from '../utils/helpers';
+import MetadataContext from '../context/Metadata';
+import { replace, publishToHub, getParents, getDisciplinesWithAncestors } from '../utils/helpers';
 import PropTypes from 'prop-types';
 
 import 'normalize.css';
@@ -72,7 +73,8 @@ const defaultImage = {
   alt: ''
 };
 
-function Main({ title, publishURL, contentType, language, token, hubContent = {}}) {
+function Main({ title, publishURL, contentType, language, token, hubContent = {} }) {
+  const metadata = useContext(MetadataContext);
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
   const [shareFailed, setShareFailed] = React.useState(false);
@@ -118,7 +120,9 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
   const handleNext = () => {
     if (activeStep === 2) {
       setShareInProcess(true);
-      publishToHub(publishURL, token, { ...mandatoryInfo, ...optionalInfo }, (response) => {
+      //Send disciplines with it's ancestors
+      const disciplines = getDisciplinesWithAncestors(mandatoryInfo.disciplines, getParents(metadata.disciplines));
+      publishToHub(publishURL, token, { ...mandatoryInfo, disciplines: disciplines, ...optionalInfo }, (response) => {
         const data = response.data;
         if (!data.success) {
           setShareFailedMessage(data.message || null);

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Checkbox from '../Checkbox/Checkbox';
+import DisciplineElement from '../disciplineElement/DisciplineElement';
 import { isChecked, descendantsChecked } from '../filters';
 
 import './CheckboxList.scss';
@@ -28,7 +28,7 @@ const CheckboxList = React.forwardRef(({
       ref={ref && ref[listRefId]}>
 
       {items.map(element =>
-        <Checkbox
+        <DisciplineElement
           key={parent + element.id}
           errorMessage={errors && errors[element.id]}
           id={element.id}
@@ -48,6 +48,8 @@ const CheckboxList = React.forwardRef(({
     </ul>
   );
 });
+
+CheckboxList.displayName = 'CheckboxList';
 
 CheckboxList.propTypes = {
   items: PropTypes.array,

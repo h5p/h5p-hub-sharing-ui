@@ -74,6 +74,8 @@ const CategoryList = React.forwardRef(({
   );
 });
 
+CategoryList.displayName = 'CategoryList';
+
 CategoryList.propTypes = {
   onChecked: PropTypes.func.isRequired,
   checked: PropTypes.array,

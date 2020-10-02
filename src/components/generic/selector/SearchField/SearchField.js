@@ -90,6 +90,8 @@ const SearchField = React.forwardRef(({
   );
 });
 
+SearchField.displayName = 'SearchField';
+
 SearchField.propTypes = {
   value: PropTypes.string,
   onSearch: PropTypes.func.isRequired,
