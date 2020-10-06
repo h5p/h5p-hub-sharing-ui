@@ -18,15 +18,11 @@ const DisciplineSelector = ({ disciplines, errors, setDisciplines }) => {
    * @param  {boolean} checkedOf
    */
   const handleChecked = (filter, checked, checkedOf) => {
-    if (Array.isArray(checked) && checked !== null) {
-      if (checkedOf) {
-        setDisciplines(disciplines.filter(element => checked.indexOf(element) === -1).concat(checked));
-      }
+    if (Array.isArray(checked) && checked !== null && checkedOf) {
+      setDisciplines(disciplines.filter(element => checked.indexOf(element) === -1).concat(checked));
     }
-    else if (checked != null) {
-      if (checkedOf) {
-        setDisciplines( [...disciplines, checked]);
-      }
+    else if (checked != null && checkedOf) {
+      setDisciplines([...disciplines, checked]);
     }
   }
 
