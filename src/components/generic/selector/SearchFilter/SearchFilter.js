@@ -527,6 +527,7 @@ class SearchFilter extends React.Component {
             searchValue={this.state.searchValue}
             categoryRefId={this.categoryRefId}
             dictionary={this.props.dictionary}
+            errors={this.props.errors}
           />
         }
       </div>

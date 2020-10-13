@@ -60,7 +60,7 @@ const DisciplineElement = React.forwardRef(({
           onClick={(e) =>
             onCheckedClick(filter, id, !checked, e)
           }
-          dangerouslySetInnerHTML={{ __html: l10n.add }} />
+          dangerouslySetInnerHTML={{ __html: `+ ${l10n.add}` }} />
         <div className='h5p-hub-label-text'>
           {children ? children : label}
         </div>

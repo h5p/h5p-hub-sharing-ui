@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isChecked, descendantsChecked, boldTextNotMatching } from '../filters';
-import Checkbox from '../Checkbox/Checkbox';
+import DisciplineElement from '../disciplineElement/DisciplineElement';
 
 import './CategoryList.scss';
 
@@ -18,7 +18,8 @@ const CategoryList = React.forwardRef(({
   categoryList,
   searchValue,
   categoryRefId,
-  dictionary }, ref) => {
+  dictionary,
+  errors }, ref) => {
 
   /**
    * Return a list of checboxElements with span as children
@@ -26,21 +27,22 @@ const CategoryList = React.forwardRef(({
    */
   const getCheckboxes = (checkboxList) => checkboxList.map(element =>
     <div key={parent + element.id}>
-      <Checkbox
-        key={parent + element.id}
-        id={element.id}
-        label={element.name}
-        checked={isChecked(element.id, checked)}
-        filter={filter}
-        onChecked={onChecked}
-        focused={focused === element.id}
-        parent={parent}
-        descendantsChecked={descendantsChecked(getDescendants(element), checked, checkedParents)}
-        ref={ref && ref[element.id]}
-        tabIndex={tabIndex}
-      >
+      <DisciplineElement
+          key={parent + element.id}
+          errorMessage={errors && errors[element.id]}
+          id={element.id}
+          label={element.name}
+          checked={isChecked(element.id, checked)}
+          filter={filter}
+          onChecked={onChecked}
+          focused={focused == element.id}
+          parent={parent}
+          descendantsChecked={element.children && descendantsChecked(getDescendants(element), checked, checkedParents)}
+          ref={ref && ref[element.id]}
+          tabIndex={tabIndex}
+        > 
         {searchValue.length > 1 && boldTextNotMatching(element.name, searchValue)}
-      </Checkbox>
+      </DisciplineElement>
     </div>
   );
 
@@ -89,7 +91,8 @@ CategoryList.propTypes = {
   getDescendants: PropTypes.func.isRequired,
   categoryList: PropTypes.array.isRequired,
   searchValue: PropTypes.string.isRequired,
-  dictionary: PropTypes.object.isRequired
+  dictionary: PropTypes.object.isRequired,
+  errors: PropTypes.object
 };
 
 export default CategoryList;
