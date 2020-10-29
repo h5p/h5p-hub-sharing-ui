@@ -484,15 +484,13 @@ class SearchFilter extends React.Component {
           inSearch={this.state.inSearch}
           dictionary={this.props.dictionary}
           closeDropdown={this.closeDropdown}
+          handleClearSearch={this.handleClearSearch}
         />
         {this.state.parent.length > 0 && this.state.dropdownOpen &&
           <div className='h5p-hub-navigate-parent'>
             <button onClick={this.navigateToParent} />
             {this.getCheckboxFromId(this.state.parent[this.state.parent.length - 1], this.parents).name}
           </div>
-        }
-        {this.state.searchValue.length > 0 &&
-          <button onClick={this.handleClearSearch} className="h5p-hub-clear-button" />
         }
         {this.state.dropdownOpen && this.props.items && (!this.props.category || this.state.searchValue.length < 2) &&
           <CheckboxList

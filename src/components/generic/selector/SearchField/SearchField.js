@@ -14,6 +14,7 @@ const SearchField = React.forwardRef(({
   onFocus,
   inSearch,
   dictionary,
+  handleClearSearch,
   closeDropdown }, ref) => {
 
   /**
@@ -86,6 +87,9 @@ const SearchField = React.forwardRef(({
         </input>
         <div className="h5p-hub-icon-arrow" />
       </div>
+      {value.length > 0 &&
+        <button onClick={handleClearSearch} className="h5p-hub-clear-button" />
+      }
     </div>
   );
 });
@@ -102,6 +106,7 @@ SearchField.propTypes = {
   onClick: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   inSearch: PropTypes.bool,
+  handleClearSearch: PropTypes.func.isRequired,
 };
 
 SearchField.defaultProps = {

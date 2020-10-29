@@ -7,11 +7,13 @@
   .h5p-hub-clear-button {
     background: none;
     position: absolute;
-    top: 0;
     padding: 1.6em;
-    right: 3em;
+    right: 3.5em;
     color: #757575;
-    border: none; 
+    border: none;
+    top: 50%;
+    transform: translateY(-50%);
+
     &::before {
       content: "\e93a";
       font-family: "h5p";
@@ -61,6 +63,8 @@
 
     li {
       border-bottom: 1px solid #e6e6e8;
+      margin: 0;
+      padding-bottom: 0;
 
       &:last-child {
         border-bottom: none;
