@@ -29,12 +29,6 @@ const Review = ({
     <>
       <div className="h5p-hub-review-header">{l10n.reviewMessage}</div>
 
-      <Message severity="warning">
-        {replace(l10n.subContentWarning, {
-          ':license': license
-        })}
-      </Message>
-
       <dl>
         <Definition name={l10n.title}>{mandatoryInfo.title}</Definition>
         <Definition name={l10n.license}>{license}</Definition>
