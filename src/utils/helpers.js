@@ -52,7 +52,7 @@ export const optionalDefinition = PropTypes.shape({
 export const publishToHub = (url, token, values, done, fail) => {
   const fields = new FormData();
 
-  fields.append('token', token);
+  fields.append('_token', token);
   fields.append('title', values.title);
   fields.append('license', values.license);
   if (values.licenseVersion !== null) {
@@ -75,7 +75,7 @@ export const publishToHub = (url, token, values, done, fail) => {
   if (values.remove_icon) {
     fields.append('remove_icon', 1);
   }
-  
+
   values.screenshots.forEach(element => {
     if (element.file) {
       fields.append("screenshots[]", element.file);
@@ -107,7 +107,7 @@ export const publishToHub = (url, token, values, done, fail) => {
 export const registerToHub = (url, token, values, done, fail) => {
   const fields = new FormData();
 
-  fields.append('token', token);
+  fields.append('_token', token);
   fields.append('name', values.publisher);
   fields.append('email', values.emailAddress);
   fields.append('description', values.publisherDescription);
