@@ -21,7 +21,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
   const modalCloseButtonRef = React.createRef();
   const [titleFocus, setTitleFocus] = React.useState(false);
   const [fieldErrors, setFieldErrors] = React.useState({});
-  
+
   const MAX_TITLE_LENGTH = 255;
   const MAX_DISCIPLINES = 10;
 
@@ -72,18 +72,18 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
   /**
    * Intercept the setting of selected disciplines in order to detect if the
    * limit has been reached, and if so, update fieldErrors state variable.
-   * 
+   *
    * Assumes that the order of items in the checked parameter is the order of
    * selection, meaning that the last item in the array is the one where we
    * want to display an error message, indicating that the checkbox did not get
    * selected.
-   * 
-   * @param {string[]} checked 
+   *
+   * @param {string[]} checked
    */
   const handleSetDisciplines = (checked) => {
     if (checked.length <= MAX_DISCIPLINES) {
       setInfo(checked, 'disciplines')
-      setFieldErrors((prevState) => { 
+      setFieldErrors((prevState) => {
         delete prevState.disciplines;
         return prevState;
       });
@@ -118,14 +118,6 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
         text={replace(l10n.maxLength, { ':length': MAX_TITLE_LENGTH })}
         open={mandatoryInfo.title.length === MAX_TITLE_LENGTH && titleFocus}
         className='h5p-hub-tip-text-field'/>
-      {
-        showLicenseWarning && mandatoryInfo.license &&
-        <Message severity="warning">
-          {replace(l10n.subContentWarning, {
-            ':license': metadata.getLicenseForHumans(mandatoryInfo.license, mandatoryInfo.licenseVersion)
-          })}
-        </Message>
-      }
       <div className='h5p-hub-row'>
         <FormElement
           label={l10n.license}
