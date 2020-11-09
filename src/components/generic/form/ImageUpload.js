@@ -71,7 +71,7 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel, removeImageLabel}) => 
         )
       }
       <div className={`h5p-hub-image-upload ${img && img.src ? 'h5p-hub-image-selected' : ''}`}>
-        <input tabIndex="-1" ref={input} type="file" onChange={handleChange}/>
+        <input tabIndex="-1" ref={input} type="file" accept=".png,.jpg,.jpeg,.jfif,.pjpeg,.pjp" onChange={handleChange}/>
       </div>
     </div>
   );
