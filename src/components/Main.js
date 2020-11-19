@@ -73,7 +73,7 @@ const defaultImage = {
   alt: ''
 };
 
-function Main({ title, publishURL, contentType, language, token, hubContent = {} }) {
+function Main({ title, publishURL, returnURL, contentType, language, token, hubContent = {} }) {
   const metadata = useContext(MetadataContext);
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
@@ -155,6 +155,11 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
    * Handle cancel button is clicked
    */
   const handleCancel = () => {
+    if (isShared && returnURL) {
+      window.location.href = returnURL;
+      return;
+    }
+
     setShowConfirmationDialog(true);
   };
 
@@ -181,7 +186,7 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
             className="h5p-hub-title"
             dangerouslySetInnerHTML={{ __html: mainTitle }} />
           <Button variant="outlined" color="primary" onClick={handleCancel}>
-            {l10n.cancel}
+            {isShared ? l10n.close : l10n.cancel}
           </Button>
         </div>
 
@@ -265,6 +270,7 @@ function Main({ title, publishURL, contentType, language, token, hubContent = {}
 Main.propTypes = {
   title: PropTypes.string.isRequired,
   publishURL: PropTypes.string.isRequired,
+  returnURL: PropTypes.string.isRequired,
   contentType: PropTypes.string.isRequired,
   language: PropTypes.string.isRequired,
 }

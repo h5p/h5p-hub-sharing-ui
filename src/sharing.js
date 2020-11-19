@@ -15,6 +15,7 @@ window.H5PHub.createSharingUI = (container, {
   metadata,
   title,
   publishURL,
+  returnURL,
   contentType,
   language,
   token,
@@ -50,6 +51,7 @@ window.H5PHub.createSharingUI = (container, {
         <Main
           title={title}
           publishURL={publishURL}
+          returnURL={returnURL}
           contentType={contentType}
           language={language}
           token={token}
