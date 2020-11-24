@@ -2,7 +2,7 @@
   .h5p-hub-accordion-heading {
     display: flex;
     align-items: center;
-  
+
     .h5p-hub-icon-dropdown {
       font-size: 0.4em;
       color: #616161;
@@ -10,7 +10,7 @@
       left: 0;
       display: flex;
       padding: 0.2em;
-      
+
       &.h5p-hub-open {
         transform: rotate(90deg);
       }
@@ -24,7 +24,7 @@
     width: 100%;
     justify-self: start;
     display: flex;
-    
+
     .h5p-hub-accordion-header {
       border: none;
       text-align: left;
@@ -37,5 +37,6 @@
     margin: 0.8em;
     margin-bottom: 0;
     color: #707475;
+    overflow: hidden;
   }
 }
