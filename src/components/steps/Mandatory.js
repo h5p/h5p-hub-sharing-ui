@@ -32,10 +32,27 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
    * @param {string} name
    */
   const setInfo = (value, name) => {
-    setMandatoryInfo(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+
+    // Hack to clear license version when license changes
+    let clearLicenseVersion = false;
+    if (name === 'license') {
+      const license = metadata.getLicense(value);
+      if (!license || !license.versions || !license.versions.length) {
+        clearLicenseVersion = true;
+      }
+    }
+
+    setMandatoryInfo(prevState => {
+      const newState = {
+        ...prevState,
+        [name]: value
+      };
+      if (clearLicenseVersion) {
+        newState['licenseVersion'] = '';
+      }
+      return newState;
+    });
+    
   };
 
   React.useEffect(() => {
