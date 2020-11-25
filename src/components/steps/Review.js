@@ -44,7 +44,7 @@ const Review = ({
         <Definition name={l10n.screenshots}>
           {
             optionalInfo.screenshots.map((img, idx) =>
-              img.file &&
+              img.src &&
               <div key={idx} className='h5p-hub-row h5p-hub-screenshots'>
                 <ImagePreview key={idx} src={img.src} />
                 <div className='h5p-hub-img-alt'>{img.alt}</div>
