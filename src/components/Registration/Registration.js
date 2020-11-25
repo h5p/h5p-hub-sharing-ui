@@ -42,6 +42,7 @@ const Registration = ({
     },
     removeLogo: false,
   });
+  const isRegistered = accountInfo.name && accountInfo.name.length > 0;
 
   /**
    * Update a field
@@ -115,7 +116,9 @@ const Registration = ({
       }
       {shareState === 'finished' ?
         <Message severity='success'>
-          <div className='h5p-hub-message-header' tabIndex="-1" ref={shareFinishedRef}>{l10n.successfullyRegistred}</div>
+          <div className='h5p-hub-message-header' tabIndex="-1" ref={shareFinishedRef}>
+            {isRegistered ? l10n.successfullyUpdated : l10n.successfullyRegistred}
+          </div>
           <div className='h5p-hub-message-description'>
             {l10n.successfullyRegistredDescription}
             <a href={accountSettingsUrl}>{l10n.accountDetailsLinkText}</a>
@@ -229,7 +232,7 @@ const Registration = ({
               variant='register-hub'
               onClick={onRegister}
               enabled={isValid && shareState !== 'in-process'}>
-              {l10n.registerOnHub}
+              {isRegistered ? l10n.updateRegistrationOnHub : l10n.registerOnHub}
             </Button>
           </div>
         </div>
