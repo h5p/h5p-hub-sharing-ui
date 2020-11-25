@@ -74,7 +74,7 @@
 
     .h5p-hub-navigation {
       display: flex;
-      
+
       button {
         z-index: 1;
       }
@@ -205,7 +205,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .h5p-hub-icon-dropdown:before {	
+  .h5p-hub-icon-dropdown:before {
     content: "\e925";
   }
   .h5p-hub-icon-info:before {
@@ -223,4 +223,8 @@
   .h5p-hub-icon-plus:before {
     content: "\e939";
   }
+}
+
+.h5p-hub-share-error {
+  margin: 2em;
 }
