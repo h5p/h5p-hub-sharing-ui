@@ -134,13 +134,13 @@ const Registration = ({
               <div className='h5p-hub-row'>
                 <FormElement label={l10n.publisherFieldTitle} mandatory={true} description={l10n.publisherFieldDescription}>
                   <input
-                    id="h5p-hub-publisher"
+                    id="h5p-hub-form-publisher"
                     onChange={e => setInfo(e.target.value, 'publisher')}
                     value={fields.publisher} />
                 </FormElement>
                 <FormElement label={l10n.emailAddress} mandatory={true} className='h5p-hub-email-address'>
                   <input
-                    id="h5p-hub-email-address"
+                    id="h5p-hub-form-email-address"
                     onChange={e => setInfo(e.target.value, 'emailAddress')}
                     value={fields.emailAddress} />
                 </FormElement>
@@ -148,7 +148,7 @@ const Registration = ({
               <FormElement label={l10n.publisherDescription} description={l10n.publisherDescriptionText} mandatory={false}>
                 <textarea
                   value={fields.publisherDescription}
-                  id="h5p-hub-publisher-description"
+                  id="h5p-hub-form-publisher-description"
                   placeholder=''
                   onChange={(event) => setInfo(event.target.value, 'publisherDescription')}
                   className='h5p-hub-publisher-description' />
@@ -156,39 +156,39 @@ const Registration = ({
               <div className='h5p-hub-row'>
                 <FormElement label={l10n.contactPerson} mandatory={false}>
                   <input
-                    id="h5p-hub-contact-person"
+                    id="h5p-hub-form-contact-person"
                     onChange={e => setInfo(e.target.value, 'contactPerson')}
                     value={fields.contactPerson} />
                 </FormElement>
                 <FormElement label={l10n.phone} mandatory={false}>
                   <input
-                    id="h5p-hub-phone"
+                    id="h5p-hub-form-phone"
                     onChange={e => setInfo(e.target.value, 'phone')}
                     value={fields.phone} />
                 </FormElement>
               </div>
               <FormElement label={l10n.address} mandatory={false}>
                 <input
-                  id="h5p-hub-address"
+                  id="h5p-hub-form-address"
                   onChange={e => setInfo(e.target.value, 'address')}
                   value={fields.address} />
               </FormElement>
               <div className='h5p-hub-row'>
                 <FormElement label={l10n.city} mandatory={false}>
                   <input
-                    id="h5p-hub-city"
+                    id="h5p-hub-form-city"
                     onChange={e => setInfo(e.target.value, 'city')}
                     value={fields.city} />
                 </FormElement>
                 <FormElement label={l10n.zip} mandatory={false}>
                   <input
-                    id="h5p-hub-zip"
+                    id="h5p-hub-form-zip"
                     onChange={e => setInfo(e.target.value, 'zip')}
                     value={fields.zip} />
                 </FormElement>
                 <FormElement label={l10n.country} mandatory={false}>
                   <input
-                    id="h5p-hub-country"
+                    id="h5p-hub-form-country"
                     onChange={e => setInfo(e.target.value, 'country')}
                     value={fields.country} />
                 </FormElement>
@@ -208,7 +208,7 @@ const Registration = ({
               />
               <Checkbox
                 label={l10n.acceptTerms}
-                id='h5p-hub-accept-terms'
+                id='h5p-hub-form-accept-terms'
                 checked={acceptedTerms}
                 filter=''
                 onChecked={(name, id, checked) => setAcceptedTerms(checked)}>

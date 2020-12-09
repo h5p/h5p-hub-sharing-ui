@@ -106,7 +106,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
           <FormElement label={l10n.shortDescription}>
             <textarea
               value={optionalInfo.shortDescription ? optionalInfo.shortDescription : ''}
-              id="h5p-hub-short-description"
+              id="h5p-hub-form-short-description"
               placeholder={l10n.shortDescriptionPlaceholder}
               onChange={(event) => setInfo(event.target.value, 'shortDescription')}
               className='h5p-hub-short-description'
@@ -121,7 +121,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
           <FormElement label={l10n.description}>
             <textarea
               value={optionalInfo.longDescription ? optionalInfo.longDescription : ''}
-              id="h5p-hub-long-description"
+              id="h5p-hub-form-long-description"
               placeholder={l10n.longDescriptionPlaceholder}
               maxLength={longDescriptionMaxLength}
               onChange={(event) => setInfo(event.target.value, 'longDescription')}
@@ -148,7 +148,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
               removeImageLabel={l10n.removeImage} />
           </FormElement>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
-            <div id='h5p-hub-screenshots'>
+            <div id='h5p-hub-form-screenshots'>
               {optionalInfo.screenshots.map((img, i) =>
                 img.src &&
                 <div className='h5p-hub-row' key={i}>
@@ -167,7 +167,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                   <FormElement label={l10n.altText} mandatory={true}>
                     <input
                       className="h5p-hub-alt-text"
-                      id={`h5p-hub-alt-text-${i}`}
+                      id={`h5p-hub-form-alt-text-${i}`}
                       value={optionalInfo.screenshots[i].alt}
                       onChange={(event) => setAltText(event.target.value, i)}
                       ref={el => altInputRefs.current[i] = el} />

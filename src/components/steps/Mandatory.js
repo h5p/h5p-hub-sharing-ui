@@ -124,7 +124,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 
       <FormElement label={l10n.title} mandatory={true}>
         <input
-          id="h5p-hub-title"
+          id="h5p-hub-form-title"
           onChange={e => setInfo(e.target.value, 'title')}
           value={mandatoryInfo.title}
           maxLength={MAX_TITLE_LENGTH}

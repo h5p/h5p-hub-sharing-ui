@@ -58,8 +58,7 @@ const Chips = ({ chips, setChips }) => {
               ref={el => chipsRef.current[i] = el}
               aria-label={replace(l10n.removeChip, { ':chip': chip.name })}
               onClick={() => removeChip(chip)}
-              onKeyDown={event => handleKeyDown(event)}
-              id={'h5p-hub-' + chip.id}>
+              onKeyDown={event => handleKeyDown(event)}>
               {chip.name}
               <div className='h5p-hub-icon-close'></div>
             </button>
