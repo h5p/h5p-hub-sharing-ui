@@ -14,7 +14,6 @@ import Checkbox from '../generic/selector/Checkbox/Checkbox';
 import Message from '../generic/message/Message';
 
 const Registration = ({
-  licenseLink,
   postUrl,
   accountSettingsUrl,
   token,
@@ -198,29 +197,16 @@ const Registration = ({
               </div>
               <ImageUpload
                 img={fields.logo}
-                onFile={img => { 
+                onFile={img => {
                   setInfo(false, 'removeLogo');
-                  setInfo(img, 'logo'); 
+                  setInfo(img, 'logo');
                 }}
                 clearImage={setInfo.bind(this, true, 'removeLogo')}
                 ariaLabel={l10n.logoUploadText}
                 removeImageLabel={l10n.removeImage}
               />
-              <Checkbox
-                label={l10n.acceptTerms}
-                id='h5p-hub-form-accept-terms'
-                checked={acceptedTerms}
-                filter=''
-                onChecked={(name, id, checked) => setAcceptedTerms(checked)}>
-                {l10n.acceptTerms}
-                <span> </span>
-                <a
-                  onClick={(e) => e.stopPropagation()}
-                  onKeyDown={(e) => e.stopPropagation()}
-                  target="_blank"
-                  href={licenseLink}>
-                  {l10n.licenseLinkText}
-                </a>
+              <Checkbox checked={ acceptedTerms } onChange={ setAcceptedTerms }>
+                <span dangerouslySetInnerHTML={ {__html: l10n.acceptTerms.replace(':url', 'https://h5p.org/H5P-Hub-terms-of-use')} }/>
               </Checkbox>
             </div>
           </div>
@@ -245,7 +231,6 @@ Registration.propTypes = {
   postUrl: PropTypes.string.isRequired,
   accountSettingsUrl: PropTypes.string.isRequired,
   accountInfo: PropTypes.object,
-  licenseLink: PropTypes.string.isRequired
 }
 
 export default Registration;
