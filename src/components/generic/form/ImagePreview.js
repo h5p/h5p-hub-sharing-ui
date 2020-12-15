@@ -5,6 +5,10 @@ import './ImagePreview.scss';
 
 const ImagePreview = ({src}) => {
 
+  if (!src) {
+    return null;
+  }
+
   const img = useMemo(() => {
     const img = new Image();
     img.src = src;
