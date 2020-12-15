@@ -13,6 +13,7 @@ window.H5PHub.createRegistrationUI = ({
   l10n,
   licenseLink,
   registrationURL,
+  redirectURL,
   accountSettingsUrl,
   token,
   accountInfo,
@@ -22,6 +23,7 @@ window.H5PHub.createRegistrationUI = ({
       <Registration
         licenseLink={licenseLink}
         postUrl={registrationURL}
+        redirectUrl={redirectURL}
         accountSettingsUrl={accountSettingsUrl}
         token={token}
         accountInfo={accountInfo || {}}

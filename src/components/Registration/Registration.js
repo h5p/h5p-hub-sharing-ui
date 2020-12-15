@@ -15,6 +15,7 @@ import Message from '../generic/message/Message';
 
 const Registration = ({
   postUrl,
+  redirectUrl,
   accountSettingsUrl,
   token,
   accountInfo,
@@ -75,6 +76,12 @@ const Registration = ({
     setShareState('in-process');
     registerToHub(postUrl, token, fields, (response) => {
       if (response.data && response.data.success) {
+        if (redirectUrl) {
+          // Redirect to new page instead of showing success message
+          window.location.assign(redirectUrl);
+          return;
+        }
+
         setShareState('finished');
         setShareFailedMessage(null);
         if (shareFinishedRef.current) {
@@ -229,6 +236,7 @@ const Registration = ({
 
 Registration.propTypes = {
   postUrl: PropTypes.string.isRequired,
+  redirectUrl: PropTypes.string,
   accountSettingsUrl: PropTypes.string.isRequired,
   accountInfo: PropTypes.object,
 }
