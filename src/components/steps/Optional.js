@@ -95,6 +95,12 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
   return (
     <>
+      <FormElement label={l10n.age} description={l10n.ageDescription}>
+        <input
+          onChange={e => setInfo(e.target.value, 'age')}
+          value={optionalInfo.age}
+        />
+      </FormElement>
       <FormElement
         label={l10n.keywords}
         description={l10n.keywordsDescription}

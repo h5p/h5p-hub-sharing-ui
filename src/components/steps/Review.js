@@ -35,6 +35,7 @@ const Review = ({
         <Definition name={l10n.language}>{metadata.getLanguage(mandatoryInfo.language).name}</Definition>
         <Definition name={l10n.level}>{metadata.getLevel(mandatoryInfo.level).name}</Definition>
         <Definition name={l10n.disciplines}>{disciplines.join(', ')}</Definition>
+        <Definition name={l10n.age}>{optionalInfo.age}</Definition>
         <Definition name={l10n.keywords}>{optionalInfo.keywords.join(', ')}</Definition>
         <Definition name={l10n.shortDescription}>{optionalInfo.shortDescription}</Definition>
         <Definition name={l10n.longDescription}>{optionalInfo.longDescription}</Definition>

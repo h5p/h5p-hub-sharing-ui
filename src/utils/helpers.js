@@ -35,6 +35,7 @@ export const mandatoryDefinition = PropTypes.shape({
  * @returns {Object}
  */
 export const optionalDefinition = PropTypes.shape({
+  age: PropTypes.string,
   keywords: PropTypes.array,
   shortDescription: PropTypes.string,
   longDescription: PropTypes.string,
@@ -66,6 +67,7 @@ export const publishToHub = (url, token, values, done, fail) => {
   values.keywords.forEach(keyword => {
     fields.append('keywords[]', keyword);
   });
+  fields.append('age', values.age);
 
   fields.append('summary', values.shortDescription);
   fields.append('description', values.longDescription)

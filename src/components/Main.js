@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 
 import 'normalize.css';
 import './Main.scss';
+import {validateAge} from "../utils/validators";
 
 /**
  * Creates the defintion of the steps in the wizard
@@ -47,6 +48,19 @@ const getSteps = (mandatory, optional) => {
       nextButton: {
         label: 'reviewInfo',
         variant: 'outlined'
+      },
+      validation: () => {
+        const isValid = validateAge(optional.info.age);
+        if (!isValid) {
+          return {
+            msg: 'Invalid input format for Typical age. Possible input formats separated by commas: "1, 34-45, -50, -59-".',
+            success: false,
+          };
+        }
+
+        return {
+          success: true,
+        };
       },
       backButton: true,
       id: 'optional'
@@ -86,6 +100,7 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
   const [optionalInfo, setOptionalInfo] = React.useState({
     shortDescription:  hubContent.summary || '',
     longDescription:  hubContent.description || '',
+    age: hubContent.age || '',
     keywords:  hubContent.keywords || [],
     icon:  hubContent.icon ? {src: hubContent.icon, alt: '', old: true} : defaultImage,
     remove_icon: null,
@@ -118,6 +133,19 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
    * Handle next button is clicked
    */
   const handleNext = () => {
+    setShareFailed(false);
+
+    // Run validation for step
+    if (step.validation) {
+      const isValid = step.validation();
+      if (isValid.success === false) {
+        // Display error message
+        setShareFailed(true);
+        setShareFailedMessage(isValid.msg);
+        return;
+      }
+    }
+
     if (activeStep === 2) {
       setShareInProcess(true);
       //Send disciplines with it's ancestors
@@ -148,6 +176,7 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
    * Handle back button is clicked
    */
   const handleBack = () => {
+    setShareFailed(false);
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -236,7 +265,8 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
                     <Button
                       name="next"
                       variant={step.nextButton.variant}
-                      color="green" onClick={handleNext}
+                      color="green"
+                      onClick={handleNext}
                       enabled={nextButtonEnabled && !shareInProcess}
                       id={shareInProcess ? 'h5p-hub-share-in-process' : ''}>
                       {!shareInProcess ? l10n[step.nextButton.label]
@@ -270,7 +300,7 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
 Main.propTypes = {
   title: PropTypes.string.isRequired,
   publishURL: PropTypes.string.isRequired,
-  returnURL: PropTypes.string.isRequired,
+  returnURL: PropTypes.string,
   contentType: PropTypes.string.isRequired,
   language: PropTypes.string.isRequired,
 }
