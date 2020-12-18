@@ -137,20 +137,24 @@ const Registration = ({
               {l10n.registrationTitle}
             </div>
             <div className={`h5p-hub-step-content`}>
-              <div className='h5p-hub-row'>
-                <FormElement label={l10n.publisherFieldTitle} mandatory={true} description={l10n.publisherFieldDescription}>
-                  <input
-                    id="h5p-hub-form-publisher"
-                    onChange={e => setInfo(e.target.value, 'publisher')}
-                    value={fields.publisher} />
-                </FormElement>
-                <FormElement label={l10n.emailAddress} description={l10n.emailAddressDescription} mandatory={true} className='h5p-hub-email-address'>
-                  <input
-                    id="h5p-hub-form-email-address"
-                    onChange={e => setInfo(e.target.value, 'emailAddress')}
-                    value={fields.emailAddress} />
-                </FormElement>
-              </div>
+              <FormElement label={l10n.publisherFieldTitle}
+                           mandatory={true}
+                           description={l10n.publisherFieldDescription}>
+                <input
+                  id="h5p-hub-form-publisher"
+                  onChange={e => setInfo(e.target.value, 'publisher')}
+                  value={fields.publisher}/>
+              </FormElement>
+              <FormElement label={l10n.emailAddress}
+                           description={l10n.emailAddressDescription}
+                           mandatory={true}
+                           className='h5p-hub-email-address'>
+                <input
+                  id="h5p-hub-form-email-address"
+                  onChange={e => setInfo(e.target.value, 'emailAddress')}
+                  value={fields.emailAddress}
+                />
+              </FormElement>
               <FormElement label={l10n.publisherDescription} description={l10n.publisherDescriptionText} mandatory={false}>
                 <textarea
                   value={fields.publisherDescription}
@@ -159,26 +163,27 @@ const Registration = ({
                   onChange={(event) => setInfo(event.target.value, 'publisherDescription')}
                   className='h5p-hub-publisher-description' />
               </FormElement>
-              <div className='h5p-hub-row'>
-                <FormElement label={l10n.contactPerson} description={l10n.contactPersonDescription} mandatory={false}>
-                  <input
-                    id="h5p-hub-form-contact-person"
-                    onChange={e => setInfo(e.target.value, 'contactPerson')}
-                    value={fields.contactPerson} />
-                </FormElement>
+              <FormElement label={l10n.contactPerson} description={l10n.contactPersonDescription} mandatory={false}>
+                <input
+                  id="h5p-hub-form-contact-person"
+                  onChange={e => setInfo(e.target.value, 'contactPerson')}
+                  value={fields.contactPerson} />
+              </FormElement>
+
+              <div className="h5p-hub-row">
                 <FormElement label={l10n.phone} mandatory={false}>
                   <input
                     id="h5p-hub-form-phone"
                     onChange={e => setInfo(e.target.value, 'phone')}
                     value={fields.phone} />
                 </FormElement>
+                <FormElement label={l10n.address} mandatory={false}>
+                  <input
+                    id="h5p-hub-form-address"
+                    onChange={e => setInfo(e.target.value, 'address')}
+                    value={fields.address} />
+                </FormElement>
               </div>
-              <FormElement label={l10n.address} mandatory={false}>
-                <input
-                  id="h5p-hub-form-address"
-                  onChange={e => setInfo(e.target.value, 'address')}
-                  value={fields.address} />
-              </FormElement>
               <div className='h5p-hub-row'>
                 <FormElement label={l10n.city} mandatory={false}>
                   <input
