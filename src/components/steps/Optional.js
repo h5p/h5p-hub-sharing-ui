@@ -95,12 +95,16 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
   return (
     <>
-      <FormElement label={l10n.age} description={l10n.ageDescription}>
-        <input
-          onChange={e => setInfo(e.target.value, 'age')}
-          value={optionalInfo.age}
-        />
-      </FormElement>
+      <div className="h5p-hub-columns">
+        <div className="h5p-hub-column">
+          <FormElement label={l10n.age} description={l10n.ageDescription}>
+            <input
+              onChange={e => setInfo(e.target.value, 'age')}
+              value={optionalInfo.age}
+            />
+          </FormElement>
+        </div>
+      </div>
       <FormElement
         label={l10n.keywords}
         description={l10n.keywordsDescription}
