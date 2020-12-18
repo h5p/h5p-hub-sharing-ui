@@ -144,7 +144,7 @@ const Registration = ({
                     onChange={e => setInfo(e.target.value, 'publisher')}
                     value={fields.publisher} />
                 </FormElement>
-                <FormElement label={l10n.emailAddress} mandatory={true} className='h5p-hub-email-address'>
+                <FormElement label={l10n.emailAddress} description={l10n.emailAddressDescription} mandatory={true} className='h5p-hub-email-address'>
                   <input
                     id="h5p-hub-form-email-address"
                     onChange={e => setInfo(e.target.value, 'emailAddress')}
@@ -160,7 +160,7 @@ const Registration = ({
                   className='h5p-hub-publisher-description' />
               </FormElement>
               <div className='h5p-hub-row'>
-                <FormElement label={l10n.contactPerson} mandatory={false}>
+                <FormElement label={l10n.contactPerson} description={l10n.contactPersonDescription} mandatory={false}>
                   <input
                     id="h5p-hub-form-contact-person"
                     onChange={e => setInfo(e.target.value, 'contactPerson')}
