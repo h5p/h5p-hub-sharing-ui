@@ -49,11 +49,11 @@ const getSteps = (mandatory, optional) => {
         label: 'reviewInfo',
         variant: 'outlined'
       },
-      validation: () => {
+      validation: (l10n) => {
         const isValid = validateAge(optional.info.age);
         if (!isValid) {
           return {
-            msg: 'Invalid input format for Typical age. Possible input formats separated by commas: "1, 34-45, -50, -59-".',
+            msg: l10n.invalidAge,
             success: false,
           };
         }
@@ -137,7 +137,7 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
 
     // Run validation for step
     if (step.validation) {
-      const isValid = step.validation();
+      const isValid = step.validation(l10n);
       if (isValid.success === false) {
         // Display error message
         setShareFailed(true);

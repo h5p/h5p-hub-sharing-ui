@@ -44,6 +44,7 @@ test('alphanumeric', () => {
 
 test('additional ranges', () => {
   expect(validateAge('12-13-15')).toBeFalsy();
+  expect(validateAge('-')).toBeFalsy();
 });
 
 test('large numbers', () => {

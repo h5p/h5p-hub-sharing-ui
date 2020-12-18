@@ -61,5 +61,5 @@ export const validateAge = (age) => {
   // Range start to end
   return isValidInteger(from)
     && isValidInteger(to)
-    && parseInt(from) < parseInt(to);
+    && (parseInt(from) < parseInt(to));
 }
