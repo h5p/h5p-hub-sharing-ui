@@ -105,15 +105,15 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
     icon:  hubContent.icon ? {src: hubContent.icon, alt: '', old: true} : defaultImage,
     remove_icon: null,
     screenshots:  hubContent.screenshots ? hubContent.screenshots.map(pat => ({src: pat.path, alt: pat.altText, old: true})) : [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage],
-    remove_screenshots: []
+    remove_screenshots: [],
+    disciplines: hubContent.disciplines || [],
+    level: hubContent.level || '',
   });
   const [mandatoryInfo, setMandatoryInfo] = React.useState({
     license: hubContent.license || '',
     language: hubContent.language || language,
-    level: hubContent.level || '',
     licenseVersion:  hubContent.licenseVersion || '',
     title: hubContent.title || title,
-    disciplines: hubContent.disciplines || []
   });
   const l10n = useContext(TranslationContext);
 
@@ -149,7 +149,9 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
     if (activeStep === 2) {
       setShareInProcess(true);
       //Send disciplines with it's ancestors
-      const disciplines = getDisciplinesWithAncestors(mandatoryInfo.disciplines, getParents(metadata.disciplines));
+      const disciplines = optionalInfo.disciplines.length
+        ? getDisciplinesWithAncestors(optionalInfo.disciplines, getParents(metadata.disciplines))
+        : [];
       publishToHub(publishURL, token, { ...mandatoryInfo, disciplines: disciplines, ...optionalInfo }, (response) => {
         const data = response.data;
         if (!data.success) {

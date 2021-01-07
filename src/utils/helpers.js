@@ -24,9 +24,7 @@ export const mandatoryDefinition = PropTypes.shape({
   title: PropTypes.string.isRequired,
   license: PropTypes.string.isRequired,
   licenseVersion: PropTypes.string.isRequired,
-  disciplines: PropTypes.array.isRequired,
   language: PropTypes.string.isRequired,
-  level: PropTypes.string,
 });
 
 
@@ -40,7 +38,9 @@ export const optionalDefinition = PropTypes.shape({
   shortDescription: PropTypes.string,
   longDescription: PropTypes.string,
   icon: PropTypes.object,
-  screenshots: PropTypes.array
+  screenshots: PropTypes.array,
+  disciplines: PropTypes.array,
+  level: PropTypes.string,
 });
 
 /**

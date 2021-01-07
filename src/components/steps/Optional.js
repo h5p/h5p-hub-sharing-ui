@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
 import Keywords from '../generic/keywords/Keywords';
 import FormElement from '../generic/form/Element';
@@ -8,10 +8,15 @@ import ImageUpload from '../generic/form/ImageUpload';
 import Tip from '../generic/tip/Tip';
 
 import './Optional.scss';
+import Dropdown from "../generic/dropdown/Dropdown";
+import DisciplineSelector from "../generic/discipline/DisciplineSelector";
+import MetadataContext from "../../context/Metadata";
 
 const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
   const l10n = React.useContext(TranslationContext);
+  const metadata = useContext(MetadataContext);
+
   const altInputRefs = React.useRef([]);
   const shortDescriptionRef = React.useRef();
   const longDescriptionRef = React.useRef();
@@ -23,6 +28,10 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
   const [shortDescriptionFocus, setShortDescriptionFocus] = useState(false);
   const [longDescriptionFocus, setLongDescriptionFocus] = useState(false);
+  const [fieldErrors, setFieldErrors] = React.useState({});
+
+  const MAX_DISCIPLINES = 10;
+
 
   /**
    * Set focus to the newly added item
@@ -86,24 +95,70 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
   }
 
   /**
+   * Intercept the setting of selected disciplines in order to detect if the
+   * limit has been reached, and if so, update fieldErrors state variable.
+   *
+   * Assumes that the order of items in the checked parameter is the order of
+   * selection, meaning that the last item in the array is the one where we
+   * want to display an error message, indicating that the checkbox did not get
+   * selected.
+   *
+   * @param {string[]} checked
+   */
+  const handleSetDisciplines = (checked) => {
+    if (checked.length <= MAX_DISCIPLINES) {
+      setInfo(checked, 'disciplines')
+      setFieldErrors((prevState) => {
+        delete prevState.disciplines;
+        return prevState;
+      });
+    }
+    else {
+      const lastSelectedDiscipline = [...checked].pop();
+      setFieldErrors((prevState) => ({
+        ...prevState,
+        disciplines: {
+          [lastSelectedDiscipline]: replace(l10n.disciplineLimitReachedMessage, { ':numDisciplines': MAX_DISCIPLINES })
+        }
+      }));
+    }
+  };
+
+  /**
    * Update IsValid when screenshots alt text change
    */
   React.useEffect(() => {
     setIsValid(
-      optionalInfo.screenshots.filter(img => img.file && img.alt === '').length === 0)
+      optionalInfo.screenshots.filter(img => img.file && img.alt === '').length === 0
+      && optionalInfo.disciplines.length <= 10
+    );
   }, [optionalInfo, setIsValid]);
 
   return (
     <>
-      <div className="h5p-hub-columns">
-        <div className="h5p-hub-column">
-          <FormElement label={l10n.age} description={l10n.ageDescription}>
-            <input
-              onChange={e => setInfo(e.target.value, 'age')}
-              value={optionalInfo.age}
-            />
-          </FormElement>
-        </div>
+      <FormElement
+        label={l10n.disciplineLabel}
+        description={l10n.disciplineDescription}
+      >
+        <DisciplineSelector
+          disciplines={optionalInfo.disciplines}
+          errors={fieldErrors.disciplines}
+          setDisciplines={handleSetDisciplines}/>
+      </FormElement>
+      <div className="h5p-hub-row">
+        <FormElement label={l10n.age} description={l10n.ageDescription}>
+          <input
+            onChange={e => setInfo(e.target.value, 'age')}
+            value={optionalInfo.age}
+          />
+        </FormElement>
+        <FormElement label={l10n.level}>
+          <Dropdown
+            options={metadata.levels}
+            onChange={(e) => setInfo(e.target.value, 'level')}
+            selected={optionalInfo.level}
+            allowNone={true}/>
+        </FormElement>
       </div>
       <FormElement
         label={l10n.keywords}
