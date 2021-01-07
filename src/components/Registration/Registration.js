@@ -137,18 +137,20 @@ const Registration = ({
               {l10n.registrationTitle}
             </div>
             <div className={`h5p-hub-step-content`}>
-              <FormElement label={l10n.publisherFieldTitle}
-                           mandatory={true}
-                           description={l10n.publisherFieldDescription}>
+              <FormElement
+                label={l10n.publisherFieldTitle}
+                mandatory={true}
+                description={l10n.publisherFieldDescription}>
                 <input
                   id="h5p-hub-form-publisher"
                   onChange={e => setInfo(e.target.value, 'publisher')}
-                  value={fields.publisher}/>
+                  value={fields.publisher} />
               </FormElement>
-              <FormElement label={l10n.emailAddress}
-                           description={l10n.emailAddressDescription}
-                           mandatory={true}
-                           className='h5p-hub-email-address'>
+              <FormElement
+                label={l10n.emailAddress}
+                description={l10n.emailAddressDescription}
+                mandatory={true}
+                className='h5p-hub-email-address'>
                 <input
                   id="h5p-hub-form-email-address"
                   onChange={e => setInfo(e.target.value, 'emailAddress')}
