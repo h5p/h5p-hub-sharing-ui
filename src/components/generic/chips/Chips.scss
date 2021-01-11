@@ -9,7 +9,6 @@
     margin: 0;
 
     button {
-      font-size: 0.708em;
       border-radius: 0.125em;
       margin-right: 0.5em;
       margin-top: 0.5em;
@@ -17,9 +16,11 @@
       color: #000000;
       display: flex;
       align-items: center;
-      padding: 0.75em 0.75em;
-      border-color: #dddee2;
       outline: none;
+      border-color: #e2e5ee;
+      padding: 0.5em;
+      font-size: 0.85em;
+
       .h5p-hub-icon-close {
         font-size: 0.8em;
         margin-left: 2em;

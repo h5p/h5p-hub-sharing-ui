@@ -2,14 +2,32 @@
 
 .h5p-hub-publish, .h5p-hub-registration {
   .h5p-hub-form-element {
-    font-family: 'Open Sans', sans-serif;
+    font-family: Nunito, sans-serif;
+    font-size: 16px;
     padding: 1em 0;
+
+    textarea,
+    input,
+    select {
+      padding: .958em;
+      border: 2px solid #e2e5ee;
+      box-shadow: none;
+      color: #3c4859;
+      font-family: Nunito, sans-serif;
+
+      &:focus {
+        border-color: #98cbe8;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(152, 203, 232, .6);
+        outline: none;
+      }
+    }
 
     label {
       display: block;
-      color: #363636;
       margin-bottom: 0.4em;
       font-weight: bold;
+      font-size: .917em;
+      color: #3c4859;
     }
     &.h5p-hub-mandatory label:after {
       content: '*';
@@ -38,24 +56,26 @@
     textarea {
       border: 1px solid #bebdcd;
       resize: none;
-      font-size: 0.833em;
       width: 100%;
       border-radius: 0.208em;
       padding: 0.833em 0.833em;
       box-sizing: border-box;
       @include scrollbar;
+      line-height: 1.25em;
+
       &::placeholder {
         font-style: italic;
       }
     }
     .h5p-hub-link-button {
       border: none;
-      color: #2c67b0;
       text-decoration: underline;
-      font-weight: 500;
-      padding: 0;
       text-align: right;
       align-self: flex-start;
+      color: #186df7;
+      font-size: .917em;
+      font-weight: normal;
+      padding: 0;
     }
     .h5p-hub-details-row {
       display: flex;

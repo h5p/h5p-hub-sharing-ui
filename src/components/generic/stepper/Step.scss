@@ -1,7 +1,5 @@
 .h5p-hub-publish .h5p-hub-step {
-  
   text-align: center;
-  font-size: 0.75em;
   font-weight: bold;
 
   .h5p-hub-step-icon {
@@ -31,15 +29,15 @@
   &.h5p-hub-active {
     color: #20d2b2;
     .h5p-hub-step-icon {
-      border-color: #20d2b2;
-      color: #0ea385;
+      border-color: #1886f7;
+      color: #186df7;
     }
   }
 
   &.h5p-hub-completed {
     .h5p-hub-step-icon {
-      background: #0ea385;
-      border-color: #20d2b2;
+      background: #186df7;
+      border-color: #609bff;
       color: #fff;
     }
   }

@@ -1,8 +1,8 @@
 .h5p-hub-publish .h5p-hub-search-filter {
   position: relative;
-  border: 1px solid #bebdcd;
   border-radius: 0.208em;
   font-size: 0.833em;
+  border: 2px solid #e2e5ee;
 
   .h5p-hub-clear-button {
     background: none;
@@ -29,17 +29,18 @@
     font-family: "Open Sans", sans-serif;
     border-top: 1px solid #e6e6e8;
     align-items: center;
+    border-bottom: solid 1px #e6e6e8;
 
     button {
       background-color: #ffffff;
       position: relative;
       font-style: normal;
       font-size: 0.8em;
-      border-radius: 50%;
-      margin-right: 0.4em;
       align-self: center;
-      padding: 0.5em;
       border: none;
+      padding: 0.75em;
+      margin-right: 1em;
+      border-radius: 50%;
 
       &::before {
         content: "\e937";
@@ -78,6 +79,10 @@
         .h5p-hub-label-text {
           margin: 0 1em;
         }
+
+        button {
+          border-radius: 1.5em;
+        }
       }
       &:focus {
         border-color: #3ba0f2;
@@ -110,5 +115,9 @@
       background-size: 24px 100%;
       border-radius: 5.45256em;
     }
+  }
+
+  .h5p-hub-publish .h5p-hub-form-element input {
+    border: none;
   }
 }

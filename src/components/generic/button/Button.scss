@@ -33,12 +33,14 @@
 
     &.h5p-hub-outlined.h5p-hub-green {
       border-width: 0.125em;
-      color: #2b9684;
-      border-color: #2b9684;
+      background-color: white;
+      border-color: #186df7;
+      color: #186df7;
 
       &:hover {
-        color: #257a70;
-        border-color: #257a70;
+        background-color: #186df7;
+        border-color: #186df7;
+        color: #ffffff;
       }
 
       &[disabled] {
