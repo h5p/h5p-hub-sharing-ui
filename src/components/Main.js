@@ -89,10 +89,11 @@ const defaultImage = {
 
 function Main({ title, publishURL, returnURL, contentType, language, token, hubContent = {} }) {
   const metadata = useContext(MetadataContext);
+  const l10n = useContext(TranslationContext);
   const [activeStep, setActiveStep] = React.useState(0);
   const [isShared, setShared] = React.useState(false);
-  const [shareFailed, setShareFailed] = React.useState(false);
-  const [shareFailedMessage, setShareFailedMessage] = useState(null);
+  const [shareFailed, setShareFailed] = React.useState(hubContent.showCopyrightWarning);
+  const [shareFailedMessage, setShareFailedMessage] = useState(hubContent.showCopyrightWarning ? l10n.copyrightWarning : null);
   const [shareInProcess, setShareInProcess] = React.useState(false);
   const [mandatoryIsValid, setMandatoryIsValid] = React.useState(false);
   const [showConfirmationDialog, setShowConfirmationDialog] = React.useState(false);
@@ -115,7 +116,6 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
     licenseVersion:  hubContent.licenseVersion || '',
     title: hubContent.title || title,
   });
-  const l10n = useContext(TranslationContext);
 
   const steps = getSteps({
     info: mandatoryInfo,

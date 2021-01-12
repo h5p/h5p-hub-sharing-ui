@@ -119,8 +119,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
         >
           <Dropdown
             options={metadata.licenses}
-            selected={mandatoryInfo.license || 'U'}
-            allowNone={false}
+            selected={mandatoryInfo.license || ''}
+            allowNone={true}
             onChange={e => setInfo(e.target.value, 'license')}/>
         </FormElement>
         <FormElement
