@@ -31,7 +31,9 @@ const getSteps = (mandatory, optional) => {
       content: <Mandatory
         mandatoryInfo={mandatory.info}
         setMandatoryInfo={mandatory.setter}
-        setIsValid={mandatory.setIsValid} />,
+        setIsValid={mandatory.setIsValid}
+        clearMessages={mandatory.clearMessages}
+      />,
       nextButton: {
         label: 'next',
         variant: 'outlined'
@@ -117,10 +119,16 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
     title: hubContent.title || title,
   });
 
+  const clearMessages = () => {
+    setShareFailed(false);
+    setShareFailedMessage(null);
+  };
+
   const steps = getSteps({
     info: mandatoryInfo,
     setter: setMandatoryInfo,
-    setIsValid: setMandatoryIsValid
+    setIsValid: setMandatoryIsValid,
+    clearMessages,
   }, {
     info: optionalInfo,
     setter: setOptionalInfo,

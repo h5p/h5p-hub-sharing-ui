@@ -9,7 +9,7 @@ import Modal from '../generic/modal/Modal';
 import Tip from '../generic/tip/Tip';
 import ModalContent from './ModalContent';
 
-const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
+const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid, clearMessages }) => {
   const [showLicenseWarning, setShowLicenseWarning] = useState(false);
   const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
@@ -79,6 +79,11 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
     }
   }
 
+  const setLicense = (e) => {
+    setInfo(e.target.value, 'license')
+    clearMessages();
+  }
+
   return (
     <>
       <Modal isOpen={modalOpen} closeModal={() => toggleLicense(false)} onAfterOpen={onModalOpen}>
@@ -121,7 +126,7 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
             options={metadata.licenses}
             selected={mandatoryInfo.license || ''}
             allowNone={true}
-            onChange={e => setInfo(e.target.value, 'license')}/>
+            onChange={setLicense}/>
         </FormElement>
         <FormElement
           label={l10n.licenseVersion}
@@ -142,7 +147,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid }) => {
 Mandatory.propTypes = {
   mandatoryInfo: mandatoryDefinition,
   setMandatoryInfo: PropTypes.func.isRequired,
-  setIsValid: PropTypes.func.isRequired
+  setIsValid: PropTypes.func.isRequired,
+  clearMessages: PropTypes.func.isRequired,
 }
 
 export default Mandatory;
