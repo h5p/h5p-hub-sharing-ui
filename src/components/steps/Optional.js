@@ -14,7 +14,7 @@ import MetadataContext from "../../context/Metadata";
 
 const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
 
-  const l10n = React.useContext(TranslationContext);
+  const l10n = useContext(TranslationContext);
   const metadata = useContext(MetadataContext);
 
   const altInputRefs = React.useRef([]);
