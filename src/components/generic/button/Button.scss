@@ -21,13 +21,13 @@
     }
 
     &.h5p-hub-contained.h5p-hub-green {
+      background-color: #186df7;
       color: #fff;
-      border-color: #2b9684;
-      background: #2b9684;
+      border-color: #186df7;
 
       &:hover {
-        border-color: #257a70;
-        background: #257a70;
+        background-color: #2e46a4;
+        border-color: #2e46a4;
       }
     }
 
@@ -44,8 +44,10 @@
       }
 
       &[disabled] {
-        color: #92cabf;
-        border-color: #92cabf;
+        color: #aac3ec;
+        border-color: #aac3ec;
+        background-color: white;
+        pointer-events: none;
       }
     }
   }

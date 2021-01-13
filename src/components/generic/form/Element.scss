@@ -6,28 +6,10 @@
     font-size: 16px;
     padding: 1em 0;
 
-    textarea,
-    input,
-    select {
-      padding: .958em;
-      border: 2px solid #e2e5ee;
-      box-shadow: none;
-      color: #3c4859;
-      font-family: Nunito, sans-serif;
-
-      &:focus {
-        border-color: #98cbe8;
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(152, 203, 232, .6);
-        outline: none;
-      }
-    }
-
     label {
       display: block;
       margin-bottom: 0.4em;
       font-weight: bold;
-      font-size: .917em;
-      color: #3c4859;
     }
     &.h5p-hub-mandatory label:after {
       content: '*';
@@ -36,9 +18,6 @@
       top: -0.2em;
     }
     input{
-      font-size: 0.917em;
-      padding: 0.833em;
-      border: 1px solid #bebdcd;
       border-radius: 0.208em;
       width: 100%;
       box-sizing: border-box;
@@ -54,11 +33,9 @@
       margin: 0 0 1em 0;
     }
     textarea {
-      border: 1px solid #bebdcd;
       resize: none;
       width: 100%;
       border-radius: 0.208em;
-      padding: 0.833em 0.833em;
       box-sizing: border-box;
       @include scrollbar;
       line-height: 1.25em;
@@ -82,6 +59,22 @@
       align-content: center;
       align-items: center;
       justify-content: space-between;
+    }
+
+    textarea,
+    input,
+    select {
+      padding: .958em;
+      border: 2px solid #e2e5ee;
+      box-shadow: none;
+      color: #3c4859;
+      font-family: Nunito, sans-serif;
+
+      &:focus {
+        border-color: #98cbe8;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(152, 203, 232, .6);
+        outline: none;
+      }
     }
   }
 
