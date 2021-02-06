@@ -65,6 +65,16 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
   const setScreenshot = (img, index) => {
     setOptionalInfo(() => {
       const tmpOptional = { ...optionalInfo };
+
+      // Add image for removal if an old image was replaced
+      const replacedImage = tmpOptional.screenshots[index];
+      if (replacedImage && replacedImage.old) {
+        tmpOptional.remove_screenshots = [
+          ...tmpOptional.remove_screenshots,
+          replacedImage.src.match(/([^\/])+$/)[0],
+        ];
+      }
+
       tmpOptional.screenshots[index] = { ...tmpOptional.screenshots[index], src: img.src, file: img.file, alt: '' };
       //If img removed move all img one index up
       if (img.src === undefined) {
