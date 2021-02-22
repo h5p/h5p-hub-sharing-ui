@@ -6,6 +6,8 @@
     position: relative;
     margin: 2em 3em;
     border-radius: 0.167em;
+    max-height: calc(100% - 4em);
+    overflow: auto;
   }
   .h5p-hub-modal-overlay {
     position: absolute;
