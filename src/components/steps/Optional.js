@@ -135,6 +135,17 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
   };
 
   /**
+   * Only allow numbers and dashes in the age field
+   * @param  {String} value
+   */
+  const setAge = (value) => {
+    const regex = /^[0-9-]*$/;
+    if(value.match(regex) || value === '') {
+      setInfo(value, 'age')
+    }
+  }
+
+  /**
    * Update IsValid when screenshots alt text change
    */
   React.useEffect(() => {
@@ -158,7 +169,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
       <div className="h5p-hub-row">
         <FormElement label={l10n.age} description={l10n.ageDescription}>
           <input
-            onChange={e => setInfo(e.target.value, 'age')}
+            onChange={e => setAge(e.target.value, 'age')}
             value={optionalInfo.age}
           />
         </FormElement>
