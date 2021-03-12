@@ -9,6 +9,15 @@
       align-items: center;
       justify-content: space-between;
 
+        &::before {
+          content: "\e88a";
+          font-family: "h5p";
+          font-style: normal;
+          font-size:2em;
+          margin-left: 0.25em;
+          color: #b7b8ba;
+        }
+
       .h5p-hub-icon-arrow {
         margin: 1em;
         font-size: 1.30353em;
@@ -33,6 +42,7 @@
     width: 100%;
     box-sizing: border-box;
     font-size: 1.15em;
+    padding-left: 0.25em;
 
     &::placeholder {
       color: #b7b8ba;

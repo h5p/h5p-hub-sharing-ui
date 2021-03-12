@@ -20,7 +20,7 @@
   "disciplineLabel": "Disciplines",
   "disciplineDescription": "You can select multiple disciplines",
   "discipline": {
-    "searchPlaceholder": "Select one or more disciplines",
+    "searchPlaceholder": "Type to search for disciplines",
     "in": "in",
     "dropdownButton": "Dropdown button"
   },
