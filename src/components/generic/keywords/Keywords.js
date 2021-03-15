@@ -12,10 +12,11 @@ const Keywords = ({ chips, setKeywords, setTempKeywords }) => {
   const l10n = React.useContext(TranslationContext);
 
   const [showTip, setShowTip] = React.useState(false);
-  const [tipText, setTipText] = React.useState(false);
+  const [tipText, setTipText] = React.useState('');
   const [inputFocus, setInputFocus] = React.useState(false);
   const [inputValue, setInputValue] = React.useState('');
   const [buttonFocus, setButtonFocus] = React.useState(false);
+
   /**
    * Add chip when input is pressed
    * @param  {Event} event

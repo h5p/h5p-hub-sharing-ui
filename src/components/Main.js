@@ -196,6 +196,14 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
    */
   const handleBack = () => {
     setShareFailed(false);
+    // We need to save keywords that haven't been added when moving to a new page
+    if (activeStep === 1) {
+      setOptionalInfo(prevState => ({
+        ...prevState,
+        ['keywords']: optionalInfo.tempKeywords,
+      }));
+    }
+
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
