@@ -1,3 +1,25 @@
-.h5p-hub-publish .h5p-hub-tip-keywords{
-  top: 2.5em
+.h5p-hub-publish {
+  .h5p-hub-keywords-input-wrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 2em;
+    .h5p-hub-add-button {
+      position: absolute;
+      right: 4.5em;
+      border-radius: 1.5em;
+      &:focus {
+        border-color: #3ba0f2;
+      }
+      &.disabled {
+        cursor: default;
+        color: #d6d6d6;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+  .h5p-hub-tip-keywords {
+    top: 2.5em;
+  }
 }

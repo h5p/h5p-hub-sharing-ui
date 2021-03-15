@@ -178,14 +178,17 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
             options={metadata.levels}
             onChange={(e) => setInfo(e.target.value, 'level')}
             selected={optionalInfo.level}
-            allowNone={true}/>
+            allowNone={true} />
         </FormElement>
       </div>
       <FormElement
         label={l10n.keywords}
         description={l10n.keywordsDescription}
       >
-        <Keywords chips={optionalInfo.keywords} setKeywords={(chips) => setInfo(chips, 'keywords')} />
+        <Keywords
+          chips={optionalInfo.keywords}
+          setKeywords={(chips) => setInfo(chips, 'keywords')}
+          setTempKeywords={(chips) => setInfo(chips, 'tempKeywords')} />
       </FormElement>
       <div className='h5p-hub-columns'>
         <div className='h5p-hub-column'>
