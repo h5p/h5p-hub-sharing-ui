@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import DisciplineElement from '../disciplineElement/DisciplineElement';
 import { isChecked, descendantsChecked } from '../filters';
@@ -18,11 +18,20 @@ const CheckboxList = React.forwardRef(({
   listRefId,
   getDescendants,
   tabIndex,
-  inSearch}, ref) => {
+  inSearch,
+  navigateDirection,
+  setNavigateDirection }, ref) => {
 
+  useEffect(() => {
+    setTimeout(() => {
+      setNavigateDirection('');
+    }, 350);
+  }, [items])
+
+  console.log(navigateDirection)
   return (
     <ul
-      className="h5p-hub-checkbox-list"
+      className={`h5p-hub-checkbox-list ${navigateDirection ? `h5p-hub-animate-in-${navigateDirection}` : ''}`}
       role='group'
       aria-labelledby={filter.name}
       ref={ref && ref[listRefId]}>
@@ -62,7 +71,9 @@ CheckboxList.propTypes = {
   parent: PropTypes.string,
   listRefId: PropTypes.string,
   tabIndex: PropTypes.string,
-  inSearch: PropTypes.bool
+  inSearch: PropTypes.bool,
+  navigateDirection: PropTypes.string,
+  setNavigateDirection: PropTypes.func
 };
 
 export default CheckboxList;

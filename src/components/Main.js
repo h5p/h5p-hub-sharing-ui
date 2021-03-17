@@ -105,6 +105,7 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
     longDescription:  hubContent.description || '',
     age: hubContent.age || '',
     keywords:  hubContent.keywords || [],
+    tempKeywords: [],
     icon:  hubContent.icon ? {src: hubContent.icon, alt: '', old: true} : defaultImage,
     remove_icon: null,
     screenshots:  hubContent.screenshots ? hubContent.screenshots.map(pat => ({src: pat.path, alt: pat.altText, old: true})) : [defaultImage, defaultImage, defaultImage, defaultImage, defaultImage],
@@ -154,6 +155,14 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
       }
     }
 
+    // We need to save keywords that haven't been added when moving to a new page
+    if (activeStep === 1) {
+      setOptionalInfo(prevState => ({
+        ...prevState,
+        ['keywords']: optionalInfo.tempKeywords,
+      }));
+    }
+
     if (activeStep === 2) {
       setShareInProcess(true);
       //Send disciplines with it's ancestors
@@ -187,6 +196,14 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
    */
   const handleBack = () => {
     setShareFailed(false);
+    // We need to save keywords that haven't been added when moving to a new page
+    if (activeStep === 1) {
+      setOptionalInfo(prevState => ({
+        ...prevState,
+        ['keywords']: optionalInfo.tempKeywords,
+      }));
+    }
+
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 

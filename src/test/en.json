@@ -20,7 +20,7 @@
   "disciplineLabel": "Disciplines",
   "disciplineDescription": "You can select multiple disciplines",
   "discipline": {
-    "searchPlaceholder": "Select one or more disciplines",
+    "searchPlaceholder": "Type to search for disciplines",
     "in": "in",
     "dropdownButton": "Dropdown button"
   },
@@ -86,5 +86,7 @@
   "age": "Typical age",
   "ageDescription": "The target audience of this content. Possible input formats separated by commas: \"1,34-45,-50,59-\".",
   "invalidAge": "Invalid input format for Typical age. Possible input formats separated by commas: \"1, 34-45, -50, -59-\".",
-  "copyrightWarning": "Copyrighted material cannot be shared in the H5P Content Hub. If the content is licensed with a OER friendly license like Creative Commons, please choose the appropriate license. If not this content cannot be shared."
+  "copyrightWarning": "Copyrighted material cannot be shared in the H5P Content Hub. If the content is licensed with a OER friendly license like Creative Commons, please choose the appropriate license. If not this content cannot be shared.",
+  "keywordsExists": "Keywords already exists!",
+  "someKeywordsExits": "Some of these keywords already exist"
 }
