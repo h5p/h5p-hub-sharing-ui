@@ -35,7 +35,7 @@ const getSteps = (mandatory, optional) => {
         clearMessages={mandatory.clearMessages}
       />,
       nextButton: {
-        label: 'next',
+        label: 'optionalInfo',
         variant: 'outlined'
       },
       backButton: false,
