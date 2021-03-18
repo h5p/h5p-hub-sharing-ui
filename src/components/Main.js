@@ -157,10 +157,7 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
 
     // We need to save keywords that haven't been added when moving to a new page
     if (activeStep === 1) {
-      setOptionalInfo(prevState => ({
-        ...prevState,
-        ['keywords']: optionalInfo.tempKeywords,
-      }));
+      addTempKeywords();
     }
 
     if (activeStep === 2) {
@@ -198,10 +195,7 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
     setShareFailed(false);
     // We need to save keywords that haven't been added when moving to a new page
     if (activeStep === 1) {
-      setOptionalInfo(prevState => ({
-        ...prevState,
-        ['keywords']: optionalInfo.tempKeywords,
-      }));
+      addTempKeywords();
     }
 
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -225,6 +219,23 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
   const cancelSharing = () => {
     window.history.back();
   };
+
+  /**
+   * Add keywords that are only temporarly stored, but not added
+   */
+  const addTempKeywords = () => {
+    const keywords = optionalInfo.keywords;
+    optionalInfo.tempKeywords.forEach(keyword => {
+      if (keywords.indexOf(keyword) === -1) {
+        keywords.push(keyword);
+      }
+    });
+    setOptionalInfo(prevState => ({
+      ...prevState,
+      ['keywords']: keywords,
+      ['tempKeywords']: []
+    }));
+  }
 
   const mainTitle = replace(l10n.mainTitle, { ':title': title });
 

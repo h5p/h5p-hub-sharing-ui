@@ -46,7 +46,7 @@ const Keywords = ({ chips, setKeywords, setTempKeywords }) => {
       if (chipExists) {
         exists = true;
       }
-      else if (!chipExists && trimmedChip !== '') {
+      else if (!chipExists && trimmedChip !== '' && chipsToAdd.indexOf(trimmedChip) === -1) {
         chipsToAdd.push(trimmedChip);
       }
     }
