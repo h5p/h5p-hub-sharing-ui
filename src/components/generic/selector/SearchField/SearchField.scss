@@ -6,17 +6,16 @@
     .h5p-hub-search-field {
       position: relative;
       display: flex;
+      align-items: center;
       justify-content: space-between;
 
       &::before {
-        content: "\e88a";
+        content: "\e926";
         font-family: "h5p";
         font-style: normal;
-        font-size: 2em;
-        margin-left: 0.25em;
+        font-size: 1em;
+        margin-left: 1em;
         color: #b7b8ba;
-        top: 0.23em;
-        position: relative;
       }
 
       .h5p-hub-icon-arrow {
