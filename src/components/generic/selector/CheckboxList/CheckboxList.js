@@ -28,7 +28,6 @@ const CheckboxList = React.forwardRef(({
     }, 350);
   }, [items])
 
-  console.log(navigateDirection)
   return (
     <ul
       className={`h5p-hub-checkbox-list ${navigateDirection ? `h5p-hub-animate-in-${navigateDirection}` : ''}`}
