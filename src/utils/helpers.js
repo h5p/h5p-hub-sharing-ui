@@ -93,7 +93,7 @@ export const publishToHub = (url, token, values, done, fail) => {
     headers: {
       'Content-Type': 'multipart/form-data'
     },
-    timeout: 10000,
+    timeout: 20000,
   }).then(done)
     .catch(fail)
 }
@@ -128,7 +128,7 @@ export const registerToHub = (url, token, values, done, fail) => {
     headers: {
       'Content-Type': 'multipart/form-data'
     },
-    timeout: 10000,
+    timeout: 20000,
   }).then(done)
     .catch(fail)
 }
