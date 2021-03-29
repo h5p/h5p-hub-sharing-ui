@@ -90,7 +90,7 @@
         content: "\e91a";
         transform: rotate(180deg);
         display: inline-block;
-        margin-right: 1em;
+        margin-right: 0.75em;
         line-height: 1;
         position: relative;
         top: -0.1em;
@@ -106,6 +106,7 @@
         content: "\e928";
         animation: 2s linear infinite spinner;
         top: 0.5em;
+        margin-left: 0.55em;
       }
 
       .h5p-hub-next {
