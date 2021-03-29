@@ -164,13 +164,15 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
         <DisciplineSelector
           disciplines={optionalInfo.disciplines}
           errors={fieldErrors.disciplines}
-          setDisciplines={handleSetDisciplines}/>
+          setDisciplines={handleSetDisciplines}
+          id='h5p-hub-filter-search-bar'/>
       </FormElement>
       <div className="h5p-hub-row">
         <FormElement label={l10n.age} description={l10n.ageDescription}>
           <input
             onChange={e => setAge(e.target.value, 'age')}
             value={optionalInfo.age}
+            id='h5p-hub-form-age'
           />
         </FormElement>
         <FormElement label={l10n.level}>
@@ -178,7 +180,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
             options={metadata.levels}
             onChange={(e) => setInfo(e.target.value, 'level')}
             selected={optionalInfo.level}
-            allowNone={true} />
+            allowNone={true}
+            id='h5p-hub-form-level'/>
         </FormElement>
       </div>
       <FormElement
@@ -188,7 +191,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
         <Keywords
           chips={optionalInfo.keywords}
           setKeywords={(chips) => setInfo(chips, 'keywords')}
-          setTempKeywords={(chips) => setInfo(chips, 'tempKeywords')} />
+          setTempKeywords={(chips) => setInfo(chips, 'tempKeywords')}
+          id='h5p-hub-form-keywords'/>
       </FormElement>
       <div className='h5p-hub-columns'>
         <div className='h5p-hub-column'>
@@ -234,7 +238,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                 }))
               }
               ariaLabel={l10n.icon}
-              removeImageLabel={l10n.removeImage} />
+              removeImageLabel={l10n.removeImage}
+              id='h5p-hub-form-icon'/>
           </FormElement>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
             <div id='h5p-hub-form-screenshots'>

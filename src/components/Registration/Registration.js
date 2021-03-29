@@ -218,6 +218,7 @@ const Registration = ({
                 clearImage={setInfo.bind(this, true, 'removeLogo')}
                 ariaLabel={l10n.logoUploadText}
                 removeImageLabel={l10n.removeImage}
+                id='h5p-hub-form-logo'
               />
               <Checkbox checked={ acceptedTerms } onChange={ setAcceptedTerms }>
                 <span dangerouslySetInnerHTML={ {__html: l10n.acceptTerms.replace(':url', 'https://h5p.org/H5P-Hub-terms-of-use')} }/>

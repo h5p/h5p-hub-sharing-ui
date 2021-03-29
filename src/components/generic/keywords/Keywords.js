@@ -6,7 +6,7 @@ import Tip from '../tip/Tip';
 
 import './Keywords.scss';
 
-const Keywords = ({ chips, setKeywords, setTempKeywords }) => {
+const Keywords = ({ chips, setKeywords, setTempKeywords, id }) => {
 
   const inputField = React.useRef(null);
   const l10n = React.useContext(TranslationContext);
@@ -131,6 +131,7 @@ const Keywords = ({ chips, setKeywords, setTempKeywords }) => {
           onBlur={handleOnBlur}
           value={inputValue}
           onChange={(e) => { setInputValue(e.target.value) }}
+          id={id}
         />
         <button
           disabled={inputValue.length < 1}
@@ -152,7 +153,8 @@ const Keywords = ({ chips, setKeywords, setTempKeywords }) => {
 Keywords.propTypes = {
   chips: PropTypes.array.isRequired,
   setKeywords: PropTypes.func.isRequired,
-  setTempKeywords: PropTypes.func.isRequired
+  setTempKeywords: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired
 };
 
 export default Keywords;

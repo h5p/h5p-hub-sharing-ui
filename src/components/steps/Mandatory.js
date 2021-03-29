@@ -109,7 +109,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid, clearMessages 
             options={metadata.languages}
             onChange={(e) => setInfo(e.target.value, 'language')}
             selected={mandatoryInfo.language}
-            allowNone={true}/>
+            allowNone={true}
+            id='h5p-hub-form-language'/>
         </FormElement>
       </div>
       <div className='h5p-hub-row'>
@@ -126,7 +127,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid, clearMessages 
             options={metadata.licenses}
             selected={mandatoryInfo.license || ''}
             allowNone={true}
-            onChange={setLicense}/>
+            onChange={setLicense}
+            id='h5p-hub-form-license'/>
         </FormElement>
         <FormElement
           label={l10n.licenseVersion}
@@ -137,7 +139,8 @@ const Mandatory = ({ mandatoryInfo, setMandatoryInfo, setIsValid, clearMessages 
             options={licenseVersions}
             selected={mandatoryInfo.licenseVersion}
             allowNone={true}
-            onChange={e => setInfo(e.target.value, 'licenseVersion')} />
+            onChange={e => setInfo(e.target.value, 'licenseVersion')}
+            id='h5p-hub-form-license-version'/>
         </FormElement>
       </div>
     </>

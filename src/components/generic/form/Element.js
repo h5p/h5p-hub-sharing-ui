@@ -26,7 +26,11 @@ FormElement.propTypes = {
   label: PropTypes.string.isRequired,
   description: PropTypes.string,
   mandatory: PropTypes.bool,
-  children: PropTypes.shape(),
+  children: PropTypes.shape({
+    props: PropTypes.shape({
+      id: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired,
   link: PropTypes.shape({
     onClick: PropTypes.func.isRequired,
     linkText: PropTypes.string.isRequired

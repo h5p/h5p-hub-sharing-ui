@@ -28,10 +28,10 @@ const createOptions = (options, allowNone) => {
   return none;
 };
 
-const Dropdown = ({ selected, options, onChange, allowNone }) => (
+const Dropdown = ({ selected, options, onChange, allowNone, id }) => (
   <>
     <div className="h5p-hub-icon-arrow-down"></div>
-    <select value={selected} onChange={onChange} disabled={options.length === 0}>
+    <select value={selected} onChange={onChange} disabled={options.length === 0} id={id}>
       {createOptions(options, allowNone)}
     </select>
   </>
@@ -41,7 +41,8 @@ Dropdown.prototypes = {
   selected: PropTypes.string,
   options: PropTypes.array,
   onchange: PropTypes.func.isRequired,
-  allowNone: PropTypes.bool
+  allowNone: PropTypes.bool,
+  id: PropTypes.string.isRequired
 };
 
 Dropdown.defaultProps = {

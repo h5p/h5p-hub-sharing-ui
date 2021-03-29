@@ -4,7 +4,7 @@ import ImagePreview from './ImagePreview';
 
 import './ImageUpload.scss';
 
-const ImageUpload = ({onFile, clearImage, img, ariaLabel, removeImageLabel}) => {
+const ImageUpload = ({onFile, clearImage, img, ariaLabel, removeImageLabel, id}) => {
   const input = React.createRef();
 
   /**
@@ -71,7 +71,7 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel, removeImageLabel}) => 
         )
       }
       <div className={`h5p-hub-image-upload ${img && img.src ? 'h5p-hub-image-selected' : ''}`}>
-        <input tabIndex="-1" ref={input} type="file" accept=".png,.jpg,.jpeg,.jfif,.pjpeg,.pjp" onChange={handleChange}/>
+        <input id={id} tabIndex="-1" ref={input} type="file" accept=".png,.jpg,.jpeg,.jfif,.pjpeg,.pjp" onChange={handleChange}/>
       </div>
     </div>
   );
@@ -82,7 +82,8 @@ ImageUpload.propTypes = {
   clearImage: PropTypes.func,
   img: PropTypes.object,
   ariaLabel: PropTypes.string.isRequired,
-  removeImageLabel: PropTypes.string.isRequired
+  removeImageLabel: PropTypes.string.isRequired,
+  id: PropTypes.string
 };
 
 export default ImageUpload;

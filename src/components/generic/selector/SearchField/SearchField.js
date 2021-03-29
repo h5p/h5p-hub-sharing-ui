@@ -73,10 +73,9 @@ const SearchField = React.forwardRef(({
     <div onMouseDown={onClick} className="h5p-hub-search-button" role="button" aria-label={dictionary.dropdownButton}>
 
       <div className="h5p-hub-search-field" role="search">
-        <input id="h5p-hub-filter-search-bar" 
+        <input id="h5p-hub-filter-search-bar"
           type="text"
           value={value}
-          aria-label={placeholder}
           placeholder={placeholder}
           ref={ref}
           onKeyDown={event => handleKeyDown(event)}
