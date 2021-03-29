@@ -27,7 +27,7 @@
   "removeChip": "Remove :chip from the list",
   "keywordsPlaceholder": "Add keywords",
   "keywords": "Keywords",
-  "keywordsDescription": "You can add multiple keywords. Press \"Enter\" to confirm each keyword",
+  "keywordsDescription": "You can add multiple keywords separated by commas. Press \"Enter\" or \"Add\" to confirm keywords",
   "altText": "Alt text",
   "reviewMessage": "Please review the info below before you share",
   "subContentWarning": "Sub-content (images, questions etc.) will be shared under :license unless otherwise specified in the authoring tool",
