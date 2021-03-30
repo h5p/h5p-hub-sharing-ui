@@ -144,7 +144,8 @@ const Registration = ({
                 <input
                   id="h5p-hub-form-publisher"
                   onChange={e => setInfo(e.target.value, 'publisher')}
-                  value={fields.publisher} />
+                  value={fields.publisher}
+                  maxLength='255'/>
               </FormElement>
               <FormElement
                 label={l10n.emailAddress}
@@ -155,6 +156,8 @@ const Registration = ({
                   id="h5p-hub-form-email-address"
                   onChange={e => setInfo(e.target.value, 'emailAddress')}
                   value={fields.emailAddress}
+                  maxLength='255'
+                  type='email'
                 />
               </FormElement>
               <FormElement label={l10n.publisherDescription} description={l10n.publisherDescriptionText} mandatory={false}>
@@ -163,13 +166,15 @@ const Registration = ({
                   id="h5p-hub-form-publisher-description"
                   placeholder=''
                   onChange={(event) => setInfo(event.target.value, 'publisherDescription')}
-                  className='h5p-hub-publisher-description' />
+                  className='h5p-hub-publisher-description'
+                  maxLength='65535' />
               </FormElement>
               <FormElement label={l10n.contactPerson} description={l10n.contactPersonDescription} mandatory={false}>
                 <input
                   id="h5p-hub-form-contact-person"
                   onChange={e => setInfo(e.target.value, 'contactPerson')}
-                  value={fields.contactPerson} />
+                  value={fields.contactPerson}
+                  maxLength='255' />
               </FormElement>
 
               <div className="h5p-hub-row">
@@ -177,13 +182,16 @@ const Registration = ({
                   <input
                     id="h5p-hub-form-phone"
                     onChange={e => setInfo(e.target.value, 'phone')}
-                    value={fields.phone} />
+                    value={fields.phone}
+                    maxLength='255'
+                    type='tel'/>
                 </FormElement>
                 <FormElement label={l10n.address} mandatory={false}>
                   <input
                     id="h5p-hub-form-address"
                     onChange={e => setInfo(e.target.value, 'address')}
-                    value={fields.address} />
+                    value={fields.address}
+                    maxLength='255'/>
                 </FormElement>
               </div>
               <div className='h5p-hub-row'>
@@ -191,19 +199,22 @@ const Registration = ({
                   <input
                     id="h5p-hub-form-city"
                     onChange={e => setInfo(e.target.value, 'city')}
-                    value={fields.city} />
+                    value={fields.city}
+                    maxLength='255' />
                 </FormElement>
                 <FormElement label={l10n.zip} mandatory={false}>
                   <input
                     id="h5p-hub-form-zip"
                     onChange={e => setInfo(e.target.value, 'zip')}
-                    value={fields.zip} />
+                    value={fields.zip}
+                    maxLength='255' />
                 </FormElement>
                 <FormElement label={l10n.country} mandatory={false}>
                   <input
                     id="h5p-hub-form-country"
                     onChange={e => setInfo(e.target.value, 'country')}
-                    value={fields.country} />
+                    value={fields.country}
+                    maxLength='255' />
                 </FormElement>
               </div>
               <div className='h5p-hub-logo-upload-text'>
