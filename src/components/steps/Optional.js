@@ -242,7 +242,7 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
               id='h5p-hub-form-icon'/>
           </FormElement>
           <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
-            <div id='h5p-hub-form-screenshots'>
+            <div className='h5p-hub-form-screenshots'>
               {optionalInfo.screenshots.map((img, i) =>
                 img.src &&
                 <div className='h5p-hub-row' key={i}>
@@ -273,7 +273,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                 <ImageUpload
                   onFile={img => setScreenshot(img, uploadedImages.length)}
                   ariaLabel={l10n.screenshots}
-                  removeImageLabel={l10n.removeImage} />
+                  removeImageLabel={l10n.removeImage}
+                  id='h5p-hub-form-screenshots'/>
               }
             </div>
           </FormElement>
