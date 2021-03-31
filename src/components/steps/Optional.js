@@ -237,11 +237,13 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                   remove_icon: !!optionalInfo.icon.old
                 }))
               }
-              ariaLabel={l10n.icon}
               removeImageLabel={l10n.removeImage}
-              id='h5p-hub-form-icon'/>
+              id='h5p-hub-form-icon' />
           </FormElement>
-          <FormElement label={l10n.screenshots} description={l10n.screenshotsDescription}>
+          <FormElement
+            label={l10n.screenshots}
+            description={l10n.screenshotsDescription}
+            id='h5p-hub-form-screenshots'>
             <div className='h5p-hub-form-screenshots'>
               {optionalInfo.screenshots.map((img, i) =>
                 img.src &&
@@ -256,8 +258,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                         remove_screenshots: [...prevState.remove_screenshots, img.src.match(/([^\/])+$/)[0]]
                       })) : null
                     }
-                    ariaLabel={l10n.screenshots}
-                    removeImageLabel={l10n.removeImage} />
+                    removeImageLabel={l10n.removeImage}
+                  />
                   <FormElement label={l10n.altText} mandatory={true}>
                     <input
                       className="h5p-hub-alt-text"
@@ -272,9 +274,8 @@ const Optional = ({ optionalInfo, setOptionalInfo, setIsValid }) => {
                 &&
                 <ImageUpload
                   onFile={img => setScreenshot(img, uploadedImages.length)}
-                  ariaLabel={l10n.screenshots}
                   removeImageLabel={l10n.removeImage}
-                  id='h5p-hub-form-screenshots'/>
+                  id='h5p-hub-form-screenshots' />
               }
             </div>
           </FormElement>

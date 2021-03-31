@@ -81,7 +81,7 @@ ImageUpload.propTypes = {
   onFile: PropTypes.func.isRequired,
   clearImage: PropTypes.func,
   img: PropTypes.object,
-  ariaLabel: PropTypes.string.isRequired,
+  ariaLabel: PropTypes.string,
   removeImageLabel: PropTypes.string.isRequired,
   id: PropTypes.string
 };

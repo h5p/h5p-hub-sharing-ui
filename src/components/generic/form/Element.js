@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import './Element.scss';
 
-const FormElement = ({label, description, mandatory, children, link, className}) => {
+const FormElement = ({label, description, mandatory, children, link, className, id}) => {
   return (
     <div className={`h5p-hub-form-element ${mandatory ? 'h5p-hub-mandatory' : ''} ${className ? className : ''}`}>
-      <label htmlFor={children.props.id}>{label}</label>
+      <label htmlFor={children.props.id ? children.props.id : id}>{label}</label>
       <div className='h5p-hub-details-row'>
       {
         description &&
@@ -28,9 +28,9 @@ FormElement.propTypes = {
   mandatory: PropTypes.bool,
   children: PropTypes.shape({
     props: PropTypes.shape({
-      id: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired,
+      id: PropTypes.string
+    })
+  }),
   link: PropTypes.shape({
     onClick: PropTypes.func.isRequired,
     linkText: PropTypes.string.isRequired
