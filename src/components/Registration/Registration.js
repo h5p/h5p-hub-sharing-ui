@@ -158,6 +158,7 @@ const Registration = ({
                   value={fields.emailAddress}
                   maxLength='255'
                   type='email'
+                  onBlur={(e) => e.target.reportValidity()}
                 />
               </FormElement>
               <FormElement label={l10n.publisherDescription} description={l10n.publisherDescriptionText} mandatory={false}>
