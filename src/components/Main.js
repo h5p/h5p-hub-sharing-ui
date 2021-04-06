@@ -237,7 +237,10 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
     }));
   }
 
-  const mainTitle = replace(l10n.mainTitle, { ':title': title });
+  const escapeElement = document.createElement('div');
+  escapeElement.innerText = title;
+  const escapedTitle = escapeElement.innerHTML;
+  const mainTitle = replace(l10n.mainTitle, { ':title': escapedTitle });
 
   const nextButtonEnabled = activeStep === 2 || (activeStep === 0 && mandatoryIsValid) || (activeStep === 1 && optionalIsValid);
 
