@@ -35,8 +35,7 @@ const getSteps = (mandatory, optional) => {
         clearMessages={mandatory.clearMessages}
       />,
       nextButton: {
-        label: 'optionalInfo',
-        variant: 'outlined'
+        label: 'optionalInfo'
       },
       backButton: false,
       id: 'mandatory'
@@ -48,8 +47,7 @@ const getSteps = (mandatory, optional) => {
         setOptionalInfo={optional.setter}
         setIsValid={optional.setIsValid} />,
       nextButton: {
-        label: 'reviewInfo',
-        variant: 'outlined'
+        label: 'reviewInfo'
       },
       validation: (l10n) => {
         const isValid = validateAge(optional.info.age);
@@ -252,7 +250,7 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
             role="heading"
             className="h5p-hub-title"
             dangerouslySetInnerHTML={{ __html: mainTitle }} />
-          <Button variant="outlined" color="primary" onClick={handleCancel}>
+          <Button onClick={handleCancel}>
             {isShared ? l10n.close : l10n.cancel}
           </Button>
         </div>
@@ -294,7 +292,7 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
                 <div className="h5p-hub-navigation">
                   {
                     step.backButton &&
-                    <Button name="back" variant="outlined" color="green" onClick={handleBack} enabled={!shareInProcess}>
+                    <Button name="back" variant="outlined" color="blue" onClick={handleBack} enabled={!shareInProcess}>
                       {l10n.back}
                     </Button>
                   }
@@ -303,7 +301,7 @@ function Main({ title, publishURL, returnURL, contentType, language, token, hubC
                     <Button
                       name="next"
                       variant={step.nextButton.variant}
-                      color="green"
+                      color="blue"
                       onClick={handleNext}
                       enabled={nextButtonEnabled && !shareInProcess}
                       id={shareInProcess ? 'h5p-hub-share-in-process' : ''}>

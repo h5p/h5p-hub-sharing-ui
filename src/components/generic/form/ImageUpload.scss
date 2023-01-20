@@ -74,6 +74,10 @@
         border-color: #777;
       }
 
+      &:focus {
+        color: #186df7;
+      }
+
       &:before {
         content: "+";
         font-size: 2em;

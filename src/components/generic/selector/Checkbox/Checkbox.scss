@@ -14,11 +14,6 @@
     position: absolute;
   }
 
-  &:focus {
-    box-shadow: 0 0 0.4em 0.01em RGBA(26, 147, 244, 0.7);
-    outline: none;
-  }
-
   .h5p-hub-icon:before {
     font-family: 'h5p';
     content: '\e923';

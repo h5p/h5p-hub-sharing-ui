@@ -242,7 +242,8 @@ const Registration = ({
               {l10n.cancel}
             </Button>
             <Button
-              variant='register-hub'
+              variant='contained'
+              color={'blue'}
               onClick={onRegister}
               enabled={isValid && shareState !== 'in-process'}>
               {isRegistered ? l10n.updateRegistrationOnHub : l10n.registerOnHub}

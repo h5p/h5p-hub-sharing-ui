@@ -3,22 +3,30 @@ import PropTypes from 'prop-types';
 
 import './Button.scss';
 
-const Button = ({children, name, onClick, variant, color, enabled, id}) => {
+const Button = ({children, name, onClick, variant, color, enabled, id, ref}) => {
 
-  let classes = [];
+  let classes = ['btn'];
 
   if (name) {
-    classes.push('h5p-hub-' + name);
-  }
-  if (variant) {
-    classes.push('h5p-hub-' + variant);
+    classes.push('h5p-hub-' + name)
   }
   if (color) {
-    classes.push('h5p-hub-' + color);
+    classes.push(`btn--${color}`);
+  }
+  if (variant) {
+    classes.push(`btn--${variant}`);
   }
 
   return (
-    <button id={id} type="button" className={classes.join(' ')} onClick={onClick} disabled={enabled === false}>
+    <button 
+      id={id} 
+      ref={ref}
+      type="button" 
+      role={'button'}
+      className={classes.length > 0 ? classes.join(' ') : null} 
+      onClick={onClick} 
+      disabled={enabled === false}
+    >
       {children}
     </button>
   );
@@ -34,7 +42,11 @@ Button.propTypes = {
   variant: PropTypes.string,
   color: PropTypes.string,
   enabled: PropTypes.bool,
-  id: PropTypes.string
+  id: PropTypes.string,
+  ref: PropTypes.oneOfType([
+    PropTypes.func, 
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+  ])
 };
 
 export default Button;

@@ -135,7 +135,7 @@ const Keywords = ({ chips, setKeywords, setTempKeywords, id }) => {
         />
         <button
           disabled={inputValue.length < 1}
-          className={`h5p-hub-add-button ${inputValue.length < 1 ? 'disabled' : ''}`}
+          className={`btn btn--add`}
           onClick={handleButtonClick}
           dangerouslySetInnerHTML={{ __html: `+ ${l10n.add}` }}
           onFocus={() => setButtonFocus(true)}

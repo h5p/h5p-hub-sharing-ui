@@ -61,7 +61,7 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel, removeImageLabel, id})
   }
 
   return (
-    <div className="h5p-hub-image-upload-container" role="button" tabIndex="0" onKeyDown={handleKeyDown} aria-label={ariaLabel}>
+    <div className="h5p-hub-image-upload-container" role="button" onKeyDown={handleKeyDown} aria-label={ariaLabel}>
       {
         img && img.src && (
           <>
@@ -70,7 +70,7 @@ const ImageUpload = ({onFile, clearImage, img, ariaLabel, removeImageLabel, id})
           </>
         )
       }
-      <div className={`h5p-hub-image-upload ${img && img.src ? 'h5p-hub-image-selected' : ''}`}>
+      <div tabIndex={0} className={`h5p-hub-image-upload ${img && img.src ? 'h5p-hub-image-selected' : ''}`}>
         <input id={id} tabIndex="-1" ref={input} type="file" accept=".png,.jpg,.jpeg,.jfif,.pjpeg,.pjp" onChange={handleChange}/>
       </div>
     </div>

@@ -57,6 +57,7 @@ const DisciplineElement = React.forwardRef(({
       onKeyDown={handleKeyDown}>
       <div className='h5p-hub-content' key={'label' + id}>
         <button
+          className='btn btn--add'
           onClick={(e) =>
             onCheckedClick(filter, id, !checked, e)
           }
