@@ -27,7 +27,6 @@
         display: inline-block;
         right: -1.2em;
         top: -1.2em;
-
         border: 3px solid #fff;
         border-radius: 50%;
         cursor: pointer;
@@ -80,7 +79,7 @@
 
       &:before {
         content: "+";
-        font-size: 2em;
+        font-size: 2.5rem;
         display: inline-block;
         position: relative;
         top: 50%;
