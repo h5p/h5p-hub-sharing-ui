@@ -5,6 +5,7 @@ import TranslationContext from '../../../context/Translation';
 import Tip from '../tip/Tip';
 
 import './Keywords.scss';
+import Button from '../button/Button';
 
 const Keywords = ({ chips, setKeywords, setTempKeywords, id }) => {
 
@@ -133,14 +134,15 @@ const Keywords = ({ chips, setKeywords, setTempKeywords, id }) => {
           onChange={(e) => { setInputValue(e.target.value) }}
           id={id}
         />
-        <button
-          disabled={inputValue.length < 1}
-          className={`btn btn--add`}
+        <Button
+          enabled={inputValue.length > 0}
+          variant={'rounded'}
           onClick={handleButtonClick}
-          dangerouslySetInnerHTML={{ __html: `+ ${l10n.add}` }}
           onFocus={() => setButtonFocus(true)}
           onBlur={() => setButtonFocus(false)}
-        />
+        >
+          + {l10n.add}
+        </Button>
       </div>
       <Tip
         text={tipText}

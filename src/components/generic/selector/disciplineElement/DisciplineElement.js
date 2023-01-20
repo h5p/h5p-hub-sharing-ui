@@ -5,6 +5,7 @@ import Tip from '../../../generic/tip/Tip';
 import TranslationContext from '../../../../context/Translation';
 
 import './DisciplineElement.scss';
+import Button from '../../button/Button';
 
 const DisciplineElement = React.forwardRef(({
   id,
@@ -56,12 +57,14 @@ const DisciplineElement = React.forwardRef(({
       tabIndex={tabIndex ? tabIndex : '0'}
       onKeyDown={handleKeyDown}>
       <div className='h5p-hub-content' key={'label' + id}>
-        <button
-          className='btn btn--add'
+        <Button
+          variant={'rounded'}
           onClick={(e) =>
             onCheckedClick(filter, id, !checked, e)
           }
-          dangerouslySetInnerHTML={{ __html: `+ ${l10n.add}` }} />
+        >
+          + {l10n.add}
+        </Button>
         <div className='h5p-hub-label-text'>
           {children ? children : label}
         </div>
