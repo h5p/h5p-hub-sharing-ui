@@ -137,6 +137,7 @@ const Keywords = ({ chips, setKeywords, setTempKeywords, id }) => {
         <Button
           enabled={inputValue.length > 0}
           variant={'rounded'}
+          position={'right'}
           onClick={handleButtonClick}
           onFocus={() => setButtonFocus(true)}
           onBlur={() => setButtonFocus(false)}

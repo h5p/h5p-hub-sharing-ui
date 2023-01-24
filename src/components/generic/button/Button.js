@@ -15,7 +15,10 @@ const Button = (props) => {
     id,
     ref,
     onBlur,
-    onFocus
+    onFocus,
+    ariaLabel,
+    onKeyDown,
+    position
   } = props
 
   let classes = ['btn'];
@@ -29,6 +32,9 @@ const Button = (props) => {
   if (variant) {
     classes.push(`btn--${variant}`);
   }
+  if (position) {
+    classes.push(`btn--${position}`)
+  }
 
   return (
     <button 
@@ -41,6 +47,8 @@ const Button = (props) => {
       disabled={enabled === false}
       onFocus={onFocus}
       onBlur={onBlur}
+      aria-label={ariaLabel}
+      onKeyDown={onKeyDown}
     >
       {children}
     </button>
@@ -50,7 +58,8 @@ const Button = (props) => {
 Button.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.object
+    PropTypes.object,
+    PropTypes.node
   ]).isRequired,
   name: PropTypes.string,
   onClick: PropTypes.func.isRequired,
@@ -63,7 +72,10 @@ Button.propTypes = {
   ref: PropTypes.oneOfType([
     PropTypes.func, 
     PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-  ])
+  ]),
+  ariaLabel: PropTypes.string,
+  onKeyDown: PropTypes.func,
+  position: PropTypes.string
 };
 
 Button.defaultProps = {
@@ -75,7 +87,10 @@ Button.defaultProps = {
   color: '',
   enabled: true,
   id: '',
-  ref: null
+  ref: null,
+  ariaLabel: '',
+  onKeyDown: null,
+  position: ''
 }
 
 export default Button;
