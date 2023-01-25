@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Accordion from '../generic/accordion/Accordion';
 import MetadataContext from '../../context/Metadata';
 import TranslationContext from '../../context/Translation';
+import Button from '../generic/button/Button';
 
 import './ModalContent.scss';
 
@@ -55,7 +56,7 @@ const ModalContent = React.forwardRef(({closeModal}, ref) => {
       <div className='h5p-hub-dialog-header'>
         <div className='h5p-hub-dialog-title'>
           <span>{l10n.contentLicenseTitle}</span>
-          <button onClick={closeModal} ref={ref}>{l10n.close}</button>
+          <Button onClick={closeModal} ref={ref}>{l10n.close}</Button>
         </div>
         <div className='h5p-hub-dialog-description'>
           {l10n.licenseDialogDescription}

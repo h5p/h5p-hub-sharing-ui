@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './ConfirmationDialog.scss';
+import Button from '../button/Button';
 
 const ConfirmationDialog = ({ onConfirm, onCancel, l10n }) => {
   return (
@@ -14,12 +15,12 @@ const ConfirmationDialog = ({ onConfirm, onCancel, l10n }) => {
       <div className="h5p-hub-dialog-content">
         {l10n.cancelPublishConfirmationDialogDescription}
         <div className="h5p-hub-button-group">
-          <button onClick={onCancel} autoFocus={true}>
+          <Button onClick={onCancel} autoFocus={true}>
             {l10n.cancelPublishConfirmationDialogCancelButtonText}
-          </button>
-          <button onClick={onConfirm} className="h5p-hub-danger">
+          </Button>
+          <Button onClick={onConfirm}>
             {l10n.cancelPublishConfirmationDialogConfirmButtonText}
-          </button>
+          </Button>
         </div>
       </div>
     </>

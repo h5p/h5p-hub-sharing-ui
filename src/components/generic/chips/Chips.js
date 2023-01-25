@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './Chips.scss';
 import TranslationContext from '../../../context/Translation';
 import { replace } from '../../../utils/helpers';
+import Button from '../../generic/button/Button';
 
 const Chips = ({ chips, setChips }) => {
 
@@ -54,14 +55,14 @@ const Chips = ({ chips, setChips }) => {
         {chips.map((chip, i) =>
           <li key={chip.id}>
             <span className='h5p-hub-sr-only'>{chip.name}</span>
-            <button
+            <Button
               ref={el => chipsRef.current[i] = el}
-              aria-label={replace(l10n.removeChip, { ':chip': chip.name })}
+              ariaLabel={replace(l10n.removeChip, { ':chip': chip.name })}
               onClick={() => removeChip(chip)}
               onKeyDown={event => handleKeyDown(event)}>
               {chip.name}
               <div className='h5p-hub-icon-close'></div>
-            </button>
+            </Button>
           </li>)}
       </ul>
       : null

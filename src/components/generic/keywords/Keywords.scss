@@ -9,9 +9,6 @@
       border-radius: 1.5em;
       padding: 0.5em 1em;
       margin-right: 0.5em;
-      &:focus {
-        border-color: #3ba0f2;
-      }
       &.disabled {
         cursor: default;
         color: #d6d6d6;
