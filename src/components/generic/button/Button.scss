@@ -6,8 +6,8 @@
     border-radius: .208em;
     outline: none;
     transition: all 0.1s;
-    font-family: "Open Sans", sans-serif;
-    padding: 0.75em 2em;
+    font-family: Nunito, "Open Sans", sans-serif;
+    padding: 0.833em 1.65em;
     cursor: pointer;
     font-weight: bold;
     outline: none !important;
@@ -75,9 +75,9 @@
       }
     }
   }
+}
 
-  .h5p-hub-publish .h5p-hub-navigation button {
-    padding: 0.833em;
-    max-width: 10.5em;
-  }
+.h5p-hub-publish .h5p-hub-navigation .btn {
+  padding: 0.833em;
+  max-width: 10.5em;
 }
