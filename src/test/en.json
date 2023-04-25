@@ -40,7 +40,7 @@
   "screenshots": "Screenshots",
   "licenseDetails": "License details",
   "shareFailed": "Share failed.",
-  "shareTryAgain": "Something went wrong, please try to share agian.",
+  "shareTryAgain": "Couldn't communicate with the H5P Hub. Please try again later.",
   "pleaseWait": "Please wait...",
   "language": "Language",
   "level": "Level",
