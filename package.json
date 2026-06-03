@@ -6,7 +6,7 @@
     "jest": "^28.1.2",
     "sass": "^1.80.7",
     "sass-loader": "^17.0.0",
-    "webpack": "^5.96.1",
+    "webpack": "^5.107.2",
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
