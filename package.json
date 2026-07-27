@@ -36,6 +36,9 @@
     "url-loader": "^4.1.1",
     "webpack-cli": "^4.10.0"
   },
+  "overrides": {
+    "brace-expansion": "5.0.8"
+  },
   "scripts": {
     "watch": "webpack --mode development --watch",
     "build": "webpack --mode production",
